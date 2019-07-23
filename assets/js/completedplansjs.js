@@ -31,7 +31,7 @@ $(document).ready(function () {
   pageonloadhit()
   function pageonloadhit() {
     obj = {}
-    obj.userid = useridd
+    obj.user_id = useridd
 
     obj.IsDefault = true
     console.log(obj);
@@ -173,7 +173,7 @@ $(document).ready(function () {
     campid = $(this).attr('title');
     objj = {}
     objj.CampaignId = campid
-    objj.UserId = useridd
+    objj.user_id = useridd
     objj.RePlanCategory = 1
     console.log(objj);
     var form = new FormData();
@@ -207,7 +207,7 @@ $(document).ready(function () {
     alert(campid)
     objj = {}
     objj.CampaignId = campid
-    objj.UserId = useridd
+    objj.user_id = useridd
     objj.RePlanCategory = 2
     console.log(objj);
     var form = new FormData();
@@ -242,7 +242,7 @@ $(document).ready(function () {
     $("body").on("click", ".Prioritizebtn", function(){
       plainiddd =  $(this).attr('plainidattr');
       objjj = {}
-      objjj.userid = useridd
+      objjj.user_id = useridd
       objjj.plainid = plainiddd
       console.log(objjj);
 
@@ -290,7 +290,7 @@ $(document).ready(function () {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url": ' http://192.168.0.113:6767/get_file_names',
+                    "url": ' http://192.168.0.125:6767/get_file_names',
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -323,7 +323,7 @@ $(document).ready(function () {
             var settings11 = {
                 "async": true,
                 "crossDomain": true,
-                "url": ' http://192.168.0.113:6767/download_file',
+                "url": ' http://192.168.0.125:6767/download_file',
                 "method": "POST",
                 "processData": false,
                 "contentType": false,

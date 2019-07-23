@@ -116,7 +116,7 @@ $(document).ready(function () {
         var key_end_week = $(".End_Week_dt").find("option:selected").attr('key');
         obj.edit = edit_flag;
         obj.PlanId = plan_id;
-        obj.UserId = userid;
+        obj.user_id = userid;
         obj.PrimaryTGTd = key_primary_tg;
         obj.BaseTGId = key_base_tg;
         obj.EndWeekId = key_end_week;

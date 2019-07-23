@@ -43,11 +43,11 @@ $(document).ready(function () {
     clientclass = $('.clientclass').val();
     brandclass = $('.brandclass').val();
     Campaignid  = $('.Campaignidclass').val();
-    // obj.userid = useridd
+    // obj.user_id = useridd
     obj.IsDefault = true
     obj.startdate = startdate
     obj.enddate = enddate
-    obj.userid = useridd
+    obj.user_id = useridd
     obj.clientclass = clientclass
     obj.brandclass = brandclass
     obj.Campaignid = Campaignid
@@ -207,7 +207,7 @@ $(document).ready(function () {
         .then((willDelete) => {
             if (willDelete) {
               objjj = {}
-              objjj.userid = useridd
+              objjj.user_id = useridd
               objjj.plainid = plainiddd
               objjj.startdate =$('.startdateclass').val();
               objjj.enddate = $('.enddateclass').val();
@@ -247,7 +247,7 @@ $(document).ready(function () {
               var settings11 = {
                   "async": true,
                   "crossDomain": true,
-                  "url": ' http://192.168.0.113:6767/get_file_names',
+                  "url": ' http://192.168.0.125:6767/get_file_names',
                   "method": "POST",
                   "processData": false,
                   "contentType": false,
@@ -259,7 +259,7 @@ $(document).ready(function () {
                   console.log(msg);
                   $('.pathslinks').empty()
                   for(key in msg ){
-                      $('.pathslinks').append('<h5 class="sendpath" title="'+msg[key]+'"  file_name="'+key+'"><a href="#"  style="cursor:pointer">'+key+'</a></5>');
+                      $('.pathslinks').append('<h5 class="sendpath" title="'+msg[key]+'"  file_name="'+key+'"><input type="checkbox" ><a href="#"  style="cursor:pointer">'+key+'</a></5>');
                   }
               })
 
@@ -280,7 +280,7 @@ $(document).ready(function () {
           var settings11 = {
               "async": true,
               "crossDomain": true,
-              "url": ' http://192.168.0.113:6767/download_file',
+              "url": ' http://192.168.0.125:6767/download_file',
               "method": "POST",
               "processData": false,
               "contentType": false,

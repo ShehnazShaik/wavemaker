@@ -77,7 +77,7 @@ function login(username, password, currentdate) {
 $('.login_input').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
-      username = $('.useridclass').val();
+      username = $('.user_idclass').val();
       password = $('.passwordclass').val();
       login(username, password)
 

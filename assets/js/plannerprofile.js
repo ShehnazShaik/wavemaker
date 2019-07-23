@@ -91,7 +91,7 @@ $(document).ready(function () {
         $("clientleadClass").removeClass('hide');
         $(".create_plan").attr("disabled", false);
         sendObj = {};
-        sendObj.UserId = userid;
+        sendObj.user_id = userid;
         console.log(sendObj);
         var form = new FormData();
         form.append("file", JSON.stringify(sendObj));
@@ -128,7 +128,7 @@ $(document).ready(function () {
     function get_freezeDetails(){
         $('.CLemId').hide();
         sendObj = {};
-        sendObj.UserId = userid;
+        sendObj.user_id = userid;
         console.log(sendObj);
         var form = new FormData();
         form.append("file", JSON.stringify(sendObj));

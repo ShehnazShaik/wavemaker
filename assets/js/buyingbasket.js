@@ -165,8 +165,10 @@ $( document ).ready(function() {
                         }
                         else {
                             $('.changediv').hide();
-                            $('.spillover').show();
-                            $('.texttodisplayspill').hide();
+                            $('.spillover').hide();
+                            // $('.texttodisplayspill').show();
+                            $('.spillovertexttodisplay').show();
+                            $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+'</h5>')
                             if (markascompleted=="true") {
                                 $(".next_").prop('disabled', false);
                             }
@@ -195,6 +197,8 @@ $( document ).ready(function() {
                         else {
                             // $(".next_").prop('disabled', true);
                             freezebuyinginfo();
+                            $('.spillover').hide();
+
                             $('.changediv').show();
                             $('.ss_files').hide();
                             $('.submit_btn1').hide();
@@ -670,7 +674,7 @@ $( document ).ready(function() {
                 sendObj2 = {}
                 // sendObj[cprp_weitage] = reach_weitage;
                 sendObj2.path_selection = path_selection_;
-                sendObj2.userid = userid;
+                sendObj2.user_id = userid;
                 sendObj2.plan_id = plan_id;
                 // sendObj.weitage[reach_weitage] = cprp_weitage;
                 sendObj2.campaign_days = campaign_days;
@@ -762,7 +766,7 @@ $( document ).ready(function() {
                 sendObj2 = {}
                 sendObj[cprp_weitage] = reach_weitage;
                 sendObj2.path_selection = path_selection;
-                sendObj2.userid = userid;
+                sendObj2.user_id = userid;
                 sendObj2.plan_id = plan_id;
                 // sendObj.weitage[reach_weitage] = cprp_weitage;
                 sendObj2.campaign_days = campaign_days;
@@ -895,7 +899,7 @@ $( document ).ready(function() {
                         fileobj_new.plan_id = plan_id;
                         fileobj_new.user_id = user_id;
                         console.log(fileobj_new);
-                        file_name_new = filename;
+                        // file_name_new = filename;
                     };
 
                     fileReader.readAsDataURL(file);

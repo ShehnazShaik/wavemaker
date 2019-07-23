@@ -3,7 +3,7 @@ $(document).ready(function () {
     addpageonloadhit()
     function addpageonloadhit() {
         obj = {}
-        obj.userid = useridd
+        obj.user_id = useridd
         console.log(obj);
         var form = new FormData();
         form.append("file", JSON.stringify(obj));
@@ -45,7 +45,7 @@ $(document).ready(function () {
         objj = {}
         objj.email = email
         objj.clientid = clientname
-        objj.userid = useridd
+        objj.user_id = useridd
         console.log(objj);
         var form = new FormData();
         form.append("file", JSON.stringify(objj));
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     function deletepageonloadhit() {
         obj = {}
-        obj.userid = useridd
+        obj.user_id = useridd
         console.log(obj);
         var form = new FormData();
         form.append("file", JSON.stringify(obj));
@@ -132,7 +132,7 @@ $(document).ready(function () {
         objjj = {}
         objjj.email = email
         objjj.clientname = clientdelete
-        objjj.userid = useridd
+        objjj.user_id = useridd
         console.log(objjj);
         var form = new FormData();
         form.append("file", JSON.stringify(objjj));

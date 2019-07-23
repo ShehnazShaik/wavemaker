@@ -163,7 +163,7 @@ $(".displayhere").html(row)
 
     sendObj = {}
     sendObj.data = msg__;
-    sendObj.UserId = useridd;
+    sendObj.user_id = useridd;
     console.log(sendObj);
     var form = new FormData();
     form.append("file", JSON.stringify(sendObj));

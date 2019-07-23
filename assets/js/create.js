@@ -91,7 +91,7 @@ $(document).ready(function () {
     campign_markets
     function createPlan() {
         sendObj = {};
-        sendObj.id = sessionStorage.getItem('userid');
+        sendObj.user_id = sessionStorage.getItem('userid');
         console.log(sendObj);
         var form = new FormData();
         form.append("file", JSON.stringify(sendObj));
@@ -205,7 +205,7 @@ $(document).ready(function () {
         obj.PrimaryTGTd = parseInt(key_primary_tg);
         obj.BaseTGId = parseInt(key_base_tg);
         obj.EndWeekId = parseInt(key_end_week);
-        obj.UserId = userid;
+        obj.user_id = userid;
 
         debugger;
 
@@ -321,7 +321,7 @@ debugger
             clientId_ = msg.ClientId;
             endWeekId_ = msg.EndWeek;
             primaryTGTd_ = msg.PrimaryTGTd;
-            userId_ = msg.UserId;
+            userId_ = msg.user_id;
             client_name = msg.Client;
 
             console.log(ischannelselectioncompleted);

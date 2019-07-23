@@ -158,6 +158,7 @@ display: none;
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Replan</th>
+                                <th>Donwload</th>
                             </tr>
                         </thead>
                         <tbody class="displaytabledata">
@@ -293,6 +294,31 @@ Footer
 </div>
 <!-- /page content -->
 
+<div id="replanmodall" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="margin-top: 255px;">
+
+            <!-- Form -->
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <!-- <i class="icon-spinner11 icon-2x text-warning border-warning border-3 rounded-round p-3 mb-3 mt-1"></i>
+                    <h5 class="mb-0">Password recovery</h5>
+                    <span class="d-block text-muted">We'll send you instructions in email</span> -->
+                    <button class="form-control buyingbasketbtn" style="background-color: #192124;color: white;" style="color:#fff">Replan from Buying Basket Upload </button>
+
+                </div>
+
+                <div class="form-group form-group-feedback form-group-feedback-right">
+                    <button class="form-control acceleratorbtn"style="background-color: #192124;color: white;" style="color:#fff">Replan by Uploading Revised Accelerator Plan</button>
+                </div>
+
+                <!-- <button type="submit" class="btn bg-blue btn-block"><i class="icon-spinner11 mr-2"></i> Reset password</button> -->
+            </div>
+            <!-- /form -->
+
+        </div>
+    </div>
+</div>
 </body>
 
 <!-- Mirrored from demo.interface.club/limitless/demo/bs4/Template/layout_1/LTR/default/full/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Jun 2019 06:41:06 GMT -->

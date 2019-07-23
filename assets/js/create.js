@@ -10,7 +10,7 @@ $(document).ready(function () {
     var create_plan_id='';
     var filenames;
     var paths;
-    var backclicked = false ;
+    var backclicked = "false" ;
     debugger
     $('body').on('click', '#createplan', function(){
         $(".next_btn").hide();

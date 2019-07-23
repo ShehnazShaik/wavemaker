@@ -199,6 +199,7 @@ $( document ).ready(function() {
                             $('.ss_files').hide();
                             $('.submit_btn1').hide();
                             $('.spillovertexttodisplay').show();
+                            $('.spillll').hide();
                             $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+'</h5>')
 
                             // window.location.href="barc.php";
@@ -219,6 +220,7 @@ $( document ).ready(function() {
                             $('.bb_files').hide();
                             $('#upl-btn').hide();
                             $('.texttodisplay').show()
+
                             $('.texttodisplay').append('<h5>'+msg.BuyingBasketFilePath+' is successfully uploaded</h5>')
                             // $('.cprp_div').show();
                             $('.radio_class').show();

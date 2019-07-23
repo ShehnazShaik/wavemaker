@@ -71,13 +71,6 @@
 #DataTables_Table_1_filter{
     display: none !important;
 }
-#logoutbtnid{
-    background-color: #ffffff2e !important;
-    border: none;
-    border-radius: 5px;
-    padding: 2px 15px;
-    color: white;
-}
 </style>
 <body>
 

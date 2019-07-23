@@ -59,21 +59,17 @@
     <script src="assets/js/ongoing_dashboardjs.js"></script>
     <script src="assets\js\sessiontimeoutjs.js"></script>
 
-
-
-    <!-- /theme JS files -->
-
-    <!-- /theme JS files -->
-
 </head>
 <script>
   var userrole = sessionStorage.getItem("role");
-  // if (userrole!= 'clientlead') {
-  //  $('.hidepri').css('display','none');
-  // }
-  // else {
-  //    $('.hidepri').css('display','block');
-  // }
+  if (userrole!= 'Planner') {
+   $('#hidepri').css('display','none');
+
+  }
+  else {
+     $('#hidepri').css('display','block');
+        $('.Prioritizebtn').empty()
+  }
 
 </script>
 <style media="screen">
@@ -86,13 +82,9 @@ display: none !important;
 .hidden{
     display:none;
 }
-#logoutbtnid{
-    background-color: #ffffff2e !important;
-    border: none;
-    border-radius: 5px;
-    padding: 2px 15px;
-    color: white;
-}
+/* #hidepri{
+  display: none;
+} */
 
 </style>
 <body>
@@ -110,7 +102,19 @@ display: none !important;
 
         <!-- Main content -->
         <div class="content-wrapper">
+          <div class="page-header page-header-light">
 
+              <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                  <div class="d-flex">
+                      <div class="breadcrumb">
+                          <a href="index.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                          <span class="breadcrumb-item active">Ongoing plans</span>
+                      </div>
+
+                      <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                  </div>
+              </div>
+          </div>
             <!-- Page header -->
             <!-- <div class="page-header page-header-light">
 
@@ -172,6 +176,7 @@ display: none !important;
                                 <th>Start Date</th>
                                 <!-- <th>End Date</th> -->
                                 <th id="hidepri">Prioritization</th>
+                                  <th>Download</th>
                             </tr>
                         </thead>
                         <tbody class="displaytabledata">
@@ -246,6 +251,22 @@ Footer
 
                 <!-- <button type="submit" class="btn bg-blue btn-block"><i class="icon-spinner11 mr-2"></i> Reset password</button> -->
             </form>
+            <!-- /form -->
+
+        </div>
+    </div>
+</div>
+<div id="replanmodall" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="margin-top: 255px;">
+
+            <!-- Form -->
+            <div class="modal-body">
+                <div class="text-center mb-3 pathslinks">
+                    <!-- <button class="form-control buyingbasketbtn" style="background-color: #192124;color: white;" style="color:#fff">Replan from Buying Basket Upload </button> -->
+                </div>
+
+            </div>
             <!-- /form -->
 
         </div>

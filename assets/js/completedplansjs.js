@@ -1,16 +1,46 @@
 $(document).ready(function () {
   var useridd = sessionStorage.getItem("userid");
+
+
+
+  // function format_dateee(date_string) {
+  //              date = new Date(date_string)
+  //              months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+  //              weeks_ = ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"];
+  //              hours_mian = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
+  //              hrs = date.getHours().toString().length < 2 ? '0'+date.getHours() : date.getHours()
+  //              mins = date.getMinutes().toString().length < 2 ? '0'+date.getMinutes() : date.getMinutes()
+  //              return date.getFullYear()+'-'+months[date.getMonth()]+'-'+date.getDate()
+  //          }
+  //
+  //
+  //
+  //          var weekstart = format_dateee(new Date())
+  //          console.log(weekstart);
+  //          $('.startdateclass').val(weekstart)
+  //
+  //          function addDays(theDate, days) {
+  //              return new Date(theDate.getTime() + days*24*60*60*1000);
+  //          }
+  //
+  //          var endweek = format_dateee(addDays(new Date(), 7));
+  //          $('.enddateclass').val(endweek)
+
+
+
   pageonloadhit()
   function pageonloadhit() {
     obj = {}
     obj.userid = useridd
+
+    obj.IsDefault = true
     console.log(obj);
     var form = new FormData();
     form.append("file", JSON.stringify(obj));
     var settings11 = {
       "async": true,
       "crossDomain": true,
-      "url": 'http://192.168.0.125:6767/ongoing_client_request',
+      "url": 'http://192.168.0.125:6767/completed_client_request',
       "method": "POST",
       "processData": false,
       "contentType": false,
@@ -20,6 +50,9 @@ $(document).ready(function () {
     $.ajax(settings11).done(function (msg) {
       msg = JSON.parse(msg);
         console.log(msg);
+        msg1 = msg.records
+        displaytable(msg1);
+
         data = msg.Client
         console.log(data);
 
@@ -47,7 +80,6 @@ $(document).ready(function () {
 
 
     $("body").on("click", "#camp_idhyperlink_", function(){
-        sessionStorage.setItem('backclicked', false);
           plainiddd =  $(this).attr('plainidattr');
           // alert()
           sessionStorage.setItem('create_plan_id', plainiddd);
@@ -113,6 +145,7 @@ $(document).ready(function () {
                   row += '<td style="width:172px">'+format_date(block.EndDate)+'</td>';
                   // if (block.IsPrioritized == false) {
                   row += '<td><button class="replanmodal" Campaignid='+block.CampaignId+' plainidattr='+block.PlanId+'  style="background-color: green;color: white;border: none;padding: 4PX;width: 68px;">Re-Plan</button></td>';
+                  row += '<td><button class="downloadbtn"  plainidattr="'+block.PlanId+'" style="color: white;background-color: back;background-color: #dc4d4d;border: none;">Download</button></td>';
 
 
                 // row += '<td> '+format_date(block.DateValidated)+' </td>';
@@ -130,6 +163,11 @@ $(document).ready(function () {
         $('.acceleratorbtn').attr('title', attr__);
       $('#replanmodall').modal();
     })
+
+
+
+
+
 
   $("body").on("click", ".buyingbasketbtn", function(){
     campid = $(this).attr('title');
@@ -238,7 +276,97 @@ $(document).ready(function () {
             hours_mian = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
             hrs = date.getHours().toString().length < 2 ? '0'+date.getHours() : date.getHours()
             mins = date.getMinutes().toString().length < 2 ? '0'+date.getMinutes() : date.getMinutes()
-            return date.getDate()+'/'+months[date.getMonth()]+'/'+date.getFullYear()+' &nbsp&nbsp'+hrs+':'+mins;
+            return date.getDate()+'-'+months[date.getMonth()]+'-'+date.getFullYear()+' &nbsp&nbsp'+hrs+':'+mins;
+        }
+
+        $("body").on("click", ".downloadbtn", function(){
+          plainiddd =  $(this).attr('plainidattr');
+                $('#replanmodall').modal()
+                sendObj = {};
+                sendObj.plan_id = plainiddd;
+                console.log(sendObj);
+                var form = new FormData();
+                form.append("file", JSON.stringify(sendObj));
+                var settings11 = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": ' http://192.168.0.113:6767/get_file_names',
+                    "method": "POST",
+                    "processData": false,
+                    "contentType": false,
+                    "mimeType": "multipart/form-data",
+                    "data": form
+                };
+                $.ajax(settings11).done(function (msg) {
+                    msg = JSON.parse(msg);
+                    console.log(msg);
+                    $('.pathslinks').empty()
+                    for(key in msg ){
+                        $('.pathslinks').append('<h5 class="sendpath" title="'+msg[key]+'"  file_name="'+key+'"><a href="#"  style="cursor:pointer">'+key+'</a></5>');
+                    }
+                })
+
+
+        })
+
+
+        // =================================
+        $("body").on("click", ".sendpath", function(){
+
+            file_Name = $(this).attr('file_name');
+            var send_path = $(this).attr('title')
+            sendObj = {};
+            sendObj.file_path = send_path;
+            console.log(sendObj);
+            var form = new FormData();
+            form.append("file", JSON.stringify(sendObj));
+            var settings11 = {
+                "async": true,
+                "crossDomain": true,
+                "url": ' http://192.168.0.113:6767/download_file',
+                "method": "POST",
+                "processData": false,
+                "contentType": false,
+                "mimeType": "multipart/form-data",
+                "data": form
+            };
+            $.ajax(settings11).done(function (msg) {
+                // msg = JSON.parse(msg);
+                console.log(msg);
+
+                // console.log(JSON.parse(msg))
+                msg_obj = msg;
+              // file_name = msg.file_name;
+              var bin = atob(msg_obj);
+              var ab = s2ab(bin); // from example above
+              var blob = new Blob([ab], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+
+              var link = document.createElement('a');
+              link.href = window.URL.createObjectURL(blob);
+              link.download = file_Name;
+              // link.download = 'file_name';
+
+              document.body.appendChild(link);
+
+                link.click();
+
+                document.body.removeChild(link);
+
+                swal('downloaded successfully');
+
+                setTimeout(function(){
+                    location.reload();
+                }, 3000)
+
+            })
+        })
+
+
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
         }
 
 

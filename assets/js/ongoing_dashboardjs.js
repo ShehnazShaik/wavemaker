@@ -1,29 +1,36 @@
 $(document).ready(function () {
   var useridd = sessionStorage.getItem("userid");
   var userrole = sessionStorage.getItem("role");
-$('.hidepri').show()
-  function format_dateee(date_string) {
-               date = new Date(date_string)
-               months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-               weeks_ = ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"];
-               hours_mian = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
-               hrs = date.getHours().toString().length < 2 ? '0'+date.getHours() : date.getHours()
-               mins = date.getMinutes().toString().length < 2 ? '0'+date.getMinutes() : date.getMinutes()
-               return date.getFullYear()+'-'+months[date.getMonth()]+'-'+date.getDate()
-           }
 
-
-
-           var weekstart = format_dateee(new Date())
-           console.log(weekstart);
-           $('.startdateclass').val(weekstart)
-
-           function addDays(theDate, days) {
-               return new Date(theDate.getTime() + days*24*60*60*1000);
-           }
-
-           var endweek = format_dateee(addDays(new Date(), 7));
-           $('.enddateclass').val(endweek)
+  if (userrole!= 'Planner') {
+    debugger
+    $('#hidepri').show()
+  }
+  else {
+    $('#hidepri').hide()
+  }
+  // function format_dateee(date_string) {
+  //              date = new Date(date_string)
+  //              months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+  //              weeks_ = ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"];
+  //              hours_mian = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
+  //              hrs = date.getHours().toString().length < 2 ? '0'+date.getHours() : date.getHours()
+  //              mins = date.getMinutes().toString().length < 2 ? '0'+date.getMinutes() : date.getMinutes()
+  //              return date.getFullYear()+'-'+months[date.getMonth()]+'-'+date.getDate()
+  //          }
+  //
+  //
+  //
+  //          var weekstart = format_dateee(new Date())
+  //          console.log(weekstart);
+  //          $('.startdateclass').val(weekstart)
+  //
+  //          function addDays(theDate, days) {
+  //              return new Date(theDate.getTime() + days*24*60*60*1000);
+  //          }
+  //
+  //          var endweek = format_dateee(addDays(new Date(), 7));
+  //          $('.enddateclass').val(endweek)
 
 
 
@@ -36,6 +43,8 @@ $('.hidepri').show()
     clientclass = $('.clientclass').val();
     brandclass = $('.brandclass').val();
     Campaignid  = $('.Campaignidclass').val();
+    // obj.userid = useridd
+    obj.IsDefault = true
     obj.startdate = startdate
     obj.enddate = enddate
     obj.userid = useridd
@@ -158,8 +167,7 @@ $('.hidepri').show()
                   row += '<td>'+block.ClientName+'</td>';
                   row += '<td>'+block.CampaignName+'</td>';
                   row += '<td>'+format_date(block.StartDate)+'</td>';
-                  if (userrole!= 'Planner') {
-                   // $('.hidepri').css('display','none');
+                if (userrole!= 'Planner') {
                   if (block.IsPrioritized == false) {
                       row += '<td><button  style="background-color: green;border: none;color: white;" plainidattr="'+block.PlanId+'"  class="Prioritizebtn">Prioritize</button></td>';
 
@@ -168,6 +176,7 @@ $('.hidepri').show()
                       row += '<td  plainidattr="'+block.PlanId+'">Prioritized</td>';
                   }
                 }
+                  row += '<td><button class="downloadbtn"  plainidattr="'+block.PlanId+'" style="color: white;background-color: back;background-color: #dc4d4d;border: none;">Download</button></td>';
                 // row += '<td> '+format_date(block.DateValidated)+' </td>';
                 // row += '<td> '+block.CheckPointValidated+' </td>';
 
@@ -227,6 +236,95 @@ $('.hidepri').show()
             }
         });
       })
+      $("body").on("click", ".downloadbtn", function(){
+        plainiddd =  $(this).attr('plainidattr');
+              $('#replanmodall').modal()
+              sendObj = {};
+              sendObj.plan_id = plainiddd;
+              console.log(sendObj);
+              var form = new FormData();
+              form.append("file", JSON.stringify(sendObj));
+              var settings11 = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": ' http://192.168.0.113:6767/get_file_names',
+                  "method": "POST",
+                  "processData": false,
+                  "contentType": false,
+                  "mimeType": "multipart/form-data",
+                  "data": form
+              };
+              $.ajax(settings11).done(function (msg) {
+                  msg = JSON.parse(msg);
+                  console.log(msg);
+                  $('.pathslinks').empty()
+                  for(key in msg ){
+                      $('.pathslinks').append('<h5 class="sendpath" title="'+msg[key]+'"  file_name="'+key+'"><a href="#"  style="cursor:pointer">'+key+'</a></5>');
+                  }
+              })
+
+
+      })
+
+
+      // =================================
+      $("body").on("click", ".sendpath", function(){
+
+          file_Name = $(this).attr('file_name');
+          var send_path = $(this).attr('title')
+          sendObj = {};
+          sendObj.file_path = send_path;
+          console.log(sendObj);
+          var form = new FormData();
+          form.append("file", JSON.stringify(sendObj));
+          var settings11 = {
+              "async": true,
+              "crossDomain": true,
+              "url": ' http://192.168.0.113:6767/download_file',
+              "method": "POST",
+              "processData": false,
+              "contentType": false,
+              "mimeType": "multipart/form-data",
+              "data": form
+          };
+          $.ajax(settings11).done(function (msg) {
+              // msg = JSON.parse(msg);
+              console.log(msg);
+
+              // console.log(JSON.parse(msg))
+              msg_obj = msg;
+            // file_name = msg.file_name;
+            var bin = atob(msg_obj);
+            var ab = s2ab(bin); // from example above
+            var blob = new Blob([ab], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = file_Name;
+            // link.download = 'file_name';
+
+            document.body.appendChild(link);
+
+              link.click();
+
+              document.body.removeChild(link);
+
+              swal('downloaded successfully');
+
+              setTimeout(function(){
+                  location.reload();
+              }, 3000)
+
+          })
+      })
+
+
+      function s2ab(s) {
+          var buf = new ArrayBuffer(s.length);
+          var view = new Uint8Array(buf);
+          for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+          return buf;
+      }
 
 
       function format_date(date_string) {

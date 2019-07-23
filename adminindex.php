@@ -44,8 +44,8 @@
     <script src="assets/js/adminmasterdatajs.js"></script>
     <script src="assets/js/adminuserprevilagesjs.js"></script>
     <script src="assets\js\sessiontimeoutjs.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
     <!-- /theme JS files -->
 
@@ -210,79 +210,79 @@ $( document ).ready(function() {
                                 <div class="cprp card">
                                     <div class="row mb-4">
                                         <div class="col-md-2">
-                                        <h6 class="font-weight-semibold">Master Data </h6></div>
-                                        <div class="col-md-8 masterdata_">
-                                            <!-- <input type="file" class="file-input" multiple="multiple" data-fouc> -->
-                                            <!-- <div class="col-md-4"> -->
-                                            <input type="file" class="file-input-ajax" id="locationclass" data-fouc>
+                                            <h6 class="font-weight-semibold">Master Data </h6></div>
+                                            <div class="col-md-8 masterdata_">
+                                                <!-- <input type="file" class="file-input" multiple="multiple" data-fouc> -->
+                                                <!-- <div class="col-md-4"> -->
+                                                <input type="file" class="file-input-ajax" id="locationclass" data-fouc>
 
-                                            <!-- <span><button id="locationuploadbtn">Upload</button></span> -->
+                                                <!-- <span><button id="locationuploadbtn">Upload</button></span> -->
 
-                                            <!-- </div> -->
-                                            <!-- <span class="form-text text-muted">Automatically convert a file input to a bootstrap file input widget by setting its class as <code>file-input</code>.</span> -->
+                                                <!-- </div> -->
+                                                <!-- <span class="form-text text-muted">Automatically convert a file input to a bootstrap file input widget by setting its class as <code>file-input</code>.</span> -->
+                                            </div>
+                                            <div class="col-md-8 masterdata_new">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <span class="btn_style">  <button type="submit" class="btn btn-primary" style="background: #4caf50;" id="locationuploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
+                                            </div>
                                         </div>
-                                        <div class="col-md-8 masterdata_new">
+                                        <div class="row mb-4">
+                                            <div class="col-md-2">
+                                                <h6 class="font-weight-semibold">Channel Genre mapping sheet</h6>
+                                            </div>
+                                            <div class="col-md-8 channel_">
+                                                <input type="file" class="file-input"  id="channelgenre"  data-fouc>
+                                                <!-- <span><button id="clientuploadbtn">Upload</button></span> -->
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <span class="btn_style">  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="channelgenrebtn">Upload <i class="icon-upload ml-2"></i></button></span>
+                                            </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <span class="btn_style">  <button type="submit" class="btn btn-primary" style="background: #4caf50;" id="locationuploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
-                                        </div>
+                                        <!-- <div class="mb-4">
+                                        <h6 class="font-weight-semibold">Brand</h6>
+                                        <div class="col-md-8">
+                                        <input type="file" class="file-input" id="brandclass"  data-fouc>
+
+                                        <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="branduploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
+
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="col-md-2">
-                                        <h6 class="font-weight-semibold">Channel Genre mapping sheet</h6>
-                                    </div>
-                                        <div class="col-md-8 channel_">
-                                            <input type="file" class="file-input"  id="channelgenre"  data-fouc>
-                                            <!-- <span><button id="clientuploadbtn">Upload</button></span> -->
-
-                                        </div>
-                                        <div class="col-md-2">
-                                            <span class="btn_style">  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="channelgenrebtn">Upload <i class="icon-upload ml-2"></i></button></span>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="mb-4">
-                                    <h6 class="font-weight-semibold">Brand</h6>
-                                    <div class="col-md-8">
-                                    <input type="file" class="file-input" id="brandclass"  data-fouc>
-
-                                    <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="branduploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
-
                                 </div>
+                                <div class="mb-4">
+                                <h6 class="font-weight-semibold">TG</h6>
+                                <div class="col-md-8">
+                                <input type="file" class="file-input"  id="tgclass" data-fouc>
+
+                                <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="tguploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
+
                             </div>
-                            <div class="mb-4">
-                            <h6 class="font-weight-semibold">TG</h6>
-                            <div class="col-md-8">
-                            <input type="file" class="file-input"  id="tgclass" data-fouc>
-
-                            <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="tguploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
-
                         </div>
+
+
+                        <div class="mb-4">
+                        <h6 class="font-weight-semibold">Campaign Markets</h6>
+                        <div class="col-md-8">
+                        <input type="file" class="file-input" id="Campaignclass"   data-fouc>
+
+                        <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="Campaignuploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
+
                     </div>
-
-
-                    <div class="mb-4">
-                    <h6 class="font-weight-semibold">Campaign Markets</h6>
-                    <div class="col-md-8">
-                    <input type="file" class="file-input" id="Campaignclass"   data-fouc>
-
-                    <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="Campaignuploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
-
                 </div>
+                <div class="mb-4">
+                <h6 class="font-weight-semibold">Channel Genre Mapping Sheet</h6>
+                <div class="col-md-8">
+                <input type="file" id="channeluploadbtn" class="file-input" id="channelclass"  data-fouc>
+
+                <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="Campaignuploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
+
             </div>
-            <div class="mb-4">
-            <h6 class="font-weight-semibold">Channel Genre Mapping Sheet</h6>
-            <div class="col-md-8">
-            <input type="file" id="channeluploadbtn" class="file-input" id="channelclass"  data-fouc>
-
-            <span>  <button type="submit" class="btn btn-primary" style="background: #4caf50;"  id="Campaignuploadbtn">Upload <i class="icon-upload ml-2"></i></button></span>
-
-        </div>
-    </div> -->
+        </div> -->
 
 
 
 
-</div>
+    </div>
 </div>
 
 <div class="tab-pane fade" id="login-tab2">
@@ -311,7 +311,7 @@ $( document ).ready(function() {
             </div>
         </div>
         <div class="col-md-12">
-            <button class="form-control editclass" style="width: 100px;background-color: #b75b26;color:white;float:right">EDIT</button>
+            <!-- <button class="form-control editclass" style="width: 100px;background-color: #b75b26;color:white;float:right">EDIT</button> -->
 
         </div>
 
@@ -350,6 +350,15 @@ $( document ).ready(function() {
 <div class="mb-4">
     <button type="submit" class="btn btn-primary submitbtn" style="background: #4caf50;float:right">Submit <i class="icon-paperplane ml-2"></i></button>
 </div>
+
+
+</div>
+</div>
+</div>
+
+
+
+
 
 
 </div>

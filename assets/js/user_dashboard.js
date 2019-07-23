@@ -2,34 +2,35 @@ $(document).ready(function () {
   var startdate;
   var enddate;
     var useridd = sessionStorage.getItem("userid");
-    pageonloadhit()
+    var useridd = sessionStorage.getItem("userid");
+      pageonloadhit()
 
-    function pageonloadhit() {
-      obj = {}
+      function pageonloadhit() {
+        obj = {}
 
-      brandclass = $('.brandclass').val();
-      obj.userid = useridd
-      obj.IsDefault = true
+        brandclass = $('.brandclass').val();
+        obj.userid = useridd
+        obj.IsDefault = true
 
-      console.log(obj);
-      var form = new FormData();
-      form.append("file", JSON.stringify(obj));
-      var settings11 = {
-        "async": true,
-        "crossDomain": true,
-        "url": 'http://192.168.0.125:6767/Dashboard_screen_load',
-        "method": "POST",
-        "processData": false,
-        "contentType": false,
-        "mimeType": "multipart/form-data",
-        "data": form
-      };
-      $.ajax(settings11).done(function (msg) {
-        msg = JSON.parse(msg);
-          console.log(msg);
-          displaytable(msg);
-      })
-      }
+        console.log(obj);
+        var form = new FormData();
+        form.append("file", JSON.stringify(obj));
+        var settings11 = {
+          "async": true,
+          "crossDomain": true,
+          "url": 'http://192.168.0.125:6767/Dashboard_screen_load',
+          "method": "POST",
+          "processData": false,
+          "contentType": false,
+          "mimeType": "multipart/form-data",
+          "data": form
+        };
+        $.ajax(settings11).done(function (msg) {
+          msg = JSON.parse(msg);
+            console.log(msg);
+            displaytable(msg);
+        })
+        }
 
     //
     // function format_dateee(date_string) {
@@ -181,7 +182,7 @@ $(document).ready(function () {
               var settings11 = {
                   "async": true,
                   "crossDomain": true,
-                  "url": ' http://192.168.0.125:6767/get_file_names',
+                  "url": ' http://192.168.0.113:6767/get_file_names',
                   "method": "POST",
                   "processData": false,
                   "contentType": false,
@@ -214,7 +215,7 @@ $(document).ready(function () {
           var settings11 = {
               "async": true,
               "crossDomain": true,
-              "url": ' http://192.168.0.125:6767/download_file',
+              "url": ' http://192.168.0.113:6767/download_file',
               "method": "POST",
               "processData": false,
               "contentType": false,
@@ -263,7 +264,6 @@ $(document).ready(function () {
 
 // =====================
           $("body").on("click", "#camp_idhyperlink_", function(){
-              sessionStorage.setItem('backclicked', false);
                 plainiddd =  $(this).attr('plainidattr');
                 // alert(plainiddd)
                 sessionStorage.setItem('create_plan_id', plainiddd);
@@ -271,7 +271,6 @@ $(document).ready(function () {
              });
 
       $("body").on("click", "#camp_idhyperlink", function(){
-          sessionStorage.setItem('backclicked', false);
             plainiddd =  $(this).attr('plainidattr');
             // alert(plainiddd)
             sessionStorage.setItem('create_plan_id', plainiddd);

@@ -142,7 +142,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-lg-3">Campaign Markets <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <select multiple="multiple" class="form-control select-fixed-multiple campaign_markets" required data-fouc data-placeholder="Select End Week">
+                                        <select multiple="multiple" class="form-control select-fixed-multiple campaign_markets" required data-fouc data-placeholder="Select Campaign Markets">
                                             <option value=""></option>
                                         </select>
                                         <div data-placeholder="" class="freezeLoc select_markets" data-fouc>

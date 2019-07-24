@@ -51,6 +51,9 @@
 
 </head>
 <style>
+.table-bordered{
+    color: #fff !important;
+}
 .file-drop-zone-title {
     padding: 11px;
 }

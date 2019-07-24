@@ -27,7 +27,7 @@
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="global_assets/js/plugins/forms/validation/validate.min.js"></script>
+	<!-- <script src="global_assets/js/plugins/forms/validation/validate.min.js"></script> -->
 	<script src="global_assets/js/plugins/forms/inputs/touchspin.min.js"></script>
 	<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
 	<script src="global_assets/js/demo_pages/form_select2.js"></script>
@@ -321,7 +321,7 @@
 </div>
 </div>
 <div class="form-group row">
-	<label class="col-form-label col-lg-3">CLient lead Email Id's<span class="text-danger">*</span></label>
+	<label class="col-form-label col-lg-3">Client Lead Email Id's<span class="text-danger">*</span></label>
 	<div class="col-lg-9">
 		<input type="text" name="" value="" required placeholder="Client Email Id's" readonly class="form-control CLemId">
 		<!-- <input type="text" name="text" class="form-control CLemId" readonly placeholder="Enter a valid email address"> -->
@@ -573,7 +573,7 @@
 
 <div class="d-flex justify-content-end align-items-center">
 	<!-- <button type="reset" class="btn btn-light" id="reset">Reset <i class="icon-reload-alt ml-2"></i></button> -->
-	<button type="submit" style="background-color: #f3713c;" class="form-control btn create_btn create_plan">Create <i class="icon-paperplane ml-2"></i></button>
+	<button type="submit" style="background: #4b6584 !important; color: #fff;" class="form-control btn create_btn create_plan">Create <i class="icon-paperplane ml-2"></i></button>
 </div>
 </form>
 </div>

@@ -375,6 +375,7 @@ $(document).ready(function () {
                // $(".clientleadClass").prop('disabled', true);
                // $('.multiclient').prop('disabled', true);
                var val = $('.clientClass').val();
+
                // array_location = [];
 
                // if (role==Planner) {
@@ -386,16 +387,21 @@ $(document).ready(function () {
                //     var loc = $(".multilocclass").val();
                //     array_location.push(loc)
                // }
-               sendObj = {};
-               sendObj.CreatedBy = userid;
-               sendObj.location_key = location_key;
-               sendObj.UserClientId = userid;
-               sendObj.ClientId = val;
-               console.log(sendObj);
+               if (location_key == '' || val == '') {
+                 swal("All fields are required");
+               }
+               else {
 
-               var form = new FormData();
-               form.append("file", JSON.stringify(sendObj));
-               var settings11 = {
+                 sendObj = {};
+                 sendObj.CreatedBy = userid;
+                 sendObj.location_key = location_key;
+                 sendObj.UserClientId = userid;
+                 sendObj.ClientId = val;
+                 console.log(sendObj);
+
+                 var form = new FormData();
+                 form.append("file", JSON.stringify(sendObj));
+                 var settings11 = {
                    "async": true,
                    "crossDomain": true,
                    "url": 'http://192.168.0.125:6767/Create_Profile',
@@ -404,49 +410,50 @@ $(document).ready(function () {
                    "contentType": false,
                    "mimeType": "multipart/form-data",
                    "data": form
-               };
-               $.ajax(settings11).done(function (msg) {
-                   debugger
-                   msg = JSON.parse(msg);
-                   console.log(msg);
+                 };
+                 $.ajax(settings11).done(function (msg) {
+                       debugger
+                       msg = JSON.parse(msg);
+                       console.log(msg);
 
-                   setInterval(function(){
-                    $('.loading').hide(); }, 1000);
-                    // e.preventDefault();
-                   // alert("successfully c/reated")
-                   // err_count = 0;
-                   swal("successfully created");
+                       setInterval(function(){
+                          $('.loading').hide(); }, 1000);
+                          // e.preventDefault();
+                         // alert("successfully c/reated")
+                         // err_count = 0;
+                         swal("successfully created");
 
-                   sessionStorage.setItem('isnewuser', false);
-                   // if (role=='Planner') {
-                       $('input[type=email]').prop('readonly', true);
-                       $("#email").prop('readonly', true);
-                       $("#email").css('background', '#ccc');
-                       $(".select2-selection--multiple").css('background', '#ccc');
-                       $(".select2-selection--multiple").prop('readonly', true);
-                       $('.select2-selection').prop('readonly', true);
-                       $('.select2-selection').css('background', '#ccc');
-                       $('.select2-hidden-accessible').prop('readonly', true);
-                       $('input[type=text]').prop('readonly', true);
-                       $('.clientleadClass').css('background', '#ccc');
-                       $('.clientleadClass').prop('readonly', true);
+                         sessionStorage.setItem('isnewuser', false);
+                         // if (role=='Planner') {
+                               $('input[type=email]').prop('readonly', true);
+                               $("#email").prop('readonly', true);
+                               $("#email").css('background', '#ccc');
+                               $(".select2-selection--multiple").css('background', '#ccc');
+                               $(".select2-selection--multiple").prop('readonly', true);
+                               $('.select2-selection').prop('readonly', true);
+                               $('.select2-selection').css('background', '#ccc');
+                               $('.select2-hidden-accessible').prop('readonly', true);
+                               $('input[type=text]').prop('readonly', true);
+                               $('.clientleadClass').css('background', '#ccc');
+                               $('.clientleadClass').prop('readonly', true);
 
-                   // }
-                   // else {
-                   //
-                   // }
-                   // get_userclientId = msg;
-                   // localStorage.setItem("get_userclientId", JSON.stringify(get_userclientId));
-                   // get_userclientId = JSON.parse(localStorage.getItem("get_userclientId"));
-                   // console.log(typeof get_userclientId);
-                   // console.log(get_userclientId);
-                   // if (get_userclientId = '') {
-                   //     alert("error")
-                   // }
-                   // else {
-                   //     window.location.href="planner_createnewplan.php";
-                   // }
-               })
+                           // }
+                           // else {
+                             //
+                             // }
+                             // get_userclientId = msg;
+                             // localStorage.setItem("get_userclientId", JSON.stringify(get_userclientId));
+                             // get_userclientId = JSON.parse(localStorage.getItem("get_userclientId"));
+                             // console.log(typeof get_userclientId);
+                             // console.log(get_userclientId);
+                             // if (get_userclientId = '') {
+                               //     alert("error")
+                               // }
+                               // else {
+                                 //     window.location.href="planner_createnewplan.php";
+                                 // }
+                             })
+               }
            // }
 
 

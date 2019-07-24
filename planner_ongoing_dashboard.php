@@ -63,13 +63,10 @@
 <style media="screen">
 .same_Class{
     padding: 0px 16px;
-    font-size: 22px;
+    font-size: 20px;
     color: green;
 }
-#DataTables_Table_0_filter{
-    display: none !important;
-}
-#DataTables_Table_1_filter{
+.datatable-header{
     display: none !important;
 }
 </style>
@@ -92,30 +89,32 @@
             <!-- Page header -->
             <div class="page-header page-header-light">
 
-                <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-                    <div class="d-flex">
-                        <div class="breadcrumb">
-                            <a href="index-2.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                            <span class="breadcrumb-item active">Dashboard</span>
-                        </div>
+              <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline" style="background-color: #424446;color: white;">
+                  <div class="d-flex">
+                      <div class="breadcrumb">
+                          <a href="index-2.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                          <span class="breadcrumb-item active">Dashboard</span>
+                      </div>
 
-                        <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-                    </div>
-                </div>
+                      <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                  </div>
+              </div>
             </div>
+
+
             <!-- /page header -->
 
 
             <!-- Content area -->
-            <div class="content">
+            <div class="content" style="background-color: #424446;">
 
                 <!-- Main charts -->
                 <div class="row" style="height:100%">
                     <div class="col-xl-12" style="height:100%">
-                        <div class="card" style="height:100%">
+                        <div class="card" style="height:100%;background-color: #222c31;color:white;">
 
                             <!-- Order direction sequence control -->
-                            <div class="card">
+                            <div class="card" style="background-color: #222c31;color:white;">
 
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -131,14 +130,14 @@
                                     <div class="col-sm-4">
 
                                         <div style="margin-top: 32px;margin-right: 12px;padding: 12px;">
-                                            <button style="background-color:green;color:white;width:55px;" class="form-control gobtn">GO</button>
+                                            <button style="background-color:#32ff7e;border:none;color:black;width:55px;" class="form-control gobtn">GO</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="same_Class">
+                                <div class="same_Class" style="color:#7bed9f">
                                     On-going Plans
                                 </div>
-                                <table class="table datatable-multi-sorting ">
+                                <table class="table datatable-multi-sorting" style="color:white;">
                                     <thead style="text-align:center;">
                                         <tr>
                                             <th>Campaign ID</th>
@@ -163,10 +162,10 @@
 
                                 </tbody>
                             </table>
-                            <div class="same_Class">
+                            <div class="same_Class" style="color:#7bed9f">
                                 Completed Plans
                             </div>
-                            <table class="table datatable-multi-sorting">
+                            <table class="table datatable-multi-sorting" style="color:white;margin-top:30px;">
                                 <thead>
                                     <tr>
                                         <th>Campaign ID</th>

@@ -23,7 +23,7 @@ $( document ).ready(function() {
     var budgetallocation_filename;
     var PlanProcessed;
     var isFilePrepCompleted;
-    var version;
+    var version = 1;
     var replan = false;
     var backclicked = "false";
     var markascompleted;
@@ -273,6 +273,7 @@ $( document ).ready(function() {
             }
 
             function freezebuyinginfo() {
+                $('.channelbeing').show();
                 $('.radio_class').show()
                 $('.cprp_div').show()
                 $(".camp_id_").append('<input class="form-control" placeholder="Campaign ID" type="text" value="'+newcampaign_id+'" readonly style="background:#ccc"/>')
@@ -288,13 +289,13 @@ $( document ).ready(function() {
                     // $('.bb_txt').hide();
                     $('#upl-btn').hide();
                     $('.texttodisplay').show()
-                    $('.texttodisplay').append('<h5>'+buyingbasket_filename+' is successfully uploaded</h5>')
+                    $('.texttodisplay').append('<h5 style="color:#000">'+buyingbasket_filename+' is successfully uploaded</h5>')
                 }
 
 
                 if(path_selection==2){
-                    $('.add_more_new').prop('readonly', true);
-                    $('.submit_new').prop('readonly', true);
+                    $('.add_more_new').prop('disabled', true);
+                    $('.submit_new').prop('disabled', true);
                     $('.radio_class').show();
                     $('.cprp_div').hide();
                     $('.budget_div_').show()
@@ -319,6 +320,7 @@ $( document ).ready(function() {
 
                 }
                 else if(path_selection == 1){
+
                     $(".cprp_main").prop("checked", true);
                     $(".budget_main").prop("checked", false);
                     $('.campaign_days').val(campaign_days);
@@ -380,7 +382,7 @@ $( document ).ready(function() {
                         // $('.bb_txt').hide();
                         $('#upl-btn').hide();
                         $('.texttodisplay').show()
-                        $('.texttodisplay').append('<h5>'+buyingbasket_filename+' is successfully uploaded</h5>')
+                        $('.texttodisplay').append('<h5 style="color:#000">'+buyingbasket_filename+' is successfully uploaded</h5>')
                     }
                 }
 
@@ -987,7 +989,7 @@ $( document ).ready(function() {
                 $('.texttodisplay').show();
                 $(this).hide();
                 $(".loading").show();
-                $('.texttodisplay').append('<h5>'+file_name_new+' is successfully uploaded</h5>')
+                $('.texttodisplay').append('<h5 style="color:#000">'+file_name_new+' is successfully uploaded</h5>')
                 // $('.bb_txt').show();
                 $('.file-input').hide();
                 $('.red_color').hide();
@@ -1090,7 +1092,7 @@ $( document ).ready(function() {
                 $('.texttodisplayspill').show();
                 $(this).hide();
                 $(".loading").show();
-                $('.texttodisplayspill').append('<h5>'+file_name_+' is successfully uploaded</h5>')
+                $('.texttodisplayspill').append('<h5 style="color:#000">'+file_name_+' is successfully uploaded</h5>')
                 $('.bb_txt').hide();
                 $('.file-input').hide();
                 $('.red_color').hide();

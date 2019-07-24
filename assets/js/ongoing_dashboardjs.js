@@ -104,6 +104,7 @@ $(document).ready(function () {
     objj.clientclass = clientclass
     objj.brandclass = brandclass
     objj.Campaignid = Campaignid
+    objj.IsDefault = false
     if (startdate!='' || enddate!='' || clientclass!='' || brandclass!='' || Campaignid!='') {
         if(startdate <= enddate){
         console.log(objj);
@@ -169,11 +170,11 @@ $(document).ready(function () {
                   row += '<td>'+format_date(block.StartDate)+'</td>';
                 if (userrole!= 'Planner') {
                   if (block.IsPrioritized == false) {
-                      row += '<td><button  style="background-color: green;border: none;color: white;" plainidattr="'+block.PlanId+'"  class="Prioritizebtn">Prioritize</button></td>';
+                      row += '<td><button  style="" plainidattr="'+block.PlanId+'"  class="Prioritizebtn">Prioritize</button></td>';
 
                   }
                   else {
-                      row += '<td  plainidattr="'+block.PlanId+'">Prioritized</td>';
+                      row += '<td  style="color:#2ed573" plainidattr="'+block.PlanId+'">Prioritized</td>';
                   }
                 }
                   row += '<td style="text-align:center"><div class="downloadbtn pointer"  plainidattr="'+block.PlanId+'" style=""><img src="assets/images/download.svg" style="width:27px;"></button></td>';

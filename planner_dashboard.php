@@ -83,6 +83,16 @@ display: none !important;
 /* #hidepri{
   display: none;
 } */
+.Prioritizebtn{
+    background-color: #dfe4ea;
+    border: none;
+    color: #000;
+    padding: 5px 22px;
+    border-radius: 4px;
+}
+.datatable-header{
+    display: none !important;
+}
 
 </style>
 <body>
@@ -123,7 +133,7 @@ display: none !important;
     <!-- Main charts -->
     <div class="row" style="height:100%">
         <div class="col-xl-12" style="height:100%">
-            <div class="card" style="height:100%;background-color: #222c31;padding: 18px 36px;">
+            <div class="card" style="height:100%;background-color: #222c31;">
 
                 <!-- Order direction sequence control -->
                 <div class="card" style="background-color: #222c31;">
@@ -148,10 +158,10 @@ display: none !important;
                             </select>
                         </div>
                         <div style="margin-top:6px;" class="col-sm-1">
-                            <button style="background-color:#ef6f3b;color:white;border:none;" class="form-control gobtn">GO</button>
+                            <button style="background-color:#32ff7e;color:white;border:none;" class="form-control gobtn">GO</button>
                         </div>
                     </div>
-                    <table class="table datatable-multi-sorting" style="color:white;">
+                    <table class="table datatable-multi-sorting" style="color:white;margin-top:30px">
                         <thead>
                             <tr>
                                 <th>Campaign ID</th>

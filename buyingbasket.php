@@ -192,14 +192,14 @@
 		}
 		.texttodisplayspill{
 			margin: auto;
-			background: #f3713c;
+			background: #d1d8e0;
 			padding: 30px;
 			width: 600px;
     		margin-top: 30px;
 		}
 		.channelbeing{
 			margin: auto;
-			background: #f3713c;
+			/* background: #f3713c; */
 			padding: 30px;
 			width: 600px;
 		}
@@ -259,7 +259,7 @@ return false;
 								<div class="form-group row">
 									<h6 class="font-weight-semibold bb_txt" style="width:100%">Upload Buying Basket:</h6>
 									<br>
-									<div class="card fadeInDown texttodisplay">
+									<div class="card fadeInDown texttodisplay" style="background: #d1d8e0;">
 
 									</div>
 									<div class="col-lg-10 bb_files">
@@ -372,8 +372,8 @@ return false;
 
 
 							</div>
-							<div class="channelbeing" style="margin-top:50px">
-								<h5>Spillover Sheet being created. Once complete you will receive it in your inbox.</h5>
+							<div class="channelbeing" style="margin-top:50px;background-color:#d1d8e0;">
+								<h5 style="color:#000">Spillover Sheet being created. Once complete you will receive it in your inbox.</h5>
 							</div>
 
 							<div style="width: 100%;padding:50px;" class="spillover">

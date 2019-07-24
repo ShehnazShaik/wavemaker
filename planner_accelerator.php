@@ -30,7 +30,6 @@
 	<script src="global_assets/js/plugins/uploaders/fileinput/plugins/purify.min.js"></script>
 	<script src="global_assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
 	<script src="global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
-
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/accelerator.js"></script>
 	<script src="global_assets/js/demo_pages/uploader_bootstrap.js"></script>
@@ -79,7 +78,12 @@
     padding: 2px 15px;
     color: white;
 }
-
+.content-wrapper {
+    height: calc(100vh - 72px);
+}
+.file-caption{
+	margin-top:4px;
+}
 </style>
 
 <!-- <script>
@@ -155,17 +159,18 @@ $( document ).ready(function() {
 						<div class="total_div">
 							<div class="cprp new_plan">
                                 <div class="step-content">
-                            		<form action="#" style="width: 100%;">
-                            			<div class="form-group row">
+                            		<divstyle="width: 100%;">
+                            			<div class="row">
                             				<h6 class="font-weight-semibold">Upload Accelerator File</h6>
                             				<div class="col-lg-10">
-                            					<input type="file" class="file-input-ajax" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple="multiple" data-fouc>
+												<div class="texttodisplay"></div>
+                            					<input type="file" id="load-file" class="file-input-ajax" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple="multiple" data-fouc>
                             				</div>
                             				<div class="col-lg-12 submit_btn">
-                            					<button type="submit" class="btn btn-primary" style="background: #4caf50;">Upload <i class="icon-upload ml-2"></i></button>
+                            					<button type="button" class="btn btn-primary" id="upl-btn" style="background: #4caf50;">Upload <i class="icon-upload ml-2"></i></button>
                             				</div>
                             			</div>
-                            		</form>
+                            		</div>
                             	</div>
 							</div>
 						</div>

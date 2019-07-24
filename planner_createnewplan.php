@@ -86,6 +86,9 @@
 .page-content{
     background-color: #393e3e;
 }
+.datatable-header{
+    display: none !important;
+}
 </style>
 
 <!-- <script>
@@ -296,11 +299,12 @@ $(".total_div").hide();
 								</div>
 								<div class="mb-12">
 
-									<button type="submit" class="btn form-control cprp_submit create_plan" style="background: #f3713c;">Create <i class="icon-paperplane ml-2"></i></button>
+									<button type="submit" class="btn form-control cprp_submit create_plan" style="    background: #4b6584 !important;
+    color: #fff;">Create <i class="icon-paperplane ml-2"></i></button>
 								</div>
 							</div>
-							<div class="card fadeInDown texttodisplay">
-								<h5>Channel Selection Sheet being created. Once complete you will receive it in your inbox.
+							<div class="card fadeInDown texttodisplay" style="background: #d1d8e0;">
+								<h5 style="color:#000;">Channel Selection Sheet being created. Once complete you will receive it in your inbox.
 								</h5>
 							</div>
 						</div>

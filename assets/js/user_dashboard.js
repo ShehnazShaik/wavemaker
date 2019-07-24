@@ -139,12 +139,12 @@ $(document).ready(function () {
                 ap1 = ''
                 for (var i = 0; i < v.length; i++) {
                     ap1 += '<tr>'
-                    ap1 += '<td  style="text-align:center;"><a  style="text-decoration:underline; color:#440cd1;cursor:pointer;" plainidattr="'+v[i]['PlanId']+'" id="camp_idhyperlink">'+v[i]['CampaignId']+'</a></td>'
+                    ap1 += '<td  style="text-align:center;"><a  style="text-decoration:underline;cursor:pointer;" plainidattr="'+v[i]['PlanId']+'" id="camp_idhyperlink">'+v[i]['CampaignId']+'</a></td>'
                     ap1 += '<td  style="text-align:center;">'+v[i]['CampaignName']+ '</td>'
                     ap1 += '<td  style="text-align:center;">'+v[i]['ClientName']+'</td>'
                     ap1 += '<td  style="text-align:center;">'+v[i]['BrandName']+'</td>'
                     ap1 += '<td  style="text-align:center;">'+format_date(v[i]['StartDate'])+'</td>'
-                    ap1 += '<td> <button  plainidattr="'+v[i]['PlanId']+'" style="color: white;background: green;padding: 1px;font-size: 9px;width: 94px;  width: 94px;" class="form-control completebtn">Mark As Complete</button> </td>'
+                    ap1 += '<td> <button  plainidattr="'+v[i]['PlanId']+'" style="color: white;border:none;background: #ff6348;padding: 1px;font-size: 9px;width: 94px;  width: 94px;" class="form-control completebtn">Mark As Complete</button> </td>'
                     ap1 += '<td style="text-align:center;"><div class="downloadbtn pointer"  plainidattr="'+v[i]['PlanId']+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>';
                     ap1 += '</tr>'
                 }
@@ -156,12 +156,12 @@ $(document).ready(function () {
 
                 for (var i = 0; i < v.length; i++) {
                     ap += '<tr>'
-                    ap += '<td  style="text-align:center;"><a  style="text-decoration:underline; color:#440cd1;cursor:pointer;" plainidattr="'+v[i]['PlanId']+'" id="camp_idhyperlink_">'+v[i]['CampaignId']+'</a></td>'
+                    ap += '<td  style="text-align:center;"><a  style="text-decoration:underline;cursor:pointer;" plainidattr="'+v[i]['PlanId']+'" id="camp_idhyperlink_">'+v[i]['CampaignId']+'</a></td>'
                     ap += '<td  style="text-align:center;">'+v[i]['CampaignName']+'</td>'
                     ap += '<td  style="text-align:center;">'+v[i]['ClientName']+'</td>'
                     ap += '<td  style="text-align:center;">'+v[i]['BrandName']+'</td>'
                     ap += '<td  style="text-align:center;">'+format_date(v[i]['StartDate'])+'</td>'
-                    ap += '<td  style="text-align:center;">'+format_date(v[i]['EndDate'])+'</td>'
+                    ap += '<td  style="text-align:center;width:152px;">'+format_date(v[i]['EndDate'])+'</td>'
                     ap += '<td style="text-align:center;"><div class="downloadbtn pointer"  plainidattr="'+v[i]['PlanId']+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>'
 
                     ap += '</tr>'

@@ -93,12 +93,14 @@ $(document).ready(function () {
       clientclass = $('.clientclass').val();
       brandclass = $('.brandclass').val();
       Campaignid = $('.Campaignidclass').val();
+
       objj = {}
       objj.startdate = startdate
       objj.enddate = enddate
       objj.clientclass = clientclass
       objj.brandclass = brandclass
-      objj.CampaignId = Campaignid
+      objj.Campaignid = Campaignid
+      objj.IsDefault = false
         if (startdate!='' || enddate!='' || clientclass!='' || brandclass!='' || Campaignid!='') {
 
                if (startdate <= enddate) {
@@ -137,14 +139,14 @@ $(document).ready(function () {
         for (var i = 0; i < msg.length; i++) {
                 block = msg[i];
                   row += '<tr>';
-                  row += '<td class="nr"><a key="'+i+'" style="text-decoration:underline; color:#440cd1;cursor:pointer;" id="camp_idhyperlink_"</a>'+block.CampaignId+'</td>';
+                  row += '<td class="nr"><a key="'+i+'" style="text-decoration:underline; cursor:pointer;" id="camp_idhyperlink_"</a>'+block.CampaignId+'</td>';
                   row += '<td>'+block.BrandName+' </td>';
                   row += '<td>'+block.ClientName+'</td>';
                   row += '<td>'+block.CampaignName+'</td>';
                   row += '<td>'+format_date(block.StartDate)+'</td>';
                   row += '<td style="width:172px">'+format_date(block.EndDate)+'</td>';
                   // if (block.IsPrioritized == false) {
-                  row += '<td><button class="replanmodal" Campaignid='+block.CampaignId+' plainidattr='+block.PlanId+'  style="background-color: green;color: white;border: none;padding: 4PX;width: 68px;">Re-Plan</button></td>';
+                  row += '<td><button class="replanmodal" Campaignid='+block.CampaignId+' plainidattr='+block.PlanId+'  style="background-color: #a5b1c2;color: #000;border: none;padding: 4PX;width: 68px;border-radius: 5px;">Re-Plan</button></td>';
                   row += '<td style="text-align:center"><div class="downloadbtn pointer"  plainidattr="'+block.PlanId+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>';
 
 
@@ -192,7 +194,7 @@ $(document).ready(function () {
       msg = JSON.parse(msg);
         updatedplanid = msg.planid
             sessionStorage.setItem("create_plan_id",updatedplanid)
-              alert(updatedplanid)
+              // alert(updatedplanid)
         window.location.href = 'buyingbasket.php';
 
       })
@@ -204,7 +206,8 @@ $(document).ready(function () {
 
   $("body").on("click", ".acceleratorbtn", function(){
     campid = $(this).attr('title');
-    alert(campid)
+    sessionStorage.setItem('campaign_id', campid);
+    // alert(campid)
     objj = {}
     objj.CampaignId = campid
     objj.user_id = useridd
@@ -226,7 +229,7 @@ $(document).ready(function () {
       msg = JSON.parse(msg);
       updatedplanid = msg.planid
           sessionStorage.setItem("create_plan_id",updatedplanid)
-            alert(updatedplanid)
+            // alert(updatedplanid)
       // window.location.href = 'buyingbasket.php';
 
         window.location.href = 'planner_accelerator.php';

@@ -1,6 +1,8 @@
 $(document).ready(function(){
-
-
+    $('.texttodisplay').hide();
+var plan_id = sessionStorage.getItem('create_plan_id');
+var user_id = sessionStorage.getItem('userid');
+var campaign_id = sessionStorage.getItem('campaign_id');
     var file_name_;
     var main_output;
     fileobj = {};
@@ -13,17 +15,18 @@ $(document).ready(function(){
             debugger
             main_output = ''
             var file = $('#load-file')[0].files[0];
-            filename = file.name;
+            // file_name_ = file.name;
+            file_name_ = "Accelerator_output"+campaign_id+"_.xlsx";
             var fileReader = new FileReader();
             fileReader.onloadend = function (e) {
                 blob___ = e.target.result;
 
-                fileobj.filename = filename;
+                fileobj.filename = "Accelerator_output_"+campaign_id+"_.xlsx";
                 fileobj.blob = blob___;
                 fileobj.plan_id = plan_id;
                 fileobj.user_id = user_id;
                 console.log(fileobj);
-                file_name_ = filename;
+                file_name_ = file_name_;
 
                 // var form = new FormData();
                 // form.append("file", JSON.stringify(fileobj));
@@ -88,14 +91,13 @@ $(document).ready(function(){
 
     $("body").on("click", "#upl-btn", function(){
         debugger
-        $('.texttodisplay').show();
+
         $(this).hide();
         $(".loading").show();
-        $('.texttodisplay').append('<h5>'+file_name_+' is successfully uploaded</h5>')
+
         // $('.bb_txt').show();
         $('.file-input').hide();
         $('.red_color').hide();
-        $('.texttodisplay').show();
         fileobj.category = "acceleratedfile";
         console.log(file_name_);
 
@@ -114,7 +116,8 @@ $(document).ready(function(){
         $.ajax(settings11).done(function (msg) {
             console.log(msg);
             $('.loading').hide();
-
+            $('.texttodisplay').show();
+            $('.texttodisplay').append('<h5>'+file_name_+' is successfully uploaded</h5>')
         });
     })
 

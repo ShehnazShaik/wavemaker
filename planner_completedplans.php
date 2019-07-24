@@ -56,6 +56,17 @@ display: none;
 .hidden{
     display: none;
 }
+/* .replanmodal{
+  background-color: #ff3838;
+  border: none;
+  color: #000;
+  padding: 5px 22px;
+  border-radius: 4px;
+
+} */
+.datatable-header{
+    display: none !important;
+}
 </style>
 <body>
 
@@ -96,7 +107,7 @@ display: none;
     <!-- Main charts -->
     <div class="row" style="height:100%">
         <div class="col-xl-12" style="height:100%">
-            <div class="card" style="height:100%;background-color: #222c31;padding: 18px 36px;">
+            <div class="card" style="height:100%;background-color: #222c31;">
                 <div class="card" style="background-color: #222c31;color: white;">
                     <div class="row">
                         <div style="margin-top:6px;margin-right:14px;margin-left:12px;" class="col-sm-2">
@@ -119,10 +130,10 @@ display: none;
                             </select>
                         </div>
                         <div style="margin-top:6px;" class="col-sm-1">
-                            <button style="background-color:#ea6c39;;color:white;border:none;" class="form-control gobtn">GO</button>
+                            <button style="background-color:#32ff7e;;color:white;border:none;" class="form-control gobtn">GO</button>
                         </div>
                     </div>
-                    <table class="table datatable-multi-sorting " style="color:white">
+                    <table class="table datatable-multi-sorting " style="color:white;margin-top:30px">
 
                     <thead style="text-align:center;">
                         <tr>

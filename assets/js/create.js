@@ -160,21 +160,10 @@ $(document).ready(function () {
         })
     }
     $("body").on("click", ".create_plan", function(){
+      debugger
         $('.loading').show();
-        debugger
-
-        // $(this).find('input').rules("add", "required");
-        // if (true) {
-        // }
-        // else {
         userid = sessionStorage.getItem('userid');
-        $('.campign_name').prop('disabled', true);
-        $('.campign_id').prop('disabled', true);
-        $(".select2-hidden-accessible").prop('disabled', true);
-        $(".texttodisplay").show();
-        $(".next_btn").hide();
-        $(this).prop("disabled", true);
-        $(this).parent(".new_plan");
+
         camp_markets = []
         selectedValues = $(".campign_markets").select2('data');
 
@@ -197,50 +186,57 @@ $(document).ready(function () {
         var end_week = $(".end_week").val();
         var key_end_week = $(".end_week").find("option:selected").attr('key');
         console.log(camp_markets, campign_id, primary_tg, base_tg,campign_name,brand,client, end_week);
+              if (client == '' || campign_name  == '' || primary_tg == 'undefined' || base_tg == '' || end_week == '' || selectedValues == '') {
+                    swal("All fields are Required");
+                      $('.loading').hide();
+                  }else{
+                    obj = {};
+                    obj.ClientId = client;
+                    obj.CampaignMarketId = $.unique(camp_markets);
+                    obj.BrandId = brand;
+                    obj.CampaignName = campign_name;
+                    obj.CampaignId = campign_id;
+                    obj.PrimaryTGTd = parseInt(key_primary_tg);
+                    obj.BaseTGId = parseInt(key_base_tg);
+                    obj.EndWeekId = parseInt(key_end_week);
+                    obj.user_id = userid;
+                    console.log(obj);
+                    var form = new FormData();
+                    form.append("file", JSON.stringify(obj));
+                    var settings11 = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": 'http://192.168.0.125:6767/Create_plan_button',
+                        "method": "POST",
+                        "processData": false,
+                        "contentType": false,
+                        "mimeType": "multipart/form-data",
+                        "data": form
+                    };
+                    $.ajax(settings11).done(function (msg) {
+                        msg = JSON.parse(msg);
+                        $('.campign_name').prop('disabled', true);
+                        $('.campign_id').prop('disabled', true);
+                        $(".select2-hidden-accessible").prop('disabled', true);
+                        $(".texttodisplay").show();
+                        $(".next_btn").hide();
+                        $(this).prop("disabled", true);
+                        $(this).parent(".new_plan");
+                        $('.loading').hide();
+                        swal("Created successfully");
+                        console.log(msg);
+                        createplanid = msg.createplanid;
 
-        obj = {};
-        obj.ClientId = client;
-        obj.CampaignMarketId = $.unique(camp_markets);
-        obj.BrandId = brand;
-        obj.CampaignName = campign_name;
-        obj.CampaignId = campign_id;
-        obj.PrimaryTGTd = parseInt(key_primary_tg);
-        obj.BaseTGId = parseInt(key_base_tg);
-        obj.EndWeekId = parseInt(key_end_week);
-        obj.user_id = userid;
+                        // set the item in localStorage
+                        sessionStorage.setItem('create_plan_id', createplanid);
+                        // alert the value to check if we got it
 
-        debugger;
+                    })
+                  }
 
-        console.log(obj);
-        var form = new FormData();
-        form.append("file", JSON.stringify(obj));
-        var settings11 = {
-            "async": true,
-            "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Create_plan_button',
-            "method": "POST",
-            "processData": false,
-            "contentType": false,
-            "mimeType": "multipart/form-data",
-            "data": form
-        };
-        $.ajax(settings11).done(function (msg) {
-            msg = JSON.parse(msg);
-            $('.loading').hide();
-            swal("Created successfully");
-            console.log(msg);
-            createplanid = msg.createplanid;
-
-            // set the item in localStorage
-            sessionStorage.setItem('create_plan_id', createplanid);
-            // alert the value to check if we got it
-
-        })
-        // }
-    })
+       })
 
     function get_freezeDetails(){
-debugger
         $('.next_btn').show();
         $('.client_freezeclass').show();
         $('.select2-hidden-accessible').hide();

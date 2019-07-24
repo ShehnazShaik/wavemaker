@@ -85,6 +85,9 @@
 	<script src="assets/js/sidenavjscode.js"></script>
 </head>
 <style>
+.datatable-header{
+    display: none !important;
+}
 .file-drop-zone-title {
 	padding: 11px;
 }

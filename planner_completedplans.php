@@ -30,33 +30,7 @@
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="global_assets/js/main/jquery.min.js"></script>
-    <script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-    <script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
-    <!-- /core JS files -->
 
-    <!-- Theme JS files -->
-    <script src="global_assets/js/plugins/visualization/d3/d3.min.js"></script>
-    <script src="global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-    <script src="global_assets/js/plugins/forms/styling/switchery.min.js"></script>
-    <script src="global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-    <script src="global_assets/js/plugins/ui/moment/moment.min.js"></script>
-    <script src="global_assets/js/plugins/pickers/daterangepicker.js"></script>
-
-    <script src="global_assets/js/plugins/extensions/jquery_ui/interactions.min.js"></script>
-    <script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
-
-    <script src="assets/js/app.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="global_assets/js/demo_pages/form_select2.js"></script>
-    <script src="global_assets/js/demo_pages/dashboard.js"></script>
-    <!-- Theme JS files -->
-    <script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-
-    <script src="global_assets/js/demo_pages/datatables_sorting.js"></script>
-    <script src="assets/js/sidenavjscode.js"></script>
-    <script src="assets/js/completedplansjs.js"></script>
-    <script src="assets\js\sessiontimeoutjs.js"></script>
     <!-- <script src="assets\js\sessiontimeoutjs.js"></script> -->
 
 
@@ -76,9 +50,9 @@
     color: white;
 }
 
-.dataTables_filter{
+/* .dataTables_filter{
 display: none;
-}
+} */
 .hidden{
     display: none;
 }
@@ -117,13 +91,13 @@ display: none;
 
 
 <!-- Content area -->
-<div class="content">
+<div class="content" style="background-color: #000000c4;">
 
     <!-- Main charts -->
     <div class="row" style="height:100%">
         <div class="col-xl-12" style="height:100%">
-            <div class="card" style="height:100%">
-                <div class="card">
+            <div class="card" style="height:100%;background-color: #222c31;padding: 18px 36px;">
+                <div class="card" style="background-color: #222c31;color: white;">
                     <div class="row">
                         <div style="margin-top:6px;margin-right:14px;margin-left:12px;" class="col-sm-2">
                             <input type="text" style="padding:5px;" placeholder="search for Campaign ID" class="form-control Campaignidclass"/>
@@ -145,91 +119,28 @@ display: none;
                             </select>
                         </div>
                         <div style="margin-top:6px;" class="col-sm-1">
-                            <button style="background-color:green;color:white;" class="form-control gobtn">GO</button>
+                            <button style="background-color:#ea6c39;;color:white;border:none;" class="form-control gobtn">GO</button>
                         </div>
                     </div>
-                    <table class="table datatable-multi-sorting">
-                        <thead>
-                            <tr>
-                                <th>Campaign ID</th>
-                                <th>Brand</th>
-                                <th>Client</th>
-                                <th>Planner Name</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Replan</th>
-                                <th>Donwload</th>
-                            </tr>
-                        </thead>
-                        <tbody class="displaytabledata">
-                            <!-- <tr>
-                            <td><a href="#"></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr> -->
+                    <table class="table datatable-multi-sorting " style="color:white">
 
-                    </tbody>
+                    <thead style="text-align:center;">
+                        <tr>
+                          <th>Campaign ID</th>
+                          <th>Brand</th>
+                          <th>Client</th>
+                          <th>Planner Name</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Replan</th>
+                          <th>Donwload</th>
+                        </tr>
+                    </thead>
+                    <tbody class="displaytabledata">
                 </table>
             </div>
 
-            <!-- Order direction sequence control -->
-            <!-- <div class="card">
-            <div class="row">
-            <div style="margin-top:6px;margin-right:12px;" class="col-sm-2">
-            <select data-placeholder="Client Lead" class="form-control select clientleadClass" data-fouc>
-            <option value=""></option>
-        </select>
-    </div>
-    <div style="margin-top:6px;" class="col-sm-2">
-    <input class="form-control startdateclass"  placeholder="start date" type="date"/>
-</select>
-</div>
-<div style="margin-top:6px;" class="col-sm-2">
-<input class="form-control enddateclass"  placeholder="end date" type="date"/>
-</select>
-</div>
-<div style="margin-top:6px;" class="col-sm-2">
-<select data-placeholder="Client Name" class="form-control select" data-fouc>
-<option value=""></option>
-</select>
-</div>
-<div style="margin-top:6px;" class="col-sm-2">
-<select data-placeholder="BrandName" class="form-control select" data-fouc>
-<option value=""></option>
-</select>
-</div>
-</div>
-<table class="table datatable-multi-sorting">
-<thead>
-<tr>
-<th>Campaign ID</th>
-<th>Brand</th>
-<th>Client</th>
-<th>Planner Name</th>
-<th>Start Date</th>
-<th>End Date</th>
-<th>Re-plan</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#"></a></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 
-</tbody>
-</table>
-</div> -->
-<!-- /order direction sequence control -->
 </div>
 <!-- /traffic sources -->
 
@@ -237,28 +148,6 @@ display: none;
 </div>
 <!-- /main charts -->
 </div>
-<!-- Footer -->
-<!-- <div class="navbar navbar-expand-lg navbar-light">
-<div class="text-center d-lg-none w-100">
-<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
-<i class="icon-unfold mr-2"></i>
-Footer
-</button>
-</div>
-
-<div class="navbar-collapse collapse" id="navbar-footer">
-<span class="navbar-text">
-&copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
-</span>
-
-<ul class="navbar-nav ml-lg-auto">
-<li class="nav-item"><a href="https://kopyov.ticksy.com/" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
-<li class="nav-item"><a href="http://demo.interface.club/limitless/docs/" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Docs</a></li>
-<li class="nav-item"><a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link font-weight-semibold"><span class="text-pink-400"><i class="icon-cart2 mr-2"></i> Purchase</span></a></li>
-</ul>
-</div>
-</div> -->
-<!-- /footer -->
 
 </div>
 <!-- /main content -->
@@ -320,6 +209,34 @@ Footer
     </div>
 </div>
 </body>
+
+<script src="global_assets/js/main/jquery.min.js"></script>
+<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
+<script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
+<!-- /core JS files -->
+
+<!-- Theme JS files -->
+<script src="global_assets/js/plugins/visualization/d3/d3.min.js"></script>
+<script src="global_assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+<script src="global_assets/js/plugins/forms/styling/switchery.min.js"></script>
+<script src="global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+<script src="global_assets/js/plugins/ui/moment/moment.min.js"></script>
+<script src="global_assets/js/plugins/pickers/daterangepicker.js"></script>
+
+<script src="global_assets/js/plugins/extensions/jquery_ui/interactions.min.js"></script>
+<script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
+<script src="assets/js/app.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="global_assets/js/demo_pages/form_select2.js"></script>
+<script src="global_assets/js/demo_pages/dashboard.js"></script>
+<!-- Theme JS files -->
+<script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+
+<script src="global_assets/js/demo_pages/datatables_sorting.js"></script>
+<script src="assets/js/sidenavjscode.js"></script>
+<script src="assets/js/completedplansjs.js"></script>
+<script src="assets\js\sessiontimeoutjs.js"></script>
 
 <!-- Mirrored from demo.interface.club/limitless/demo/bs4/Template/layout_1/LTR/default/full/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Jun 2019 06:41:06 GMT -->
 </html>

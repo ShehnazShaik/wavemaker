@@ -73,9 +73,7 @@
 
 </script>
 <style media="screen">
-.dataTables_filter{
-display: none;
-}
+
 /* #admin{
 display: none !important;
 } */
@@ -101,20 +99,7 @@ display: none !important;
 
 
         <!-- Main content -->
-        <div class="content-wrapper">
-          <div class="page-header page-header-light">
 
-              <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-                  <div class="d-flex">
-                      <div class="breadcrumb">
-                          <a href="index.php" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                          <span class="breadcrumb-item active">Ongoing plans</span>
-                      </div>
-
-                      <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-                  </div>
-              </div>
-          </div>
             <!-- Page header -->
             <!-- <div class="page-header page-header-light">
 
@@ -133,15 +118,15 @@ display: none !important;
 
 
 <!-- Content area -->
-<div class="content">
+<div class="content" style="color:white;background-color: #222c31ed;">
 
     <!-- Main charts -->
     <div class="row" style="height:100%">
         <div class="col-xl-12" style="height:100%">
-            <div class="card" style="height:100%">
+            <div class="card" style="height:100%;background-color: #222c31;padding: 18px 36px;">
 
                 <!-- Order direction sequence control -->
-                <div class="card">
+                <div class="card" style="background-color: #222c31;">
                     <div class="row">
                         <div style="margin-top:6px;margin-right:14px;margin-left:12px;" class="col-sm-2">
                             <input type="text" style="padding:5px;" placeholder="search for Campaign ID" class="form-control Campaignidclass"/>
@@ -163,10 +148,10 @@ display: none !important;
                             </select>
                         </div>
                         <div style="margin-top:6px;" class="col-sm-1">
-                            <button style="background-color:green;color:white;" class="form-control gobtn">GO</button>
+                            <button style="background-color:#ef6f3b;color:white;border:none;" class="form-control gobtn">GO</button>
                         </div>
                     </div>
-                    <table class="table datatable-multi-sorting">
+                    <table class="table datatable-multi-sorting" style="color:white;">
                         <thead>
                             <tr>
                                 <th>Campaign ID</th>

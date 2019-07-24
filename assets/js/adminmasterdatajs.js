@@ -100,7 +100,7 @@ $(document).ready(function(){
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url":"http://192.168.43.177:3233/master_data_settings",
+            "url":"http://192.168.0.113:6767/master_data_settings",
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -213,7 +213,7 @@ $(document).ready(function(){
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url":"http://192.168.0.125:3233/master_data_settings",
+            "url":"http://192.168.0.113:6767/master_data_settings",
             "method": "POST",
             "processData": false,
             "contentType": false,

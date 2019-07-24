@@ -41,6 +41,7 @@
 	<script src="assets/js/plannerprofile.js"></script>
 	<script src="global_assets/js/demo_pages/form_validation.js"></script>
 	<script src="assets/js/sidenavjscode.js"></script>
+	<script src="assets/css/style.css"></script>
 
 	<!-- /theme JS files -->
 
@@ -64,9 +65,6 @@
 }
 .hide{
 	display: none;
-}
-.navbar-nav-link{
-	display: none !important;
 }
 .loading{
 	position: fixed;
@@ -95,6 +93,16 @@
 	padding: 2px 15px;
 	color: white;
 }
+/* Added */
+.bodyy{
+	background-color: #222c31;
+}
+.textcolor{
+	color:white;
+}
+.content{
+	background-color: #393e3e;
+}
 
 </style>
 
@@ -106,7 +114,7 @@
 
 
 	<!-- Page content -->
-	<div class="page-content">
+	<div class="page-content" style="background-color: #393e3e">
 		<?php	include 'assets/includes/side_navbar.php';?>
 
 
@@ -133,10 +141,10 @@
 			</div>
 		</div> -->
 
-		<div class="card-body">
+		<div class="card-body bodyy">
 			<!-- <p class="mb-4">Validate.js makes simple clientside form validation easy, whilst still offering plenty of customization options. The plugin comes bundled with a useful set of validation methods, including URL and email validation, while providing an API to write your own methods. All bundled methods come with default error messages in english and translations into 37 other languages. <strong>Note:</strong> <code>success</code> callback is configured for demo purposes only and can be removed in validation setup.</p> -->
 
-			<form class="form-validate-jquery" action="#">
+			<form class="form-validate-jquery textcolor" action="#">
 				<fieldset class="mb-3">
 					<!-- <legend class="text-uppercase font-size-sm font-weight-bold">Basic inputs</legend> -->
 					<div class="text-center mb-3">
@@ -565,7 +573,7 @@
 
 <div class="d-flex justify-content-end align-items-center">
 	<!-- <button type="reset" class="btn btn-light" id="reset">Reset <i class="icon-reload-alt ml-2"></i></button> -->
-	<button type="submit" class="btn btn-primary ml-3 create_btn create_plan">Create <i class="icon-paperplane ml-2"></i></button>
+	<button type="submit" style="background-color: #f3713c;" class="form-control btn create_btn create_plan">Create <i class="icon-paperplane ml-2"></i></button>
 </div>
 </form>
 </div>
@@ -577,26 +585,7 @@
 
 
 <!-- Footer -->
-<div class="navbar navbar-expand-lg navbar-light">
-	<div class="text-center d-lg-none w-100">
-		<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
-			<i class="icon-unfold mr-2"></i>
-			Footer
-		</button>
-	</div>
 
-	<!-- <div class="navbar-collapse collapse" id="navbar-footer">
-	<span class="navbar-text">
-	&copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
-</span>
-
-<ul class="navbar-nav ml-lg-auto">
-<li class="nav-item"><a href="https://kopyov.ticksy.com/" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
-<li class="nav-item"><a href="http://demo.interface.club/limitless/docs/" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Docs</a></li>
-<li class="nav-item"><a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link font-weight-semibold"><span class="text-pink-400"><i class="icon-cart2 mr-2"></i> Purchase</span></a></li>
-</ul>
-</div> -->
-</div>
 <!-- /footer -->
 <div class="loading">
 	<img src="assets/images/loader.gif" alt="">

@@ -12,12 +12,11 @@ $(document).ready(function () {
 min-width: 13.625rem;
 }
 </style>
-<img src="global_assets/images/logo_light1.png" alt="" style="width: 100%;
-height: 100%;">
-<div class="navbar navbar-expand-md navbar-dark">
+<img src="global_assets/images/logo_light1.png" alt="" style="width: 100%;height: 100%;">
+<div class="navbar navbar-expand-md" style="background-color:black">
   <div class="navbar-brand">
-    <a href="index-2.html" class="d-inline-block" style=" width: 100px;">
-      <img src="global_assets/images/logo_light.png" alt="" style="width: 103px;height: 50px">
+    <a href="index-2.html" class="d-inline-block" style="margin-top: 9px;">
+      <img src="assets/images/WM_1.png" alt="" style="height: 26px;width: 74px;">
     </a>
   </div>
   <div class="d-md-none">
@@ -32,7 +31,7 @@ height: 100%;">
   <div class="collapse navbar-collapse" id="navbar-mobile">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
+        <a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block" style="color:white">
           <i class="icon-paragraph-justify3"></i>
         </a>
       </li>

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $(".loading").show();
     $('.file_download').hide();
+    $('.select2').val([]);
     var plan_id = '';
     var userid='';
     var isnewuser = ''
@@ -10,7 +11,8 @@ $(document).ready(function () {
     var create_plan_id='';
     var filenames;
     var paths;
-    var backclicked = "false" ;
+    var backclicked = "false";
+    // sessionStorage.setItem('backclicked', "false");
     debugger
     $('body').on('click', '#createplan', function(){
         $(".next_btn").hide();
@@ -274,7 +276,7 @@ debugger
             var planProcessed = msg.planProcessed;
             backclicked = sessionStorage.getItem('backclicked');
 
-            if (channel == "true" && backclicked == "false" && markascompleted == "false") {
+            if (channel == "true" && backclicked == null && markascompleted == "false") {
                     window.location.href="buyingbasket.php";
             }
 

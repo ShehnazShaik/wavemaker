@@ -162,7 +162,7 @@ $(document).ready(function () {
         for (var i = 0; i < msg.length; i++) {
                 block = msg[i];
                   row += '<tr>';
-                  row += '<td class="nr"><a key="'+i+'" style="text-decoration:underline; color:#440cd1;cursor:pointer;" plainidattr="'+block.PlanId+'" id="camp_idhyperlink_"</a>'+block.CampaignId+'</td>';
+                  row += '<td class="nr"><a key="'+i+'" style="text-decoration:underline; cursor:pointer;" plainidattr="'+block.PlanId+'" id="camp_idhyperlink_"</a>'+block.CampaignId+'</td>';
                   row += '<td>'+block.BrandName+' </td>';
                   row += '<td>'+block.ClientName+'</td>';
                   row += '<td>'+block.CampaignName+'</td>';
@@ -176,7 +176,7 @@ $(document).ready(function () {
                       row += '<td  plainidattr="'+block.PlanId+'">Prioritized</td>';
                   }
                 }
-                  row += '<td><button class="downloadbtn"  plainidattr="'+block.PlanId+'" style="color: white;background-color: back;background-color: #dc4d4d;border: none;">Download</button></td>';
+                  row += '<td style="text-align:center"><div class="downloadbtn pointer"  plainidattr="'+block.PlanId+'" style=""><img src="assets/images/download.svg" style="width:27px;"></button></td>';
                 // row += '<td> '+format_date(block.DateValidated)+' </td>';
                 // row += '<td> '+block.CheckPointValidated+' </td>';
 

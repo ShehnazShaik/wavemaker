@@ -67,6 +67,25 @@
 .sendpath h5{
 	cursor: pointer;
 }
+.select2-selection{
+	width: 400px;
+}
+.campign_name{
+	width: 400px;
+}
+.campign_id{
+	width: 400px;
+}
+/* added */
+.cprp{
+	 background-color: #222c31;
+}
+.content{
+	 color: white;
+}
+.page-content{
+    background-color: #393e3e;
+}
 </style>
 
 <!-- <script>
@@ -277,7 +296,7 @@ $(".total_div").hide();
 								</div>
 								<div class="mb-12">
 
-									<button type="submit" class="btn btn-primary cprp_submit create_plan" style="background: #4caf50;float:right;">Create <i class="icon-paperplane ml-2"></i></button>
+									<button type="submit" class="btn form-control cprp_submit create_plan" style="background: #f3713c;">Create <i class="icon-paperplane ml-2"></i></button>
 								</div>
 							</div>
 							<div class="card fadeInDown texttodisplay">

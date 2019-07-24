@@ -145,7 +145,7 @@ $(document).ready(function () {
                   row += '<td style="width:172px">'+format_date(block.EndDate)+'</td>';
                   // if (block.IsPrioritized == false) {
                   row += '<td><button class="replanmodal" Campaignid='+block.CampaignId+' plainidattr='+block.PlanId+'  style="background-color: green;color: white;border: none;padding: 4PX;width: 68px;">Re-Plan</button></td>';
-                  row += '<td><button class="downloadbtn"  plainidattr="'+block.PlanId+'" style="color: white;background-color: back;background-color: #dc4d4d;border: none;">Download</button></td>';
+                  row += '<td style="text-align:center"><div class="downloadbtn pointer"  plainidattr="'+block.PlanId+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>';
 
 
                 // row += '<td> '+format_date(block.DateValidated)+' </td>';

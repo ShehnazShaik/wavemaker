@@ -43,10 +43,11 @@ function login(username, password, currentdate) {
             // localStorage.setItem("allprevialges",JSON.stringify(msg.isnewuser))
             //   localStorage.setItem("allprevialges",JSON.stringify(msg.privilegers))
           console.log(localStorage);
+          debugger
                     sessionStorage.setItem("isnewuser",msg.isnewuser)
                     sessionStorage.setItem("role",msg.role)
                     sessionStorage.setItem("useremail",msg.useremail)
-                    sessionStorage.setItem("userid",msg.userid)
+                    sessionStorage.setItem("userid",msg.user_id)
                     sessionStorage.setItem("sessionidd",msg.sessionid)
                     sessionStorage.setItem("usernamee",msg.username)
 

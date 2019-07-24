@@ -145,7 +145,7 @@ $(document).ready(function () {
                     ap1 += '<td  style="text-align:center;">'+v[i]['BrandName']+'</td>'
                     ap1 += '<td  style="text-align:center;">'+format_date(v[i]['StartDate'])+'</td>'
                     ap1 += '<td> <button  plainidattr="'+v[i]['PlanId']+'" style="color: white;background: green;padding: 1px;font-size: 9px;width: 94px;  width: 94px;" class="form-control completebtn">Mark As Complete</button> </td>'
-                    ap1 += '<td><button class="downloadbtn"  plainidattr="'+v[i]['PlanId']+'" style="color: white;background-color: back;background-color: #dc4d4d;border: none;">Download</button></td>';
+                    ap1 += '<td style="text-align:center;"><div class="downloadbtn pointer"  plainidattr="'+v[i]['PlanId']+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>';
                     ap1 += '</tr>'
                 }
                 $(".displayincompletedplans").html(ap1);
@@ -162,7 +162,7 @@ $(document).ready(function () {
                     ap += '<td  style="text-align:center;">'+v[i]['BrandName']+'</td>'
                     ap += '<td  style="text-align:center;">'+format_date(v[i]['StartDate'])+'</td>'
                     ap += '<td  style="text-align:center;">'+format_date(v[i]['EndDate'])+'</td>'
-                    ap += '<td><button class="downloadbtn" plainidattr="'+v[i]['PlanId']+'" style="color: white;background-color: back;background-color: #dc4d4d;border: none;">Download</button></td>'
+                    ap += '<td style="text-align:center;"><div class="downloadbtn pointer"  plainidattr="'+v[i]['PlanId']+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>'
 
                     ap += '</tr>'
                 }
@@ -244,7 +244,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.113:6767/download_file',
+            "url": ' http://192.168.0.125:6767/download_file',
             "method": "POST",
             "processData": false,
             "contentType": false,

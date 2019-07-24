@@ -187,17 +187,19 @@
 		}
 		.spillovertexttodisplay{
 			margin: auto;
-			background: #fab1a0;
+			background: #f3713c;
 			padding: 30px;
 		}
 		.texttodisplayspill{
 			margin: auto;
-			background: #fab1a0;
+			background: #f3713c;
 			padding: 30px;
+			width: 600px;
+    		margin-top: 30px;
 		}
 		.channelbeing{
 			margin: auto;
-			background: #fab1a0;
+			background: #f3713c;
 			padding: 30px;
 			width: 600px;
 		}

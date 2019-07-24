@@ -23,7 +23,7 @@ $( document ).ready(function() {
     var budgetallocation_filename;
     var PlanProcessed;
     var isFilePrepCompleted;
-    var version =0;
+    var version;
     var replan = false;
     var backclicked = "false";
     var markascompleted;
@@ -131,10 +131,9 @@ $( document ).ready(function() {
                         isFilePrepCompleted = msg.isFilePrepCompleted;
 
                         if (PlanProcessed==3){
-                            $('.texttodisplayspill').hide();
+                            // $('.texttodisplayspill').show();
                             $('.next_').prop('disabled', false)
                             if (isFilePrepCompleted=="true") {
-
                               $('.next_').prop('disabled', false)
                             }
 
@@ -149,37 +148,37 @@ $( document ).ready(function() {
                             // $('.budget_main').prop('disabled', true);
                             $('.changediv').html('<h6 class="font-weight-semibold textforchange">Upload Budget File</h6>')
                         }
-                        if (isFilePrepCompleted == "false") {
-                            debugger
-                            $(".next_").prop('disabled', false);
-                            $('.spillover').hide();
-                            $('.changediv').show();
-                            $('.texttodisplayspill').show();
-                            // if (PlanProcessed == 3) {
-                            //     $('.ss_files').hide();
-                            //     $('#upl-btn1').hide();
-                            //     $('.spillovertexttodisplay').show()
-                            //     $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+' is successfully uploaded</h5>')
-                            //     $(".next_").prop('disabled', false);
-                            // }
-                        }
-                        else {
-                            $('.changediv').hide();
-                            $('.spillover').hide();
-                            // $('.texttodisplayspill').show();
-                            $('.spillovertexttodisplay').show();
-                            $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+'</h5>')
-                            if (markascompleted=="true") {
-                                $(".next_").prop('disabled', false);
-                            }
-                            else {
-                                $(".next_").prop('disabled', true);
-                            }
-                        }
+                        // if (isFilePrepCompleted == "false") {
+                        //     debugger
+                        //     $(".next_").prop('disabled', false);
+                        //     $('.spillover').hide();
+                        //     $('.changediv').show();
+                        //     $('.texttodisplayspill').show();
+                        //     // if (PlanProcessed == 3) {
+                        //     //     $('.ss_files').hide();
+                        //     //     $('#upl-btn1').hide();
+                        //     //     $('.spillovertexttodisplay').show()
+                        //     //     $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+' is successfully uploaded</h5>')
+                        //     //     $(".next_").prop('disabled', false);
+                        //     // }
+                        // }
+                        // else {
+                        //     $('.changediv').hide();
+                        //     $('.spillover').show();
+                        //     // $('.texttodisplayspill').show();
+                        //     $('.spillovertexttodisplay').show();
+                        //     $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+'</h5>')
+                        //     if (markascompleted=="true") {
+                        //         $(".next_").prop('disabled', false);
+                        //     }
+                        //     else {
+                        //         $(".next_").prop('disabled', true);
+                        //     }
+                        // }
                         if (PlanProcessed == 1) {
                             $(".next_").prop('disabled', true);
                             unfreezebuyinginfo();
-                            $('.channelbeing').show();
+                            // $('.channelbeing').show();
                         }
                         else if (PlanProcessed == 2) {
                             debugger
@@ -191,14 +190,49 @@ $( document ).ready(function() {
                             $('.budget_main').prop('disabled', true);
                             // $('.spillover').show();
                             if (isFilePrepCompleted == "false") {
-                                $('.texttodisplayspill').show();
+                                debugger
+                                $(".next_").prop('disabled', false);
+                                $('.spillover').hide();
+                                $('.changediv').show();
+                                // $('.texttodisplayspill').show();
+                                // $('.channelbeing').show();
+                                $(".next_").prop('disabled', true);
+                                // if (PlanProcessed == 3) {
+                                //     $('.ss_files').hide();
+                                //     $('#upl-btn1').hide();
+                                //     $('.spillovertexttodisplay').show()
+                                //     $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+' is successfully uploaded</h5>')
+                                //     $(".next_").prop('disabled', false);
+                                // }
                             }
+                            else {
+                                // $('.changediv').hide();
+                                // $('.spillover').show();
+                                // $('.texttodisplayspill').show();
+                                // $('.spillovertexttodisplay').hide();
+                                if (spilloversheet_filename == '' || spilloversheet_filename == null ) {
+                                    $('.spillover').show();
+                                    $('.changediv').hide();
+                                }
+                                else {
+                                    $('.spillll').hide();
+                                    $('.spillovertexttodisplay').show();
+                                    $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+'</h5>')
+                                    $(".next_").prop('disabled', true);
+                                }
+                                if (markascompleted=="true") {
+                                    $(".next_").prop('disabled', false);
+                                }
+                                else {
+                                    $(".next_").prop('disabled', true);
+                                }
+                            }
+
                         }
                         else {
                             // $(".next_").prop('disabled', true);
                             freezebuyinginfo();
-                            $('.spillover').hide();
-
+                            $('.spillover').show();
                             $('.changediv').show();
                             $('.ss_files').hide();
                             $('.submit_btn1').hide();
@@ -819,6 +853,7 @@ $( document ).ready(function() {
                     console.log(msg);
                     $('.loading').hide();
                     sessionStorage.getItem('create_plan_id', 0);
+                    $('.channelbeing').show();
                     // $('.spillover').show();
 
                 })
@@ -888,7 +923,7 @@ $( document ).ready(function() {
                     main_output = ''
                     var file = $('#load-file')[0].files[0];
                     file_name_new = file.name;
-                    file_name_new = "BuyingBasket_"+newcampaign_id+"_"+file_name_new+"_"+version+".xls"
+                    file_name_new = "BuyingBasket_"+newcampaign_id+"_"+version+".xls"
                     var fileReader = new FileReader();
                     fileReader.onloadend = function (e) {
                         blob___ = e.target.result;
@@ -992,7 +1027,7 @@ $( document ).ready(function() {
                     main_output = ''
                     var file = $('#load-file1')[0].files[0];
                     filename = file.name;
-                    filename ="GenreLevelBudgetAllocation_"+newcampaign_id+"_"+filename+"_"+version+".xls"
+                    filename ="GenreLevelBudgetAllocation_"+newcampaign_id+"_"+version+".xls"
                     var fileReader = new FileReader();
                     fileReader.onloadend = function (e) {
                         blob___ = e.target.result;

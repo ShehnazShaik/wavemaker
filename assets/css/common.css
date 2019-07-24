@@ -8,10 +8,11 @@ height: calc(100vh - 56px);
 .content-wrapper {
     height: calc(100vh - 88px);
 }
-.texttodisplay{
+.texttodisplay {
     margin: auto;
-    background: #fab1a0;
+    background: #f3713c;
     padding: 30px;
+    margin-top: 47px;
 }
 .loading{
     position: fixed;
@@ -98,3 +99,10 @@ height: calc(100vh - 56px);
 .modal-header .close {
     color: inherit;
     font-size: 31px;}
+.card{
+    border: none !important;
+}
+
+.sidebar-dark .nav-sidebar .nav-link{
+    color: #fff !important;
+}

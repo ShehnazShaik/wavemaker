@@ -53,7 +53,7 @@ $(document).ready(function () {
     }
     // $('.confirm_barc').prop('disabled', false);
     $('body').on('click', '.edit_barc', function(){
-        $('.confirm_barc').prop('disabled', false);
+
         edit_flag = true;
         sendObj = {};
         var form = new FormData();
@@ -98,6 +98,8 @@ $(document).ready(function () {
             }
 
         })
+
+
 
     })
 
@@ -144,6 +146,8 @@ $(document).ready(function () {
         $.ajax(settings11).done(function (msg) {
             msg = JSON.parse(msg);
             $('.loading').hide();
+            $('.confirm_barc').prop('disabled', true);
+            $('.edit_barc').prop('disabled', true);
             swal("Modified successfully");
             console.log(msg);
             // e.preventDefault();

@@ -147,7 +147,7 @@
                                             <th>Brand</th>
                                             <th>Start Date</th>
                                             <th>Status</th>
-                                            <th>Download</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="displayincompletedplans">
@@ -175,7 +175,7 @@
                                         <th>Brand</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
-                                        <th>Download</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="displaycompletedplans">

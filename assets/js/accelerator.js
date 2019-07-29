@@ -2,7 +2,33 @@ $(document).ready(function(){
     $('.texttodisplay').hide();
 var plan_id = sessionStorage.getItem('create_plan_id');
 var user_id = sessionStorage.getItem('userid');
-var campaign_id = sessionStorage.getItem('campaign_id');
+// var campaign_id = sessionStorage.getItem('campaign_id');
+onLoad();
+var campaign_id;
+var version;
+    function onLoad(){
+        sendObj ={}
+        sendObj.planid = plan_id;
+        console.log(sendObj);
+        var form = new FormData();
+        form.append("file", JSON.stringify(sendObj));
+        var settings11 = {
+            "async": true,
+            "crossDomain": true,
+            "url":"http://192.168.0.125:6767/version_for_plan",
+            "method": "POST",
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form
+        };
+        $.ajax(settings11).done(function (msg) {
+            msg = JSON.parse(msg);
+            console.log(msg);
+            campaign_id = msg.CampaignId;
+            version = msg.Version;
+        })
+    }
     var file_name_;
     var main_output;
     fileobj = {};
@@ -21,7 +47,7 @@ var campaign_id = sessionStorage.getItem('campaign_id');
             fileReader.onloadend = function (e) {
                 blob___ = e.target.result;
 
-                fileobj.filename = "Accelerator_output_"+campaign_id+"_.xlsx";
+                fileobj.filename = "Accelerator_output_"+campaign_id+"_"+version+"_.xlsx";
                 fileobj.blob = blob___;
                 fileobj.plan_id = plan_id;
                 fileobj.user_id = user_id;

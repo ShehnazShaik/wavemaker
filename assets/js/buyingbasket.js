@@ -117,7 +117,7 @@ $( document ).ready(function() {
                         markascompleted = msg.IsMarkAsComplete;
                         version = msg.Version;
                         backclicked = sessionStorage.getItem('backclicked');
-                        if (backclicked == "false" && markascompleted == "true") {
+                        if (backclicked == null && markascompleted == "true") {
                             window.location.href="barc.php";
                         }
                         if (version > 1) {
@@ -134,7 +134,7 @@ $( document ).ready(function() {
                             // $('.texttodisplayspill').show();
                             $('.next_').prop('disabled', false)
                             if (isFilePrepCompleted=="true") {
-                              $('.next_').prop('disabled', false)
+                                $('.next_').prop('disabled', false)
                             }
 
                         }
@@ -567,7 +567,7 @@ $( document ).ready(function() {
                     //     }
                     //   }
                     // });
-                    alert("Keyword should not be empty");
+                    swal("Acd and Dispersion should not be empty");
                 }
 
 
@@ -617,7 +617,7 @@ $( document ).ready(function() {
                     //     }
                     //   }
                     // });
-                    alert("Keyword should not be empty");
+                    swal("Acd and Dispersion should not be empty");
                 }
 
 
@@ -679,19 +679,14 @@ $( document ).ready(function() {
 
 
             $("body").on("click", ".submit_new", function(){
-                $('.loading').show();
                 debugger;
 
                 // console.log(keyword_check);
                 // path_selection=$(this).closest('.common_class').find('.common_main').attr('key');
-                $('.add_more_new').prop('disabled', true);
+
                 // $('.next_').prop('disabled', true);
                 // $('.ss_files').show();
-                $(this).prop('disabled', true);
-                $('.remove_new').hide();
-                $('.spillover').hide();
-                $('.channelbeing').show();
-                $('#upl-btn1').hide();
+
                 // $('.channelbeing').append('<h5>Spillover Sheet being created. Once complete you will receive it in your inbox.</h5>')
                 path_selection_ = $(this).closest('.common_class').find('.budget_main').attr('key');
                 // path_selection = $(this).closest('.budget_main').find('.cprp_main').attr('key');
@@ -732,58 +727,83 @@ $( document ).ready(function() {
 
 
                     obj_subdivs[kw] = vl;
+                    // obj_subdivs[kw+'-'+sd] = vl;
                 }
                 console.log(obj_subdivs);
-
-                sendObj2.acd_dispersion = obj_subdivs;
-                // sendObj2.weightage = sendObj;
-                console.log(sendObj2);
-                console.log(JSON.stringify(sendObj2));
-                $('input[type=text]').css("background", "#ccc");
-                $('input[type=number]').css("background", "#ccc");
-                $('input[type=text]').prop('readonly', true);
-                $('input[type=number]').prop('readonly', true);
-                swal("Created successfully"	);
-                $('.add_more').prop('disbale', true);
-                $('.submit_').prop('disbale', true);
-                var form = new FormData();
-                form.append("file", JSON.stringify(sendObj2));
-                var settings11 = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": 'http://192.168.0.125:6767/plan_selection_button',
-                    "method": "POST",
-                    "processData": false,
-                    "contentType": false,
-                    "mimeType": "multipart/form-data",
-                    "data": form
-                };
-                $.ajax(settings11).done(function (msg) {
-                    msg = JSON.parse(msg);
-                    console.log(msg);
-                    $('.loading').hide();
-                    sessionStorage.getItem('create_plan_id', 0);
-                    // $('.spillover').show();
-
+                array_val = []
+                $.each(obj_subdivs, function(key, value){
+                    array_val.push(value);
                 })
+
+                console.log(array_val);
+                sum = 0;
+                $.each(array_val,function(){
+                    sum+=parseFloat(this) || 0;
+                });
+                console.log(sum);
+
+                if (campaign_days == '') {
+                    swal("Fields should not be empty")
+                }
+                else if (sum!==100 || sum>100) {
+                    swal("dispersion should be 100")
+                }
+                else {
+                    $('.loading').show();
+                    $('.add_more_new').prop('disabled', true);
+                    $(this).prop('disabled', true);
+                    $('.remove_new').hide();
+                    $('.spillover').hide();
+                    $('.channelbeing').show();
+                    $('#upl-btn1').hide();
+                    sendObj2.acd_dispersion = obj_subdivs;
+                    // sendObj2.weightage = sendObj;
+                    console.log(sendObj2);
+                    console.log(JSON.stringify(sendObj2));
+                    $('input[type=text]').css("background", "#ccc");
+                    $('input[type=number]').css("background", "#ccc");
+                    $('input[type=text]').prop('readonly', true);
+                    $('input[type=number]').prop('readonly', true);
+                    swal("Created successfully"	);
+                    $('.add_more').prop('disbale', true);
+                    $('.submit_').prop('disbale', true);
+                    var form = new FormData();
+                    form.append("file", JSON.stringify(sendObj2));
+                    var settings11 = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": 'http://192.168.0.125:6767/plan_selection_button',
+                        "method": "POST",
+                        "processData": false,
+                        "contentType": false,
+                        "mimeType": "multipart/form-data",
+                        "data": form
+                    };
+                    $.ajax(settings11).done(function (msg) {
+                        msg = JSON.parse(msg);
+                        console.log(msg);
+                        $('.loading').hide();
+                        sessionStorage.getItem('create_plan_id', 0);
+                        // $('.spillover').show();
+
+                    })
+                }
+
             })
 
 
 
             $("body").on("click", ".submit_", function(){
-                $('.loading').show();
+
                 debugger;
 
                 // console.log(keyword_check);
                 // path_selection=$(this).closest('.common_class').find('.common_main').attr('key');
-                $('.add_more').prop('disabled', true);
+
                 // $('.next_').prop('disabled', true);
                 // $('.ss_files').show();
-                $(this).prop('disabled', true);
-                $('.remove').hide();
-                $('.spillover').hide();
-                $('.channelbeing').show();
-                $('#upl-btn1').hide();
+
+
                 // $('.channelbeing').append('<h5>Spillover Sheet being created. Once complete you will receive it in your inbox.</h5>')
                 // path_selection = $(this).closest('.common_class').find('.budget_main').attr('key');
                 path_selection = $(this).closest('.common_class').find('.cprp_main').attr('key');
@@ -824,41 +844,71 @@ $( document ).ready(function() {
 
 
                     obj_subdivs[kw] = vl;
+
+
                 }
+                array_val = []
                 console.log(obj_subdivs);
-
-                sendObj2.acd_dispersion = obj_subdivs;
-                sendObj2.weightage = sendObj;
-                console.log(sendObj2);
-                console.log(JSON.stringify(sendObj2));
-                $('input[type=text]').css("background", "#ccc");
-                $('input[type=number]').css("background", "#ccc");
-                $('input[type=text]').prop('readonly', true);
-                $('input[type=number]').prop('readonly', true);
-                swal("Created successfully"	);
-                $('.add_more').prop('disbale', true);
-                $('.submit_').prop('disbale', true);
-                var form = new FormData();
-                form.append("file", JSON.stringify(sendObj2));
-                var settings11 = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": 'http://192.168.0.125:6767/plan_selection_button',
-                    "method": "POST",
-                    "processData": false,
-                    "contentType": false,
-                    "mimeType": "multipart/form-data",
-                    "data": form
-                };
-                $.ajax(settings11).done(function (msg) {
-                    msg = JSON.parse(msg);
-                    console.log(msg);
-                    $('.loading').hide();
-                    sessionStorage.getItem('create_plan_id', 0);
-                    $('.channelbeing').show();
-                    // $('.spillover').show();
-
+                $.each(obj_subdivs, function(key, value){
+                    array_val.push(value);
                 })
+
+                console.log(array_val);
+                sum = 0;
+                $.each(array_val,function(){
+                    sum+=parseFloat(this) || 0;
+                });
+                console.log(sum);
+
+                if (campaign_days == '' || cprp_weitage == '' || reach_weitage == '') {
+                    swal("Fields should not be empty")
+                }
+                else if (sum!==100 || sum>100) {
+                    swal("dispersion should be 100")
+                }
+                else {
+                    $('.loading').show();
+                    $('.add_more').prop('disabled', true);
+                    $(this).prop('disabled', true);
+                    $('.remove').hide();
+                    $('.spillover').hide();
+                    $('.channelbeing').show();
+                    $('#upl-btn1').hide();
+                    sendObj2.acd_dispersion = obj_subdivs;
+                    sendObj2.weightage = sendObj;
+                    console.log(sendObj2);
+
+                    console.log(JSON.stringify(sendObj2));
+                    $('input[type=text]').css("background", "#ccc");
+                    $('input[type=number]').css("background", "#ccc");
+                    $('input[type=text]').prop('readonly', true);
+                    $('input[type=number]').prop('readonly', true);
+                    swal("Created successfully"	);
+                    $('.add_more').prop('disbale', true);
+                    $('.submit_').prop('disbale', true);
+                    var form = new FormData();
+                    form.append("file", JSON.stringify(sendObj2));
+                    var settings11 = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": 'http://192.168.0.125:6767/plan_selection_button',
+                        "method": "POST",
+                        "processData": false,
+                        "contentType": false,
+                        "mimeType": "multipart/form-data",
+                        "data": form
+                    };
+                    $.ajax(settings11).done(function (msg) {
+                        msg = JSON.parse(msg);
+                        console.log(msg);
+                        $('.loading').hide();
+                        sessionStorage.getItem('create_plan_id', 0);
+                        $('.channelbeing').show();
+                        // $('.spillover').show();
+
+                    })
+                }
+
             })
 
             $("body").on("click", ".cprp_r", function(){

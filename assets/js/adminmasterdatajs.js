@@ -100,7 +100,7 @@ $(document).ready(function(){
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url":"http://192.168.0.125:6767/master_data_settings",
+            "url":"http://192.168.0.113:6767/master_data_settings",
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -143,7 +143,7 @@ $(document).ready(function(){
                 fileobj_new.category = "ChannelGenreMappingSheet"
                 console.log(fileobj_new);
                 file_name_ = filename_new;
-                $('#channelgenrebtn').prop('disabled', true)
+                $('#channelgenrebtn').prop('disabled', false)
                 // var form = new FormData();
                 // form.append("file", JSON.stringify(fileobj_new));
                 // var settings11 = {
@@ -213,7 +213,7 @@ $(document).ready(function(){
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url":"http://192.168.0.125:6767/master_data_settings",
+            "url":"http://192.168.0.113:6767/master_data_settings",
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -222,7 +222,7 @@ $(document).ready(function(){
         };
         $.ajax(settings11).done(function (msg) {
             console.log(msg);
-            swal("Uploaded successfullys");
+            swal("Uploaded successfully");
             $('#channelgenrebtn').prop('disabled', true);
             $('#channelgenre').hide();
             $('.channel_').append('<h5>'+file_name_+'</h5>')

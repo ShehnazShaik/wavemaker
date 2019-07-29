@@ -158,7 +158,7 @@ display: none !important;
                             </select>
                         </div>
                         <div style="margin-top:6px;" class="col-sm-1">
-                            <button style="background-color:#32ff7e;color:white;border:none;" class="form-control gobtn">GO</button>
+                            <button style="background-color:#32ff7e;color:black;border:none;" class="form-control gobtn">GO</button>
                         </div>
                     </div>
                     <table class="table datatable-multi-sorting" style="color:white;margin-top:30px">
@@ -251,20 +251,31 @@ Footer
         </div>
     </div>
 </div>
-<div id="replanmodall" class="modal fade" tabindex="-1">
-    <div class="modal-dialog modal-sm">
+<div id="replanmodall" class="modal fade" tabindex="-1"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content" style="margin-top: 255px;">
-
-            <!-- Form -->
-            <div class="modal-body">
-                <div class="text-center mb-3 pathslinks">
-                    <!-- <button class="form-control buyingbasketbtn" style="background-color: #192124;color: white;" style="color:#fff">Replan from Buying Basket Upload </button> -->
-                </div>
-
+            <div class="modal-header">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+            <button type="button" class="close closeModal closeClass" data-dismiss="modal">&times;</button>
             </div>
-            <!-- /form -->
+            <!-- Form -->
+            <div class="modal-body" style="padding-top: 0px;">
+                <div class="row" style="display:block">
+                    <div class="row_header">
+                        <button type="button" class="selectAll">Select All</button>
+                        <button type="button" class="downloadAll">Download </button>
+                    </div>
+                    <div class="row row_body">
+
+                    </div>
+                </div>
+            </div>
+
+
 
         </div>
+        <!-- /form -->
+
     </div>
 </div>
 <!-- /page content -->

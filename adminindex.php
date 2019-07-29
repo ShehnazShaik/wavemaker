@@ -51,9 +51,6 @@
 
 </head>
 <style>
-.table-bordered{
-    color: #fff !important;
-}
 .file-drop-zone-title {
     padding: 11px;
 }
@@ -108,6 +105,9 @@
 }
 .masterdata_new{
     display: none;
+}
+.table-bordered{
+    color: #fff !important;
 }
 </style>
 

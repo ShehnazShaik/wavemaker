@@ -67,7 +67,7 @@ var msg__;
 
 
 function displaydata(msg) {
-
+$('#usergrp').empty()
   $.each(msg ,function(key,i){
     // console.log(key);
       $('#usergrp').append('<option value='+key+'>'+key+'</option>')
@@ -85,17 +85,17 @@ function displaydata(msg) {
 
 $.each(a, function (j) {
  row += '<tr class="tableclass">'
- row += '<td  style="color:width:20px;">' + a[j].Privilege_Name + ' </td>';
- row += '<td class="' + a[j].Privilege_Name + '"  data-id=' + a[j].Privilage_Id + '>'
- row += '<p class="hidden checkpoint_prev' + j + '">' + a[j].Privilage_Value + '</p>'
+ row += '<td  style="color:width:20px;">' + a[j].Privilage_Description + ' </td>';
+ row += '<td class="' + a[j].Privilage_Description + '"  data-id=' + a[j].Privilage_Id + '>'
+ row += '<p class="hidden checkpoint_prev' + j + '">' + a[j].Privilage_Description + '</p>'
  if (a[j].Privilage_Value.toLowerCase() == 'yes') {
-   row += '<input  type="radio"   class="radioclick" checked data-Privilege_Name=' + a[j].Privilege_Name + ' value="yes" data-checked="checked" checked>yes<br>'
-   row += '<input  type="radio"  class="radioclick" data-Privilege_Name=' + a[j].Privilege_Name + ' value="no"> no<br>'
+   row += '<input  type="radio"   class="radioclick" checked data-Privilege_Name=' + a[j].Privilage_Description + ' value="Yes" data-checked="checked" checked>Yes<br>'
+   row += '<input  type="radio"  class="radioclick" data-Privilege_Name=' + a[j].Privilage_Description + ' value="No"> no<br>'
    // row += '<input  type="radio"  class="cust_disable checkpointtt" value="Further Review Required" > Further Review Required<br>'
  }
  else if (a[j].Privilage_Value.toLowerCase() == 'no') {
-   row += '<input type="radio" class="radioclick" data-Privilege_Name=' + a[j].Privilege_Name + ' value="yes" > yes<br>'
-   row += '<input type="radio" class="radioclick" data-Privilege_Name=' + a[j].Privilege_Name + '  value="no" data-checked="checked" checked> no<br>'
+   row += '<input type="radio" class="radioclick" data-Privilege_Name=' + a[j].Privilage_Description + ' value="Yes" > yes<br>'
+   row += '<input type="radio" class="radioclick" data-Privilege_Name=' + a[j].Privilage_Description + '  value="No" data-checked="checked" checked> No<br>'
  }
  row += '</td>';
  row += '<tr>'
@@ -181,7 +181,8 @@ $(".displayhere").html(row)
         msg = JSON.parse(msg);
         console.log(msg);
         displaydata(msg)
-        swal("Submitted Successfully!!...")
+        swal("Submitted Successfully");
+        // setTimeout(function(){ window.location.realod(); }, 1000);
 })
 
 

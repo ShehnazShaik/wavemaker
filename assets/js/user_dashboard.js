@@ -194,11 +194,17 @@ $(document).ready(function () {
         $.ajax(settings11).done(function (msg) {
             filesData = JSON.parse(msg);
             console.log(filesData);
-            $('.pathslinks').empty()
-            keys = Object.keys(filesData);
-            $('.row_body').html('')
-            for (var i = 0; i < keys.length; i++) {
-                $('.row_body').append('<div class="col-sm-3"><div class="fileClick pointer" title="'+keys[i]+'"><span>'+keys[i]+'</span></div></div>');
+            if (filesData == '') {
+                $('.pathslinks').append('<h5 class="sendpath" ><p>No files to Download</p></5>');
+
+            }
+            else {
+                $('.pathslinks').empty()
+                keys = Object.keys(filesData);
+                $('.row_body').html('')
+                for (var i = 0; i < keys.length; i++) {
+                    $('.row_body').append('<div class="col-sm-3"><div class="fileClick pointer" title="'+keys[i]+'"><span>'+keys[i]+'</span></div></div>');
+                }
             }
         })
 

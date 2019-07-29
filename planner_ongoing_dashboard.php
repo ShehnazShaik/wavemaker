@@ -213,7 +213,7 @@
             </div>
             <!-- Form -->
             <div class="modal-body" style="padding-top: 0px;">
-                <div class="row">
+                <div class="row" style="display:block">
                     <div class="row_header">
                         <button type="button" class="selectAll">Select All</button>
                         <button type="button" class="downloadAll">Download </button>

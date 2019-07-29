@@ -187,7 +187,8 @@
 		}
 		.spillovertexttodisplay{
 			margin: auto;
-			background: #f3713c;
+			background: #d1d8e0;
+			color: #000 !important;
 			padding: 30px;
 		}
 		.texttodisplayspill{
@@ -195,7 +196,7 @@
 			background: #d1d8e0;
 			padding: 30px;
 			width: 600px;
-    		margin-top: 30px;
+			margin-top: 30px;
 		}
 		.channelbeing{
 			margin: auto;
@@ -210,16 +211,26 @@
 		.common_main{
 			margin-left: 40px;
 		}
-	</style>
+		.remove_new{
+			display: inline;
+			position: relative;
+			top: -28px;
+			cursor: pointer;
+			right: -101%;
+		}
+		.sub_div_new{
+			margin-top: 40px;
+		}
+		</style>
 
-	<!-- <script type="text/javascript">
-	function CheckNumeric(e) {
-	if (window.event) // IE
-	{
-	if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8 && e.keyCode != 44) {
-	event.returnValue = false;
-	return false;
-}
+		<!-- <script type="text/javascript">
+		function CheckNumeric(e) {
+		if (window.event) // IE
+		{
+		if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8 && e.keyCode != 44) {
+		event.returnValue = false;
+		return false;
+	}
 }
 else { // Fire Fox
 if ((e.which < 48 || e.which > 57) & e.which != 8 && e.which != 44) {
@@ -294,7 +305,7 @@ return false;
 								<h6 class="font-weight-semibold" style="margin-top:20px">Campaign Duration (in Days)</h6>
 								<div class="row">
 									<div class="col-md-6">
-										<input class="form-control campaign_days" type="number" min="0" max="365" placeholder="Campaign Duration (in Days)">
+										<input class="form-control campaign_days" type="number" min="0" max="365"  onKeyUp="if(this.value>365){this.value='365';}else if(this.value<0){this.value='0';}" placeholder="Campaign Duration (in Days)">
 
 									</div>
 								</div>
@@ -308,7 +319,7 @@ return false;
 									</div>
 								</div>
 								<div class="row main" style="margin-top:-40px;">
-									<div class="mr-b-5 sub_div" style="width:100%">
+									<div class="sub_div" style="width:100%">
 										<div class="row keyword" style="width:100%">
 											<div class="col-md-6 mr-b-10 pd-l-10 pd-r-10">
 												<input type="text" class="form-control mods_inputs name name_Class 0" placeholder="Enter the keyword">
@@ -339,7 +350,7 @@ return false;
 								<h6 class="font-weight-semibold" style="margin-top:20px">Campaign Duration (in Days)</h6>
 								<div class="row">
 									<div class="col-md-6">
-										<input class="form-control campaign_days_new" type="number" min="0" max="365" placeholder="Campaign Duration (in Days)">
+										<input class="form-control campaign_days_new" type="number" min="0" max="365"  onKeyUp="if(this.value>365){this.value='365';}else if(this.value<0){this.value='0';}" placeholder="Campaign Duration (in Days)">
 
 									</div>
 								</div>
@@ -352,7 +363,7 @@ return false;
 									</div>
 								</div>
 								<div class="row main_new">
-									<div class="mr-b-5 sub_div_new" style="width:100%">
+									<div class="sub_div_new" style="width:100%;margin-top:0px;">
 										<div class="row keyword_new" style="width:100%">
 											<div class="col-md-6 mr-b-10 pd-l-10 pd-r-10">
 												<input type="text" class="form-control mods_inputs name_new name_Class_new 0" placeholder="Enter ACD">
@@ -400,37 +411,37 @@ return false;
 
 							<div class="card fadeInDown texttodisplayspill">
 								<!-- <h5>Spillover Sheet being created. Once complete you will receive it in your inbox.
-								</h5> -->
-							</div>
-							<div class="mr-t-10" style="margin-top: 20px;">
-								<button class="btn btn-primary backclass" style="float:left;">Back</button>
-								<button class="btn btn-primary next_"  style="float:right;">Next</button>
-							</div>
-
-
+							</h5> -->
+						</div>
+						<div class="mr-t-10" style="margin-top: 20px;">
+							<button class="btn btn-primary backclass" style="float:left;">Back</button>
+							<button class="btn btn-primary next_"  style="float:right;">Next</button>
 						</div>
 
 
-						<!-- keywords -->
+					</div>
+
+
+					<!-- keywords -->
 
 
 
-						<!-- SubmitChannel -->
+					<!-- SubmitChannel -->
 
-						<!-- /traffic sources -->
-						<div class="loading">
-							<img src="assets/images/loader.gif" alt="">
-						</div>
+					<!-- /traffic sources -->
+					<div class="loading">
+						<img src="assets/images/loader.gif" alt="">
 					</div>
 				</div>
-				<!-- /main charts -->
 			</div>
-
-
+			<!-- /main charts -->
 		</div>
-		<!-- /main content -->
+
 
 	</div>
+	<!-- /main content -->
+
+</div>
 
 
 </body>

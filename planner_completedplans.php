@@ -130,7 +130,7 @@ display: none;
                             </select>
                         </div>
                         <div style="margin-top:6px;" class="col-sm-1">
-                            <button style="background-color:#32ff7e;;color:white;border:none;" class="form-control gobtn">GO</button>
+                            <button style="background-color:#32ff7e;;color:black;border:none;" class="form-control gobtn">GO</button>
                         </div>
                     </div>
                     <table class="table datatable-multi-sorting " style="color:white;margin-top:30px">

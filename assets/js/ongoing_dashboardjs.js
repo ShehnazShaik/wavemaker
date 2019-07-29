@@ -151,7 +151,7 @@ $(document).ready(function () {
       }
     }
     else {
-      swal("please select anyone value for search!!..")
+      swal("please select anyone value for search")
     }
 
 
@@ -238,6 +238,7 @@ $(document).ready(function () {
         });
       })
       $("body").on("click", ".downloadbtn", function(){
+          debugger
         plainiddd =  $(this).attr('plainidattr');
               $('#replanmodall').modal()
               sendObj = {};
@@ -256,11 +257,12 @@ $(document).ready(function () {
                   "data": form
               };
               $.ajax(settings11).done(function (msg) {
-                  msg = JSON.parse(msg);
-                  console.log(msg);
-                  $('.pathslinks').empty()
-                  for(key in msg ){
-                      $('.pathslinks').append('<h5 class="sendpath" title="'+msg[key]+'"  file_name="'+key+'"><input type="checkbox" ><a href="#"  style="cursor:pointer">'+key+'</a></5>');
+                  filesData = JSON.parse(msg);
+                  console.log(msg.length);
+                  keys = Object.keys(filesData);
+                  $('.row_body').html('')
+                  for (var i = 0; i < keys.length; i++) {
+                      $('.row_body').append('<div class="col-sm-3"><div class="fileClick pointer" title="'+keys[i]+'"><span>'+keys[i]+'</span></div></div>');
                   }
               })
 
@@ -268,64 +270,148 @@ $(document).ready(function () {
       })
 
 
-      // =================================
-      $("body").on("click", ".sendpath", function(){
 
-          file_Name = $(this).attr('file_name');
-          var send_path = $(this).attr('title')
-          sendObj = {};
-          sendObj.file_path = send_path;
-          console.log(sendObj);
-          var form = new FormData();
-          form.append("file", JSON.stringify(sendObj));
-          var settings11 = {
-              "async": true,
-              "crossDomain": true,
-              "url": ' http://192.168.0.125:6767/download_file',
-              "method": "POST",
-              "processData": false,
-              "contentType": false,
-              "mimeType": "multipart/form-data",
-              "data": form
-          };
-          $.ajax(settings11).done(function (msg) {
-              // msg = JSON.parse(msg);
-              console.log(msg);
-
-              // console.log(JSON.parse(msg))
-              msg_obj = msg;
-            // file_name = msg.file_name;
-            var bin = atob(msg_obj);
-            var ab = s2ab(bin); // from example above
-            var blob = new Blob([ab], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
-
-            var link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = file_Name;
-            // link.download = 'file_name';
-
-            document.body.appendChild(link);
-
-              link.click();
-
-              document.body.removeChild(link);
-
-              swal('downloaded successfully');
-
-              setTimeout(function(){
-                  location.reload();
-              }, 3000)
+          $("body").on("click", ".fileClick", function () {
+              key = $(this).attr('title');
+              path = filesData[key];
+              idx = selectedFiles.indexOf(path);
+              $(".unSelectAll").addClass('selectAll')
+              $(".unSelectAll").html('Select All')
+              $(".selectAll").removeClass('unSelectAll')
+              if (idx > -1) {
+                  selectedFiles.splice(idx, 1)
+                  $(this).removeClass('active')
+              }
+              else {
+                  $(this).addClass('active')
+                  selectedFiles.push(path);
+              }
+              console.log(selectedFiles);
+          })
+          //-----------------SelectALl-------------//
+          $('body').on('click', '.selectAll', function(){
+              selectedFiles = Object.values(filesData);
+              $(this).addClass('unSelectAll')
+              $(this).html('Unselect All')
+              $(this).removeClass('selectAll');
+              $(".fileClick").addClass('active')
+              console.log(selectedFiles);
 
           })
-      })
+          $('body').on('click', '.unSelectAll', function(){
+              resetSelect()
+          })
+          $('body').on('click', '.downloadAll', function(){
+              sendObj={};
+              sendObj.file_path = selectedFiles;
+              console.log(sendObj);
+              var form = new FormData();
+              form.append("file", JSON.stringify(sendObj));
+              var settings11 = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": ' http://192.168.0.125:6767/download_file',
+                  "method": "POST",
+                  "processData": false,
+                  "contentType": false,
+                  "mimeType": "multipart/form-data",
+                  "data": form
+              };
+              $.ajax(settings11).done(function (msg) {
+                  console.log(msg);
+
+                  // file_name = msg.file_name;
+                  var bin = atob(msg);
+                  var ab = s2ab(bin); // from example above
+                  var blob = new Blob([ab], { type: 'octet/stream' });
+
+                  var link = document.createElement('a');
+                  link.href = window.URL.createObjectURL(blob);
+                  link.download = "results.zip";
+                  // link.download = 'file_name';
+
+                  document.body.appendChild(link);
+
+                  link.click();
+
+                  resetSelect()
+
+                  document.body.removeChild(link);
+              });
+          });
+          $('body').on('click', '.closeClass', function(){
+              resetSelect();
+          })
+          function resetSelect() {
+              selectedFiles = []
+              $(".unSelectAll").addClass('selectAll')
+              $(".selectAll").html('Select All')
+              $(".selectAll").removeClass('unSelectAll')
+              $(".fileClick").removeClass('active')
+          }
 
 
-      function s2ab(s) {
-          var buf = new ArrayBuffer(s.length);
-          var view = new Uint8Array(buf);
-          for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-          return buf;
-      }
+          // =================================
+          $("body").on("click", ".sendpath", function(){
+
+              file_Name = $(this).attr('file_name');
+              var send_path = $(this).attr('title')
+              sendObj = {};
+              sendObj.file_path = send_path;
+              console.log(sendObj);
+              var form = new FormData();
+              form.append("file", JSON.stringify(sendObj));
+              var settings11 = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": ' http://192.168.0.125:6767/download_file',
+                  "method": "POST",
+                  "processData": false,
+                  "contentType": false,
+                  "mimeType": "multipart/form-data",
+                  "data": form
+              };
+              $.ajax(settings11).done(function (msg) {
+                  // msg = JSON.parse(msg);
+                  console.log(msg);
+
+                  // console.log(JSON.parse(msg))
+                  msg_obj = msg;
+                  // file_name = msg.file_name;
+                  var bin = atob(msg_obj);
+                  var ab = s2ab(bin); // from example above
+                  var blob = new Blob([ab], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+
+                  var link = document.createElement('a');
+                  link.href = window.URL.createObjectURL(blob);
+                  link.download = file_Name;
+                  // link.download = 'file_name';
+
+                  document.body.appendChild(link);
+
+                  link.click();
+
+                  document.body.removeChild(link);
+
+                  swal('downloaded successfully');
+
+                  setTimeout(function(){
+                      location.reload();
+                  }, 3000)
+
+              })
+          })
+
+
+          function s2ab(s) {
+              var buf = new ArrayBuffer(s.length);
+              var view = new Uint8Array(buf);
+              for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+              return buf;
+          }
+
+
+          // =====================
 
 
       function format_date(date_string) {

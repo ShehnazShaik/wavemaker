@@ -224,6 +224,7 @@ $(document).ready(function () {
                         $(this).parent(".new_plan");
                         $('.loading').hide();
                         swal("Created successfully");
+                        $('.create_plan').prop('readonly', true);
                         console.log(msg);
                         createplanid = msg.createplanid;
 

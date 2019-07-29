@@ -135,3 +135,12 @@ height: calc(100vh - 56px);
 .same_Class{
     padding: 10px;
 }
+.file-preview{
+    color: #000;
+}
+.file-drop-zone-title{
+    color: #fff;
+}
+.table td{
+    border-top: 1px solid #4e4747 !important;
+}

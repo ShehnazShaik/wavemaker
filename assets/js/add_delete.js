@@ -41,7 +41,9 @@ $(document).ready(function () {
     }
     $("body").on("click", ".addsavebtn", function(){
         email = $('.emailvalue').val()
-        clientname = $('.clientoptionclass').attr("keyy")
+        // clientname = $('.clientoptionclass').attr("keyy")
+        clientname = $('.clientoptionclass').val()
+
         objj = {}
         objj.email = email
         objj.clientid = clientname
@@ -63,7 +65,7 @@ $(document).ready(function () {
             msg = JSON.parse(msg);
             console.log(msg);
             if (msg = "updated") {
-                swal('updated succesfully!!....');
+                swal('updated succesfully');
                 setInterval(function(){  location.reload(); }, 1500);
             }
 

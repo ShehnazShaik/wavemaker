@@ -144,3 +144,12 @@ height: calc(100vh - 56px);
 .table td{
     border-top: 1px solid #4e4747 !important;
 }
+.activee{
+ background-color: #0d0d0d;
+}
+.nav-link:after{
+    display: none;
+}
+#displayusername p{
+    color:#fff;
+}

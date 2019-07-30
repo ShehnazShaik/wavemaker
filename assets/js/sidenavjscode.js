@@ -1,4 +1,35 @@
 $(document).ready(function () {
+$('body .nav-sidebar').find('li').removeClass('activee')
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+if (filename == 'userprofile.php') {
+  $('#userprofileid').addClass('activee');
+
+}
+if (filename == 'planner_createnewplan.php') {
+  $('#createplan').addClass('activee');
+}
+if (filename == 'planner_ongoing_dashboard.php') {
+  $('#myplans').addClass('activee');
+}
+if (filename == 'planner_dashboard.php') {
+  $('#ongoingdashboard').addClass('activee');
+}
+if (filename == 'add_delete.php') {
+  $('#add_deleteid').addClass('activee');
+}
+if (filename == 'planner_completedplans.php') {
+  $('#comple').addClass('activee');
+}
+
+if (filename == 'adminindex.php') {
+  $('#admin').addClass('activee');
+}
+
+
+
+
+
 
 var prev =  JSON.parse(localStorage.getItem("allprevialges"))
 var userpro='';

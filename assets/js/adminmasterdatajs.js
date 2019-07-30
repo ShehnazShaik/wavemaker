@@ -1,4 +1,5 @@
 $(document).ready(function(){
+$('.loading').hide();
     $('.texttodisplay').hide();
     var plan_id = sessionStorage.getItem('create_plan_id');
     var user_id = sessionStorage.getItem('userid');
@@ -15,7 +16,7 @@ $(document).ready(function(){
         //   $('#load-file').click();
         // })
         $('#locationclass').on('change', function () {
-            debugger
+            // debugger
             main_output = ''
             var file = $('#locationclass')[0].files[0];
             filename = file.name;
@@ -93,7 +94,8 @@ $(document).ready(function(){
     }
 
     $("body").on("click", "#locationuploadbtn", function(){
-        debugger
+        $('.loading').show();
+        // debugger
         console.log(fileobj);
         var form = new FormData();
         form.append("file", JSON.stringify(fileobj));
@@ -109,7 +111,24 @@ $(document).ready(function(){
         };
         $.ajax(settings11).done(function (msg) {
             console.log(msg);
-            swal("Uploaded successfully");
+            // msg = JSON.parse(msg);
+            console.log(msg);
+            console.log(jQuery.isEmptyObject( JSON.parse(msg)));
+            $('.loading').hide();
+            if (jQuery.isEmptyObject(JSON.parse(msg))) {
+                swal("Uploaded successfully")
+            }
+            else {
+                // var error_msg = ""
+                // for(key in msg){
+                //     msg_ = "error in column "+key+ " "
+                //     for (var i = 0; i < msg[key].length; i++) {
+                //         msg_ += (" "+ msg[key]+ " ");
+                //     }
+                //     error_msg += msg_+'\n';
+                // }
+                swal("error in" +msg)
+            }
             $('#locationuploadbtn').prop('disabled', true);
             $('.masterdata_').hide();
             $('.masterdata_new').show();
@@ -128,7 +147,7 @@ $(document).ready(function(){
         //   $('#load-file').click();
         // })
         $('#channelgenre').on('change', function () {
-            debugger
+            // debugger
             main_output_new = ''
             var file = $('#locationclass')[0].files[0];
             filename_new = file.name;
@@ -206,7 +225,8 @@ $(document).ready(function(){
     }
 
     $("body").on("click", "#channelgenrebtn", function(){
-        debugger
+            $('.loading').show();
+        // debuggers
         console.log(fileobj_new);
         var form = new FormData();
         form.append("file", JSON.stringify(fileobj_new));
@@ -221,6 +241,7 @@ $(document).ready(function(){
             "data": form
         };
         $.ajax(settings11).done(function (msg) {
+                $('.loading').hide();
             console.log(msg);
             swal("Uploaded successfully");
             $('#channelgenrebtn').prop('disabled', true);

@@ -180,7 +180,7 @@ $(".displayhere").html(row)
     $.ajax(settings11).done(function (msg) {
         msg = JSON.parse(msg);
         console.log(msg);
-        displaydata(msg)
+        // displaydata(msg)
         swal("Submitted Successfully");
         // setTimeout(function(){ window.location.realod(); }, 1000);
 })

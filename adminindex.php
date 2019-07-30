@@ -392,6 +392,9 @@ $( document ).ready(function() {
 <div class="" style="height:30px;">
 
 </div>
+<div class="loading">
+	<img src="assets/images/loader.gif" alt="">
+</div>
 </div>
 <!-- /page content -->
 

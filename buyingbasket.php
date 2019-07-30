@@ -301,7 +301,16 @@ return false;
 										<input class="form-control touchspin-no-mousewheel input reach_val" id="b" type="number" name="number" min="0" max="100" placeholder="Select the range till 100">
 									</div>
 								</div>
-
+								<div class="row" style="margin-top: 20px;">
+									<div class="col-md-6">
+										<h6 class="font-weight-semibold">CPRP Channels</h6>
+										<input class="form-control touchspin-no-mousewheel input cprp_channel_val"  type="number" name="number"  min="1" max="50"  onKeyUp="if(this.value>50){this.value='50';}else if(this.value<0){this.value='0';}" placeholder="Select the range till 50">
+									</div>
+									<div class="col-md-6">
+										<h6 class="font-weight-semibold">Frequency Channels</h6>
+										<input class="form-control touchspin-no-mousewheel input frequency_channel"  type="number" name="number" min="0" max="50" onKeyUp="if(this.value>50){this.value='50';}else if(this.value<0){this.value='0';}" placeholder="Select the range till 50">
+									</div>
+								</div>
 								<h6 class="font-weight-semibold" style="margin-top:20px">Campaign Duration (in Days)</h6>
 								<div class="row">
 									<div class="col-md-6">

@@ -27,7 +27,8 @@ $( document ).ready(function() {
     var replan = false;
     var backclicked = "false";
     var markascompleted;
-
+    var channel_cprp;
+    var channel_frequency;
     var i;
     $("#a").keyup(function(){
         var a = parseInt($('#a').val());
@@ -115,6 +116,8 @@ $( document ).ready(function() {
                         spilloversheet_filename= msg.SpillOverSheetFilePath;
                         budgetallocation_filename = msg.BudgetAllocationFilePath;
                         markascompleted = msg.IsMarkAsComplete;
+                        channel_cprp = msg.cprp_channel;
+                        channel_frequency = msg.frequency_channel;
                         version = msg.Version;
                         backclicked = sessionStorage.getItem('backclicked');
                         if (backclicked == null && markascompleted == "true") {
@@ -130,55 +133,19 @@ $( document ).ready(function() {
                         PlanProcessed = msg.planProcessed;
                         isFilePrepCompleted = msg.isFilePrepCompleted;
 
-                        if (PlanProcessed==3){
-                            // $('.texttodisplayspill').show();
-                            $('.next_').prop('disabled', false)
-                            if (isFilePrepCompleted=="true") {
-                                $('.next_').prop('disabled', false)
-                            }
 
-                        }
 
                         $('cprp_div').show();
                         if(path_selection == 1) {
-                            // $('.cprp_main').prop('disabled', true);
                             $('.changediv').html('<h6 class="font-weight-semibold textforchange">Upload spillover sheet</h6>')
                         }
                         else {
-                            // $('.budget_main').prop('disabled', true);
                             $('.changediv').html('<h6 class="font-weight-semibold textforchange">Upload Budget File</h6>')
                         }
-                        // if (isFilePrepCompleted == "false") {
-                        //     debugger
-                        //     $(".next_").prop('disabled', false);
-                        //     $('.spillover').hide();
-                        //     $('.changediv').show();
-                        //     $('.texttodisplayspill').show();
-                        //     // if (PlanProcessed == 3) {
-                        //     //     $('.ss_files').hide();
-                        //     //     $('#upl-btn1').hide();
-                        //     //     $('.spillovertexttodisplay').show()
-                        //     //     $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+' is successfully uploaded</h5>')
-                        //     //     $(".next_").prop('disabled', false);
-                        //     // }
-                        // }
-                        // else {
-                        //     $('.changediv').hide();
-                        //     $('.spillover').show();
-                        //     // $('.texttodisplayspill').show();
-                        //     $('.spillovertexttodisplay').show();
-                        //     $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+'</h5>')
-                        //     if (markascompleted=="true") {
-                        //         $(".next_").prop('disabled', false);
-                        //     }
-                        //     else {
-                        //         $(".next_").prop('disabled', true);
-                        //     }
-                        // }
+
                         if (PlanProcessed == 1) {
                             $(".next_").prop('disabled', true);
                             unfreezebuyinginfo();
-                            // $('.channelbeing').show();
                         }
                         else if (PlanProcessed == 2) {
                             debugger
@@ -188,31 +155,20 @@ $( document ).ready(function() {
                             $('.submit_').prop('disabled', true);
                             $('.cprp_main').prop('disabled', true);
                             $('.budget_main').prop('disabled', true);
-                            // $('.spillover').show();
                             if (isFilePrepCompleted == "false") {
                                 debugger
                                 $(".next_").prop('disabled', false);
                                 $('.spillover').hide();
                                 $('.changediv').show();
-                                // $('.texttodisplayspill').show();
-                                // $('.channelbeing').show();
                                 $(".next_").prop('disabled', true);
-                                // if (PlanProcessed == 3) {
-                                //     $('.ss_files').hide();
-                                //     $('#upl-btn1').hide();
-                                //     $('.spillovertexttodisplay').show()
-                                //     $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+' is successfully uploaded</h5>')
-                                //     $(".next_").prop('disabled', false);
-                                // }
                             }
                             else {
-                                // $('.changediv').hide();
-                                // $('.spillover').show();
-                                // $('.texttodisplayspill').show();
-                                // $('.spillovertexttodisplay').hide();
+                                $('.next_').prop('disabled', false)
+                                $('.channelbeing').hide();
                                 if (spilloversheet_filename == '' || spilloversheet_filename == null ) {
                                     $('.spillover').show();
                                     $('.changediv').hide();
+                                    $('.channelbeing').hide();
                                 }
                                 else {
                                     $('.spillll').hide();
@@ -230,7 +186,10 @@ $( document ).ready(function() {
 
                         }
                         else {
-                            // $(".next_").prop('disabled', true);
+                            if (isFilePrepCompleted == "true") {
+                                $('.next_').prop('disabled', false)
+                                $('.channelbeing').hide();
+                            }
                             freezebuyinginfo();
                             $('.spillover').show();
                             $('.changediv').show();
@@ -239,14 +198,11 @@ $( document ).ready(function() {
                             $('.spillovertexttodisplay').show();
                             $('.spillll').hide();
                             $('.spillovertexttodisplay').append('<h5>'+spilloversheet_filename+'</h5>')
-
-                            // window.location.href="barc.php";
                         }
                     }
                     else {
                         console.log(msg.BuyingBasketFilePath);
                         if (msg.BuyingBasketFilePath=='' || msg.BuyingBasketFilePath== null) {
-                            // $('.buying_basket').show();
                             $('.bb_files').show();
                             $('.bb_txt').show();
                             $('#upl-btn').show();
@@ -260,14 +216,11 @@ $( document ).ready(function() {
                             $('.texttodisplay').show()
 
                             $('.texttodisplay').append('<h5>'+msg.BuyingBasketFilePath+' is successfully uploaded</h5>')
-                            // $('.cprp_div').show();
                             $('.radio_class').show();
                             $('.next_').prop('disabled', true)
                         }
                         newcampaign_id = msg.CampaignId;
                         $(".camp_id_").append('<input class="form-control" placeholder="Campaign ID" type="text" value="'+newcampaign_id+'" readonly style="background:#ccc"/>')
-                        // $('.radio_class').show();
-                        // $('.cprp_div').show();
                     }
                 })
             }
@@ -278,7 +231,7 @@ $( document ).ready(function() {
                 $('.cprp_div').show()
                 $(".camp_id_").append('<input class="form-control" placeholder="Campaign ID" type="text" value="'+newcampaign_id+'" readonly style="background:#ccc"/>')
                 if (buyingbasket_filename=='' || buyingbasket_filename== "NULL") {
-                    // $('.buying_basket').show();
+
                     $('.bb_files').show();
                     $('.bb_txt').show();
                     $('#upl-btn').show();
@@ -286,7 +239,7 @@ $( document ).ready(function() {
                 }
                 else {
                     $('.bb_files').hide();
-                    // $('.bb_txt').hide();
+
                     $('#upl-btn').hide();
                     $('.texttodisplay').show()
                     $('.texttodisplay').append('<h5 style="color:#000">'+buyingbasket_filename+' is successfully uploaded</h5>')
@@ -306,6 +259,8 @@ $( document ).ready(function() {
                     $('input[type="number"]').css('background', '#ccc');
                     $('input[type="text"]').css('background', '#ccc');
                     $('.campaign_days_new').val(campaign_days);
+
+
                     console.log(acd_dispersion);
                     acd_data = []
                     acd_value = []
@@ -324,6 +279,8 @@ $( document ).ready(function() {
                     $(".cprp_main").prop("checked", true);
                     $(".budget_main").prop("checked", false);
                     $('.campaign_days').val(campaign_days);
+                    $('.cprp_channel_val').val(channel_cprp);
+                    $('.frequency_channel').val(channel_frequency);
                     $('input[type="number"]').prop('readonly', true);
                     $('input[type="text"]').prop('readonly', true);
                     $('input[type="number"]').css('background', '#ccc');
@@ -363,15 +320,12 @@ $( document ).ready(function() {
 
 
             function unfreezebuyinginfo() {
-
-                // $('.budget_div_').hide();
                 $('.radio_class').show()
                 $('.cprp_div').show()
-                // $('.budget_div_').show()
                 $(".camp_id_").append('<input class="form-control" placeholder="Campaign ID" type="text" value="'+newcampaign_id+'" readonly style="background:#ccc"/>')
                 $('.texttodisplayspill').hide();
+
                 if (buyingbasket_filename=='' || buyingbasket_filename== "NULL") {
-                    // $('.buying_basket').show();
                     $('.bb_files').show();
                     $('.bb_txt').show();
                     $('#upl-btn').show();
@@ -379,7 +333,6 @@ $( document ).ready(function() {
                 else {
                     if (replan==false) {
                         $('.bb_files').hide();
-                        // $('.bb_txt').hide();
                         $('#upl-btn').hide();
                         $('.texttodisplay').show()
                         $('.texttodisplay').append('<h5 style="color:#000">'+buyingbasket_filename+' is successfully uploaded</h5>')
@@ -391,10 +344,10 @@ $( document ).ready(function() {
                     $('.radio_class').show();
                     $('.cprp_div').show();
                     $('.budget_div_').show()
-                    // $(".cprp_main").prop("checked", false);
                     $(".budget_main").prop("checked", true);
                     console.log(campaign_days);
                     $('.campaign_days_new').val(campaign_days);
+
                     obj_keys = Object.keys(acd_dispersion);
                     $(".main_new .sub_div_new").remove()
                     for (var i = 0; i < obj_keys.length; i++) {
@@ -419,38 +372,14 @@ $( document ).ready(function() {
 
                 else if(path_selection == 1){
                     $(".cprp_main").prop("checked", true);
-                    // $(".budget_main").prop("checked", false);
                     $('.campaign_days').val(campaign_days);
-                    // $('input[type="number"]').prop('readonly', true);
-                    // $('input[type="text"]').prop('readonly', true);
-                    // $('input[type="number"]').css('background', '#ccc');
-                    // $('input[type="text"]').css('background', '#ccc');
+                    $('.cprp_channel_val').val(channel_cprp);
+                    $('.frequency_channel').val(channel_frequency);
                     for(key in weightage){
                         $(".cprp_val").val(key);
                         $(".reach_val").val(weightage[key])
                     }
-                    // console.log(acd_dispersion);
-                    //
-                    // console.log(Object.keys(acd_dispersion).length);
-                    // var ad_len = Object.keys(acd_dispersion).length;
-                    // acd_data = []
-                    // acd_value = []
-                    // var acd_key;
-                    // var disp_value;
-                    // // $.each(acd_dispersion, function(key, value){
-                    // //     debugger
-                    // //     console.log(key);
-                    // //
-                    // //     acd_key+= key;
-                    // //     disp_value+= value;
-                    // //     acd_data.push(key)
-                    // //     acd_value.push(value)
-                    // // })
-                    //
-                    // for (var i = 0; i < ad_len.length; i++) {
-                    //     console.log(acd_dispersion[ad_len(i)]);
-                    //     $(".main").append('<div class="sub_div" style="width:100%"><div class="row keyword"><div class="col-md-6"><input type="number" class="form-control mods_inputs name_Class ' + i + '" value="'+acd+'" placeholder="Enter keyword"></div><div class="col-lg-6"><input type="number" class="form-control mods_inputs path_Class path_Class ' + i + '" value="'+disp_value+'" placeholder="Enter negative keyword"><span><img src="assets/images/delete.svg" style="width:20px;" class="remove"></span></div></div></div>')
-                    // }
+
 
                     obj_keys = Object.keys(acd_dispersion);
                     $(".main .sub_div").remove()
@@ -471,11 +400,6 @@ $( document ).ready(function() {
                         $(".main").append(ok)
                     }
 
-
-
-                    // $('.name_Class').val(acd_data.join(","))
-                    // $('.path_Class').val(acd_value.join(","))
-
                     $('.submit_').prop('disabled', false);
                     $('.add_more').prop('disabled', false);
 
@@ -484,8 +408,6 @@ $( document ).ready(function() {
                     $(".cprp_main").prop("checked", true);
                     $(".budget_main").prop("checked", false);
                 }
-                // $('.add_more').prop('disabled', true);
-                // $('.submit_').prop('disabled', true);
 
                 $.each(weightage ,function(key,value){
                     $('.cprp_val').val(key)
@@ -504,14 +426,8 @@ $( document ).ready(function() {
                 $('.cprp_div').hide();
                 $('.budget_div_').show();
             })
-
-            // $('.cprp_div').show();
             $('.budget_div').hide();
             var msg;
-            //
-            // $('input[type=text]').bind("mousewheel", function() {
-            // 	return false;
-            // });
             $('input[type=number]').bind("mousewheel", function() {
                 return false;
             });
@@ -810,6 +726,8 @@ $( document ).ready(function() {
                 div_weitage = $(this).closest('.common_class').find('.cprp_div');
                 var cprp_weitage = div_weitage.find('.cprp_val').val();
                 var reach_weitage = div_weitage.find('.reach_val').val();
+                var cprp_channel_val = div_weitage.find('.cprp_channel_val').val();
+                var frequency_channel = div_weitage.find('.frequency_channel').val();
                 var campaign_days = div_weitage.find('.campaign_days').val();
                 var userid = sessionStorage.getItem('userid');
                 var plan_id = sessionStorage.getItem('create_plan_id');
@@ -826,6 +744,8 @@ $( document ).ready(function() {
                 sendObj2.plan_id = plan_id;
                 // sendObj.weitage[reach_weitage] = cprp_weitage;
                 sendObj2.campaign_days = campaign_days;
+                sendObj2.cprp_channel = cprp_channel_val
+                sendObj2.frequency_channel = frequency_channel;
                 var val_check =0 ;
                 var unique_name_val;
                 var oldArray;

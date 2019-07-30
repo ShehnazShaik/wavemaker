@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    debugger
     $('.loading').show();
     var edit_flag = false;
     var base_tg_;
@@ -7,6 +8,8 @@ $(document).ready(function () {
     var userid= sessionStorage.getItem('userid');
     var count = 0;
     barcData();
+    editData();
+    $('.edit_barc').hide();
     $('.select2').hide();
     function barcData() {
         plan_id = sessionStorage.getItem('create_plan_id');
@@ -34,26 +37,27 @@ $(document).ready(function () {
             campaignId_ = msg.CampaignId;
             campaignMarkets = msg.CampaignMarketId;
             console.log(campaignMarkets);
+
             endWeekId_ = msg.EndWeek;
             primaryTGTd_ = msg.PrimaryTGTd;
-            for (var i = 0; i < campaignMarkets.length; i++) {
-                    $(".select_markets").append('<p class="multiclient form-control getClass" value='+campaignMarkets[i]+' readonly style="background-color:#d6d6d6;">'+campaignMarkets[i]+'</p>')
 
-
-            }
-            $(".primary_freeze").append('<p type="text" value='+primaryTGTd_+' class="multiclient form-control" readonly style="background-color:#d6d6d6;">'+primaryTGTd_+'</p>')
-
-            $(".camp_id").append('<p type="text" value='+campaignId_+' class="multiclient form-control" readonly style="background-color:#d6d6d6;">'+campaignId_+'</p>')
-
-            $(".base_freeze").append('<p type="text" value='+base_tg_+' class="form-control" readonly style="background-color:#d6d6d6;">'+base_tg_+'</p>')
-
-            $('.endfreeze').append('<p type="text" value='+endWeekId_+' class="form-control" readonly style="background-color:#d6d6d6;">'+endWeekId_+'</p>')
+            // for (var i = 0; i < campaignMarkets.length; i++) {
+            //         $(".select_markets").append('<p class="multiclient form-control getClass" value='+campaignMarkets[i]+' readonly style="background-color:#d6d6d6;">'+campaignMarkets[i]+'</p>')
+            //
+            // }
+            // $(".primary_freeze").append('<p type="text" value='+primaryTGTd_+' class="multiclient form-control" readonly style="background-color:#d6d6d6;">'+primaryTGTd_+'</p>')
+            //
+            // $(".camp_id").append('<p type="text" value='+campaignId_+' class="multiclient form-control" readonly style="background-color:#d6d6d6;">'+campaignId_+'</p>')
+            //
+            // $(".base_freeze").append('<p type="text" value='+base_tg_+' class="form-control" readonly style="background-color:#d6d6d6;">'+base_tg_+'</p>')
+            //
+            // $('.endfreeze').append('<p type="text" value='+endWeekId_+' class="form-control" readonly style="background-color:#d6d6d6;">'+endWeekId_+'</p>')
 
         })
     }
     // $('.confirm_barc').prop('disabled', false);
-    $('body').on('click', '.edit_barc', function(){
-
+    // $('body').on('click', '.edit_barc', function(){
+function editData(){
         edit_flag = true;
         sendObj = {};
         var form = new FormData();
@@ -79,29 +83,45 @@ $(document).ready(function () {
 
             for(key in Base_Tg_dt){
                 console.log();
-                $(".base_tg").append('<option value='+Base_Tg_dt[key]+' class="get_Base_Tg_dt-'+count+'" key='+key+'>'+Base_Tg_dt[key]+'</option>');
+                sel = ''
+                if (base_tg_ == Base_Tg_dt[key] ) {
+                    sel='selected="selected"'
+                }
+                $(".base_tg").append('<option '+sel+' value='+Base_Tg_dt[key]+' class="get_Base_Tg_dt-'+count+'" key='+key+'>'+Base_Tg_dt[key]+'</option>');
                 count++
             }
             for(key in Campaign_Market_dt){
-                $(".campaign_markets").append('<option value='+Campaign_Market_dt[key]+' class="get_Campaign_Market_dt-'+count+'" key='+key+'>'+Campaign_Market_dt[key]+'</option>');
+                sel = ''
+                if (campaignMarkets.indexOf(Campaign_Market_dt[key]) > -1) {
+                    sel='selected="selected"'
+                }
+                $(".campaign_markets").append('<option '+sel+' value='+Campaign_Market_dt[key]+' class="get_Campaign_Market_dt-'+count+'" key='+key+'>'+Campaign_Market_dt[key]+'</option>');
                 count++
             }
 
             for(key in Primary_Tg_dt){
-                $(".Primary_Tg_dt").append('<option value='+Primary_Tg_dt[key]+' class="get_Primary_Tg_dt-'+count+'" key='+key+'>'+Primary_Tg_dt[key]+'</option>');
+                sel = ''
+                if (primaryTGTd_ == Primary_Tg_dt[key] ) {
+                    sel='selected="selected"'
+                }
+                $(".Primary_Tg_dt").append('<option '+sel+' value='+Primary_Tg_dt[key]+' class="get_Primary_Tg_dt-'+count+'" key='+key+'>'+Primary_Tg_dt[key]+'</option>');
                 count++
             }
 
             for(key in End_Week_dt){
-                $(".End_Week_dt").append('<option value='+End_Week_dt[key]+' class="get_End_Week_dt-'+count+'" key='+key+'>'+End_Week_dt[key]+'</option>');
+                sel = ''
+                if (endWeekId_ == End_Week_dt[key] ) {
+                    sel='selected="selected"'
+                }
+                $(".End_Week_dt").append('<option '+sel+' value='+End_Week_dt[key]+' class="get_End_Week_dt-'+count+'" key='+key+'>'+End_Week_dt[key]+'</option>');
                 count++
             }
 
         })
+}
 
 
-
-    })
+    // })
 
     $('body').on('click', '.confirm_barc', function(){
         $(this).prop("disbaled", true)

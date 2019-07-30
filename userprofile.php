@@ -103,7 +103,10 @@
 .content{
 	background-color: #393e3e;
 }
-
+/* .select_ .select{
+	display: none;
+	visibility: hideen;
+} */
 </style>
 
 <body>
@@ -308,9 +311,9 @@
 
 <div class="form-group row">
 	<label class="col-form-label col-lg-3">Client<span class="text-danger">*</span></label>
-	<div class="col-lg-9">
+	<div class="col-lg-9 select_">
 
-	<select data-placeholder="Select Client" required class="form-control select clientClass" multiple  data-fouc>
+	<select data-placeholder="Select Client" required class="form-control select clientClass" style="display:none" multiple  data-fouc>
 		<option value=""></option>
 	</select>
 

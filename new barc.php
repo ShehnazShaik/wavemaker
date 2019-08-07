@@ -264,7 +264,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/Barc_Plan_Freeze',
+            "url": ' http://192.168.0.101:6767/Barc_Plan_Freeze',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -307,7 +307,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/BARC_Evalution_edit_button',
+            "url": ' http://192.168.0.101:6767/BARC_Evalution_edit_button',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -382,7 +382,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/BARC_confirm_button',
+            "url": ' http://192.168.0.101:6767/BARC_confirm_button',
             "method": "POST",
             "processData": false,
             "contentType": false,

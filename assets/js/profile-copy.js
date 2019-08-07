@@ -98,7 +98,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Create_Profile_freeze',
+            "url": 'http://192.168.0.101:6767/Create_Profile_freeze',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -135,7 +135,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Create_Profile_freeze',
+            "url": 'http://192.168.0.101:6767/Create_Profile_freeze',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -200,7 +200,7 @@ $(document).ready(function () {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url": 'http://192.168.0.125:6767/Location_Data_Request',
+                    "url": 'http://192.168.0.101:6767/Location_Data_Request',
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -251,7 +251,7 @@ $(document).ready(function () {
             var settings11 = {
                 "async": true,
                 "crossDomain": true,
-                "url": 'http://192.168.0.125:6767/Client_Data_Request',
+                "url": 'http://192.168.0.101:6767/Client_Data_Request',
                 "method": "POST",
                 "processData": false,
                 "contentType": false,
@@ -295,7 +295,7 @@ $(document).ready(function () {
             var settings11 = {
                 "async": true,
                 "crossDomain": true,
-                "url": 'http://192.168.0.125:6767/Client_Data_Request',
+                "url": 'http://192.168.0.101:6767/Client_Data_Request',
                 "method": "POST",
                 "processData": false,
                 "contentType": false,
@@ -331,7 +331,7 @@ $(document).ready(function () {
             var settings11 = {
                 "async": true,
                 "crossDomain": true,
-                "url": 'http://192.168.0.125:6767/Planner_Profile_Client_Lead',
+                "url": 'http://192.168.0.101:6767/Planner_Profile_Client_Lead',
                 "method": "POST",
                 "processData": false,
                 "contentType": false,
@@ -397,7 +397,7 @@ $(document).ready(function () {
                var settings11 = {
                    "async": true,
                    "crossDomain": true,
-                   "url": 'http://192.168.0.125:6767/Create_Profile',
+                   "url": 'http://192.168.0.101:6767/Create_Profile',
                    "method": "POST",
                    "processData": false,
                    "contentType": false,

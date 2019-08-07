@@ -1,15 +1,25 @@
 $(document).ready(function () {
+    $(".loading").show();
     var startdate;
     var filesData;
     var selectedFiles = [];
     var enddate;
     var useridd = sessionStorage.getItem("userid");
     var useridd = sessionStorage.getItem("userid");
+    var data_table_;
+    var dataTable___;
+    var dataTable___1;
     pageonloadhit()
+
+
+    $(".displaytoptextboxes").slideToggle('hidden');
+    $(".btn3").click(function(){
+             $(".displaytoptextboxes").slideToggle('slow');
+       });
+
 
     function pageonloadhit() {
         obj = {}
-
         brandclass = $('.brandclass').val();
         obj.user_id = useridd
         obj.IsDefault = true
@@ -20,7 +30,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Dashboard_screen_load',
+            "url": 'http://192.168.0.101:6767/Dashboard_screen_load',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -30,64 +40,13 @@ $(document).ready(function () {
         $.ajax(settings11).done(function (msg) {
             msg = JSON.parse(msg);
             console.log(msg);
+
             displaytable(msg);
+              // dataTableMultiSort()
+
         })
     }
 
-    //
-    // function format_dateee(date_string) {
-    //              date = new Date(date_string)
-    //              months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-    //              weeks_ = ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"];
-    //              hours_mian = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
-    //              hrs = date.getHours().toString().length < 2 ? '0'+date.getHours() : date.getHours()
-    //              mins = date.getMinutes().toString().length < 2 ? '0'+date.getMinutes() : date.getMinutes()
-    //              return date.getFullYear()+'-'+months[date.getMonth()]+'-'+date.getDate()
-    //          }
-    //
-    //
-    //
-    //          var weekstart = format_dateee(new Date())
-    //          console.log(weekstart);
-    //          $('.startdateclass').val(weekstart)
-    //
-    //          function addDays(theDate, days) {
-    //              return new Date(theDate.getTime() + days*24*60*60*1000);
-    //          }
-    //
-    //          var endweek = format_dateee(addDays(new Date(), 7));
-    //          $('.enddateclass').val(endweek)
-    //
-    //         // alert(startingweek);
-    //         // alert(endingweek);
-    //
-    //
-    //
-    //         pageonloadhit()
-    //         function pageonloadhit() {
-    //           obj = {}
-    //           obj.startdate = $('.startdateclass').val()
-    //           obj.enddate = $('.enddateclass').val()
-    //           obj.user_id =  useridd
-    //           console.log(obj);
-    //           var form = new FormData();
-    //           form.append("file", JSON.stringify(obj));
-    //           var settings11 = {
-    //             "async": true,
-    //             "crossDomain": true,
-    //             "url": 'http://192.168.0.125:6767/Dashboard_screen_load',
-    //             "method": "POST",
-    //             "processData": false,
-    //             "contentType": false,
-    //             "mimeType": "multipart/form-data",
-    //             "data": form
-    //           };
-    //           $.ajax(settings11).done(function (msg) {
-    //             msg = JSON.parse(msg);
-    //               console.log(msg);
-    //                 displaytable(msg)
-    //           })
-    //           }
 
     $("body").on("click", ".gobtn", function(){
         startdate =   $('.startdateclass').val();
@@ -104,7 +63,7 @@ $(document).ready(function () {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url": ' http://192.168.0.125:6767/Dashboard_Table_One',
+                    "url": ' http://192.168.0.101:6767/Dashboard_Table_One',
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -116,6 +75,7 @@ $(document).ready(function () {
                     msg = JSON.parse(msg);
                     console.log(msg);
                     displaytable(msg);
+                      // dataTableMultiSort()
                     // planid = msg[Id];
                     // console.log(planid);
 
@@ -133,6 +93,11 @@ $(document).ready(function () {
 
 
     function displaytable(msg) {
+        $(".loading").hide();
+      if (dataTable___ != undefined) {
+          dataTable___.clear();
+          dataTable___.destroy()
+      }
         $.each(msg ,function(key,v){
             console.log(key , v);
             if (key == 'Incompleted') {
@@ -144,15 +109,22 @@ $(document).ready(function () {
                     ap1 += '<td  style="text-align:center;">'+v[i]['ClientName']+'</td>'
                     ap1 += '<td  style="text-align:center;">'+v[i]['BrandName']+'</td>'
                     ap1 += '<td  style="text-align:center;">'+format_date(v[i]['StartDate'])+'</td>'
-                    ap1 += '<td> <button  plainidattr="'+v[i]['PlanId']+'" style="color: white;border:none;background: #ff6348;padding: 1px;font-size: 9px;width: 94px;  width: 94px;" class="form-control completebtn">Mark As Complete</button> </td>'
+                    ap1 += '<td> <button  plainidattr="'+v[i]['PlanId']+'" style="color: white;border:none;background: #0984e3;padding: 1px;font-size: 9px;width: 94px;  width: 94px;" class="form-control completebtn">Mark As Complete</button> </td>'
                     ap1 += '<td style="text-align:center;"><div class="downloadbtn pointer"  plainidattr="'+v[i]['PlanId']+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>';
                     ap1 += '</tr>'
                 }
                 $(".displayincompletedplans").html(ap1);
 
+                    dataTableMultiSort()
+
             }
             else {
+
                 ap = ''
+                if (dataTable___1 != undefined) {
+                    dataTable___1.clear();
+                    dataTable___1.destroy()
+                }
 
                 for (var i = 0; i < v.length; i++) {
                     ap += '<tr>'
@@ -160,22 +132,148 @@ $(document).ready(function () {
                     ap += '<td  style="text-align:center;">'+v[i]['CampaignName']+'</td>'
                     ap += '<td  style="text-align:center;">'+v[i]['ClientName']+'</td>'
                     ap += '<td  style="text-align:center;">'+v[i]['BrandName']+'</td>'
-                    ap += '<td  style="text-align:center;">'+format_date(v[i]['StartDate'])+'</td>'
+                    // ap += '<td  style="text-align:center;">'+format_date(v[i]['StartDate'])+'</td>'
+                    ap += '<td> <button class="replanmodal" Campaignid='+v[i]['CampaignId']+' plainidattr='+v[i]['PlanId']+'  style="color:#fff !important;background-color: #636e72;color: #000;border: none;padding: 4PX;width: 68px;border-radius: 5px;">Re-Plan</button></td>';
+                    // ap += '<td  style="text-align:center;"><button class="replanmodal" campaign_id='+v[i]['CampaignId']+'  plainidattr="'+v[i]['PlanId']+'" style="background-color: #a5b1c2;color: #000;border: none;padding: 4PX;width: 68px;border-radius: 5px;">Re-Plan</button></td>'
                     ap += '<td  style="text-align:center;width:152px;">'+format_date(v[i]['EndDate'])+'</td>'
                     ap += '<td style="text-align:center;"><div class="downloadbtn pointer"  plainidattr="'+v[i]['PlanId']+'" style=""><img src="assets/images/download.svg" style="width:27px;"></div></td>'
-
                     ap += '</tr>'
                 }
                 $(".displaycompletedplans").html(ap);
+                  dataTableMultiSortt()
+
             }
         })
 
     }
 
 
+    function dataTableMultiSort() {
+
+        setTimeout(function () {
+            dataTable___ = $('.datatable-multi-sortingg').DataTable({
+
+                columnDefs: [{
+                    targets: [0],
+                    orderData: [0, 1]
+                }, {
+                    targets: [1],
+                    orderData: [1, 0]
+                }, {
+                    targets: [4],
+                    orderData: [4, 0]
+                }, {
+                    orderable: false,
+                    width: '100px',
+                    targets: [5]
+                }]
+            });
+        }, 0);
+    }
+
+
+
+
+    function dataTableMultiSortt() {
+
+        setTimeout(function () {
+            dataTable___1 = $('.datatable-multi-sorting').DataTable({
+
+                columnDefs: [{
+                    targets: [0],
+                    orderData: [0, 1]
+                }, {
+                    targets: [1],
+                    orderData: [1, 0]
+                }, {
+                    targets: [4],
+                    orderData: [4, 0]
+                }, {
+                    orderable: false,
+                    width: '100px',
+                    targets: [5]
+                }]
+            });
+        }, 0);
+    }
+
+    var attr__
+    $("body").on("click", ".replanmodal", function(){
+        attr__ = $(this).attr('Campaignid')
+        $('.buyingbasketbtn').attr('title', attr__);
+        $('.acceleratorbtn').attr('title', attr__);
+        $('#replanmodal').modal();
+    })
+
+
+    $("body").on("click", ".buyingbasketbtn", function(){
+        campid = $(this).attr('title');
+        objj = {}
+        objj.CampaignId = campid
+        objj.user_id = useridd
+        objj.RePlanCategory = 1
+        console.log(objj);
+
+        var form = new FormData();
+        form.append("file", JSON.stringify(objj));
+        var settings11 = {
+            "async": true,
+            "crossDomain": true,
+            "url": 'http://192.168.0.101:6767/re_plan_campaign',
+            "method": "POST",
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form
+        };
+        $.ajax(settings11).done(function (msg) {
+            msg = JSON.parse(msg);
+            updatedplanid = msg.planid
+            sessionStorage.setItem("create_plan_id",updatedplanid)
+            window.location.href = 'buyingbasket.php';
+
+        })
+
+    })
+
+
+    $("body").on("click", ".acceleratorbtn", function(){
+        campid = $(this).attr('title');
+        sessionStorage.setItem('campaign_id', campid);
+        // alert(campid)
+        objj = {}
+        objj.CampaignId = campid
+        objj.user_id = useridd
+        objj.RePlanCategory = 2
+        console.log(objj);
+        var form = new FormData();
+        form.append("file", JSON.stringify(objj));
+        var settings11 = {
+            "async": true,
+            "crossDomain": true,
+            "url": 'http://192.168.0.101:6767/re_plan_campaign',
+            "method": "POST",
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form
+        };
+        $.ajax(settings11).done(function (msg) {
+            msg = JSON.parse(msg);
+            updatedplanid = msg.planid
+            sessionStorage.setItem("create_plan_id",updatedplanid)
+            // alert(updatedplanid)
+            // window.location.href = 'buyingbasket.php';
+
+            window.location.href = 'planner_accelerator.php';
+
+        })
+
+    })
+
     $("body").on("click", ".downloadbtn", function(){
         plainiddd =  $(this).attr('plainidattr');
-        $('#replanmodall').modal()
+        $('#downloadicon').modal()
         sendObj = {};
         sendObj.plan_id = plainiddd;
         console.log(sendObj);
@@ -184,7 +282,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/get_file_names',
+            "url": ' http://192.168.0.101:6767/get_file_names',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -193,10 +291,11 @@ $(document).ready(function () {
         };
         $.ajax(settings11).done(function (msg) {
             filesData = JSON.parse(msg);
-            console.log(filesData);
-            if (filesData == '') {
-                $('.pathslinks').append('<h5 class="sendpath" ><p>No files to Download</p></5>');
+            console.log(jQuery.isEmptyObject(filesData));
 
+            if (jQuery.isEmptyObject(filesData)) {
+                $('.row_body').empty()
+                $('.row_body').append('<h5 class="sendpath" ><p>No files to Download</p></5>');
             }
             else {
                 $('.pathslinks').empty()
@@ -207,7 +306,6 @@ $(document).ready(function () {
                 }
             }
         })
-
 
     })
 
@@ -238,9 +336,11 @@ $(document).ready(function () {
         console.log(selectedFiles);
 
     })
+
     $('body').on('click', '.unSelectAll', function(){
         resetSelect()
     })
+
     $('body').on('click', '.downloadAll', function(){
         sendObj={};
         sendObj.file_path = selectedFiles;
@@ -250,7 +350,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/download_file',
+            "url": ' http://192.168.0.101:6767/download_file',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -304,7 +404,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/download_file',
+            "url": ' http://192.168.0.101:6767/download_file',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -421,7 +521,7 @@ $(document).ready(function () {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url": ' http://192.168.0.125:6767/Dashboard_Complete_Button',
+                    "url": ' http://192.168.0.101:6767/Dashboard_Complete_Button',
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -469,7 +569,7 @@ $(document).ready(function () {
     //                   var settings11 = {
     //                     "async": true,
     //                     "crossDomain": true,
-    //                     "url": 'http://192.168.0.125:6767/ongoing_prioritize_button1',
+    //                     "url": 'http://192.168.0.101:6767/ongoing_prioritize_button1',
     //                     "method": "POST",
     //                     "processData": false,
     //                     "contentType": false,

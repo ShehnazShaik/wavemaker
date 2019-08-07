@@ -10,7 +10,7 @@
 //   var settings11 = {
 //       "async": true,
 //       "crossDomain": true,
-//       "url": ' http://192.168.0.125:6767/get_file_names',
+//       "url": ' http://192.168.0.101:6767/get_file_names',
 //       "method": "POST",
 //       "processData": false,
 //       "contentType": false,
@@ -36,7 +36,7 @@
 //   var settings11 = {
 //       "async": true,
 //       "crossDomain": true,
-//       "url": ' http://192.168.0.125:6767/download_file',
+//       "url": ' http://192.168.0.101:6767/download_file',
 //       "method": "POST",
 //       "processData": false,
 //       "contentType": false,

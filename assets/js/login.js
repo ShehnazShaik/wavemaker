@@ -14,6 +14,18 @@ $("body").on("click", ".login_btn", function () {
 })
 
 
+$('.login_input').keypress(function(event){
+  currentdate = new Date().toLocaleString();
+   username = $('.useridclass').val();
+   password = $('.passwordclass').val();
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      username = $('.useridclass').val();
+      password = $('.passwordclass').val();
+      login(username, password, currentdate)
+    }
+  });
+
 
 
 function login(username, password, currentdate) {
@@ -28,7 +40,7 @@ function login(username, password, currentdate) {
     var settings11 = {
       "async": true,
       "crossDomain": true,
-      "url": 'http://192.168.0.125:6767/Login_page',
+      "url": 'http://192.168.0.101:6767/Login_page',
       "method": "POST",
       "processData": false,
       "contentType": false,
@@ -40,10 +52,10 @@ function login(username, password, currentdate) {
         console.log(msg);
         if (msg.validlogin == "true") {
           localStorage.setItem("allprevialges",JSON.stringify(msg.privilegers))
+              localStorage.setItem("tool_tips",JSON.stringify(msg.tool_tips))
             // localStorage.setItem("allprevialges",JSON.stringify(msg.isnewuser))
             //   localStorage.setItem("allprevialges",JSON.stringify(msg.privilegers))
           console.log(localStorage);
-          debugger
                     sessionStorage.setItem("isnewuser",msg.isnewuser)
                     sessionStorage.setItem("role",msg.role)
                     sessionStorage.setItem("useremail",msg.useremail)
@@ -75,14 +87,5 @@ function login(username, password, currentdate) {
 
 
 
-$('.login_input').keypress(function(event){
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
-      username = $('.user_idclass').val();
-      password = $('.passwordclass').val();
-      login(username, password)
-
-    }
-  });
 
 })

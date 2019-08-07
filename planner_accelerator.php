@@ -159,12 +159,12 @@ $( document ).ready(function() {
 						<div class="total_div">
 							<div class="cprp new_plan">
                                 <div class="step-content">
-                            		<divstyle="width: 100%;">
+                            		<div style="width: 100%;">
                             			<div class="row">
                             				<h6 class="font-weight-semibold">Upload Accelerator File</h6>
                             				<div class="col-lg-10">
 												<div class="texttodisplay"></div>
-                            					<input type="file" id="load-file" class="file-input-ajax" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple="multiple" data-fouc>
+                            					<input type="file" id="load-file" class="file-input-ajax" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" data-fouc>
                             				</div>
                             				<div class="col-lg-12 submit_btn">
                             					<button type="button" class="btn btn-primary" id="upl-btn" style="background: #4caf50;">Upload <i class="icon-upload ml-2"></i></button>

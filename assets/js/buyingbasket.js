@@ -1,4 +1,3 @@
-
 $( document ).ready(function() {
     $('.loading').show();
     $('.budget_div_').hide();
@@ -11,7 +10,8 @@ $( document ).ready(function() {
     var planid = sessionStorage.getItem('create_plan_id');
     var userid = sessionStorage.getItem('userid');
     $('.spillovertexttodisplay').hide()
-    $('.channelbeing').hide()
+    $('.channelbeing').hide();
+    $('.acceleratorfiletext').hide();
     getData();
     var newcampaign_id;
     var buyingbasket_filename;
@@ -29,7 +29,10 @@ $( document ).ready(function() {
     var markascompleted;
     var channel_cprp;
     var channel_frequency;
+    var acceleratedFilePath;
     var i;
+    var campaignName;
+    var acceleratedFilePathByRPA;
     $("#a").keyup(function(){
         var a = parseInt($('#a').val());
         var b = 100-a;
@@ -94,7 +97,7 @@ $( document ).ready(function() {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url": 'http://192.168.0.125:6767/buying_basket_freeze',
+                    "url": 'http://192.168.0.101:6767/buying_basket_freeze',
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -104,21 +107,26 @@ $( document ).ready(function() {
                 $.ajax(settings11).done(function (msg) {
                     debugger
                     msg =JSON.parse(msg)
+                    newcampaign_id=""
                     console.log(msg);
                     $('.loading').hide();
-                    if (msg.data == true) {
+                    if (msg.data == "true") {
                         newcampaign_id = msg.CampaignId;
                         buyingbasket_filename = msg.BuyingBasketFilePath;
                         path_selection = msg.PathSelection;
                         campaign_days = msg.CampaignDuration;
                         acd_dispersion = msg.acd_dispersion;
                         weightage = msg.CPRPWeightage;
+                        acceleratedFilePath = msg.AcceleratedFilePath;
                         spilloversheet_filename= msg.SpillOverSheetFilePath;
                         budgetallocation_filename = msg.BudgetAllocationFilePath;
                         markascompleted = msg.IsMarkAsComplete;
                         channel_cprp = msg.cprp_channel;
                         channel_frequency = msg.frequency_channel;
                         version = msg.Version;
+                        campaignName = msg.CampaignName;
+                        acceleratedFilePathByRPA = msg.AcceleratedFilePathByRPA;
+                        PlanProcessed = msg.planProcessed;
                         backclicked = sessionStorage.getItem('backclicked');
                         if (backclicked == null && markascompleted == "true") {
                             window.location.href="barc.php";
@@ -130,13 +138,15 @@ $( document ).ready(function() {
                             $('#upl-btn').show();
 
                         }
-                        PlanProcessed = msg.planProcessed;
                         isFilePrepCompleted = msg.isFilePrepCompleted;
-
-
-
                         $('cprp_div').show();
                         if(path_selection == 1) {
+                            // if (acceleratedFilePath == null) {
+                            //     $(".next_").prop('disabled', true);
+                            // }
+                            // else {
+                            //     $(".next_").prop('disabled', false);
+                            // }
                             $('.changediv').html('<h6 class="font-weight-semibold textforchange">Upload spillover sheet</h6>')
                         }
                         else {
@@ -149,8 +159,8 @@ $( document ).ready(function() {
                         }
                         else if (PlanProcessed == 2) {
                             debugger
-                            $(".next_").prop('disabled', true);
                             freezebuyinginfo();
+                            $(".next_").prop('disabled', true);
                             $('.add_more').prop('disabled', true);
                             $('.submit_').prop('disabled', true);
                             $('.cprp_main').prop('disabled', true);
@@ -186,11 +196,19 @@ $( document ).ready(function() {
 
                         }
                         else {
+                            freezebuyinginfo();
+                            debugger
                             if (isFilePrepCompleted == "true") {
-                                $('.next_').prop('disabled', false)
+                                if (acceleratedFilePathByRPA == null) {
+                                    $(".next_").prop('disabled', true);
+                                    $('.acceleratorfiletext').show();
+                                    $('.acceleratorfiletext').append('<h5>File is being prepared by RPI </h5>')
+                                }
+                                else {
+                                    $(".next_").prop('disabled', false);
+                                }
                                 $('.channelbeing').hide();
                             }
-                            freezebuyinginfo();
                             $('.spillover').show();
                             $('.changediv').show();
                             $('.ss_files').hide();
@@ -220,16 +238,21 @@ $( document ).ready(function() {
                             $('.next_').prop('disabled', true)
                         }
                         newcampaign_id = msg.CampaignId;
-                        $(".camp_id_").append('<input class="form-control" placeholder="Campaign ID" type="text" value="'+newcampaign_id+'" readonly style="background:#ccc"/>')
+                        campaignName = msg.CampaignName;
+                        $(".camp_id_").append('<input class="form-control" placeholder="Campaign Name" type="text" value="'+campaignName+'" readonly style="background:#ccc"/>')
                     }
                 })
             }
 
             function freezebuyinginfo() {
-                $('.channelbeing').show();
+                debugger
+                if (isFilePrepCompleted == "false") {
+
+                    $('.channelbeing').show();
+                }
                 $('.radio_class').show()
                 $('.cprp_div').show()
-                $(".camp_id_").append('<input class="form-control" placeholder="Campaign ID" type="text" value="'+newcampaign_id+'" readonly style="background:#ccc"/>')
+                $(".camp_id_").append('<input class="form-control" placeholder="Campaign Name" type="text" value="'+campaignName+'" readonly style="background:#ccc"/>')
                 if (buyingbasket_filename=='' || buyingbasket_filename== "NULL") {
 
                     $('.bb_files').show();
@@ -247,6 +270,7 @@ $( document ).ready(function() {
 
 
                 if(path_selection==2){
+                    debugger
                     $('.add_more_new').prop('disabled', true);
                     $('.submit_new').prop('disabled', true);
                     $('.radio_class').show();
@@ -314,15 +338,11 @@ $( document ).ready(function() {
                 })
             }
 
-
-
-
-
-
             function unfreezebuyinginfo() {
+              debugger
                 $('.radio_class').show()
                 $('.cprp_div').show()
-                $(".camp_id_").append('<input class="form-control" placeholder="Campaign ID" type="text" value="'+newcampaign_id+'" readonly style="background:#ccc"/>')
+                $(".camp_id_").append('<input class="form-control" placeholder="Campaign Name" type="text" value="'+campaignName+'" readonly style="background:#ccc"/>')
                 $('.texttodisplayspill').hide();
 
                 if (buyingbasket_filename=='' || buyingbasket_filename== "NULL") {
@@ -342,29 +362,29 @@ $( document ).ready(function() {
 
                 if(path_selection==2){
                     $('.radio_class').show();
-                    $('.cprp_div').show();
+                    $('.cprp_div').hide();
                     $('.budget_div_').show()
                     $(".budget_main").prop("checked", true);
                     console.log(campaign_days);
                     $('.campaign_days_new').val(campaign_days);
 
-                    obj_keys = Object.keys(acd_dispersion);
+                    obj_keyss = Object.keys(acd_dispersion);
                     $(".main_new .sub_div_new").remove()
-                    for (var i = 0; i < obj_keys.length; i++) {
-                        ok = '<div class="sub_div_new" style="width:100%">'
-                        ok += '<div class="row keyword_new">'
-                        ok += '<div class="col-md-6">'
-                        ok += '<input type="number" class="form-control mods_inputs name_Class_new ' + i + '" value="'+obj_keys[i]+'" placeholder="Enter keyword">'
-                        ok += '</div>'
-                        ok += '<div class="col-lg-6">'
-                        ok += '<input type="number" class="form-control mods_inputs path_Class path_Class_new ' + i + '" value="'+acd_dispersion[obj_keys[i]]+'" placeholder="Enter negative keyword">'
-                        ok += '<span>'
-                        ok += '<img src="assets/images/delete.svg" style="width:20px;" class="remove_new">'
-                        ok += '</span>'
-                        ok += '</div>'
-                        ok += '</div>'
-                        ok += '</div>'
-                        $(".main").append(ok)
+                    for (var i = 0; i < obj_keyss.length; i++) {
+                        budget_allowcation = '<div class="sub_div_new" style="width:100%">'
+                        budget_allowcation += '<div class="row keyword_new">'
+                        budget_allowcation += '<div class="col-md-6">'
+                        budget_allowcation += '<input type="number" class="form-control mods_inputs name_Class_new ' + i + '" value="'+obj_keyss[i]+'" placeholder="Enter keyword">'
+                        budget_allowcation += '</div>'
+                        budget_allowcation += '<div class="col-lg-6">'
+                        budget_allowcation += '<input type="number" class="form-control mods_inputs path_Class path_Class_new ' + i + '" value="'+acd_dispersion[obj_keyss[i]]+'" placeholder="Enter negative keyword">'
+                        budget_allowcation += '<span>'
+                        budget_allowcation += '<img src="assets/images/delete.svg" style="width:20px;" class="remove_new">'
+                        budget_allowcation += '</span>'
+                        budget_allowcation += '</div>'
+                        budget_allowcation += '</div>'
+                        budget_allowcation += '</div>'
+                        $(".main_new").append(budget_allowcation)
                     }
                     $('.submit_new').prop('disabled', false);
                     $('.add_more_new').prop('disabled', false);
@@ -372,6 +392,7 @@ $( document ).ready(function() {
 
                 else if(path_selection == 1){
                     $(".cprp_main").prop("checked", true);
+                      $('.budget_div_').hide()
                     $('.campaign_days').val(campaign_days);
                     $('.cprp_channel_val').val(channel_cprp);
                     $('.frequency_channel').val(channel_frequency);
@@ -688,7 +709,7 @@ $( document ).ready(function() {
                     var settings11 = {
                         "async": true,
                         "crossDomain": true,
-                        "url": 'http://192.168.0.125:6767/plan_selection_button',
+                        "url": 'http://192.168.0.101:6767/plan_selection_button',
                         "method": "POST",
                         "processData": false,
                         "contentType": false,
@@ -811,7 +832,7 @@ $( document ).ready(function() {
                     var settings11 = {
                         "async": true,
                         "crossDomain": true,
-                        "url": 'http://192.168.0.125:6767/plan_selection_button',
+                        "url": 'http://192.168.0.101:6767/plan_selection_button',
                         "method": "POST",
                         "processData": false,
                         "contentType": false,
@@ -972,7 +993,7 @@ $( document ).ready(function() {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url":"http://192.168.0.125:6767/Buying_basket",
+                    "url":"http://192.168.0.101:6767/Buying_basket",
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -1073,7 +1094,7 @@ $( document ).ready(function() {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url":"http://192.168.0.125:6767/Buying_basket",
+                    "url":"http://192.168.0.101:6767/Buying_basket",
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -1082,8 +1103,16 @@ $( document ).ready(function() {
                 };
                 $.ajax(settings11).done(function (msg) {
                     console.log(msg);
+                    if (path_selection == 1) {
+                        $('.acceleratorfiletext').show();
+                            $('.acceleratorfiletext').append('<h5>File is being prepared by RPI </h5>')
+                    }
+                    else {
+                        $('.acceleratorfiletext').hide();
+                        $('.next_').prop('disabled', false)
+                    }
+                    swal(msg);
                     $(".loading").hide();
-                    $('.next_').prop('disabled', false)
                     version = 0;
                     // for(key in msg){
                     //     $('.modal-body').append('<h5>')

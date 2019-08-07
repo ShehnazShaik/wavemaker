@@ -1,5 +1,5 @@
 $(document).ready(function(){
-$('.loading').hide();
+// $('.loading').show();
     $('.texttodisplay').hide();
     var plan_id = sessionStorage.getItem('create_plan_id');
     var user_id = sessionStorage.getItem('userid');
@@ -7,6 +7,56 @@ $('.loading').hide();
     // $('#upl-btn').attr('disabled', 'true');
     $('#locationuploadbtn').prop('disabled', true);
     $('#channelgenrebtn').prop('disabled', true);
+    onLoad();
+    var masterstamp;
+    var channelstamp;
+    function onLoad(){
+        sendObj ={}
+    // console.log(sendObj);
+    var form = new FormData();
+    form.append("file", JSON.stringify(sendObj));
+    var settings11 = {
+        "async": true,
+        "crossDomain": true,
+        "url":"http://192.168.0.101:6767/master_mapping_files_time_stamps",
+        "method": "POST",
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form
+    };
+    $.ajax(settings11).done(function (msg) {
+        msg = JSON.parse(msg)
+        console.log(msg);
+        $('.loading').hide();
+        masterstamp = msg.master_data;
+        channelstamp = msg.ChannelGenreMappingSheet;
+        if (jQuery.isEmptyObject(channelstamp) == true) {
+            $('.channelstamp').show();
+            $('.channelstamp').append('<p>Channel Genre Mapping Sheet not uploaded</p>')
+        }
+        else {
+            $('.channelstamp').show();
+            for( key in channelstamp ){
+                $('.channelstamp').append('<p>'+key+' - '+channelstamp[key]+'</p>')
+            }
+        }
+        if (jQuery.isEmptyObject(masterstamp) == true) {
+            $('.masterdatastamp').show();
+            $('.masterdatastamp').append('<p>Master data file Sheet not uploaded</p>')
+        }
+        else {
+            $('.masterdatastamp').show();
+            for( key in masterstamp ){
+                $('.masterdatastamp').append('<p>'+key+' - '+masterstamp[key]+'</p>')
+
+            }
+        }
+
+    });
+}
+
+
     var file_name_;
     var main_output;
     fileobj = {};
@@ -92,6 +142,38 @@ $('.loading').hide();
             //console.log(error);
         });
     }
+$("body").on("click", ".downloadall", function() {
+    var form = new FormData();
+    form.append("file", JSON.stringify(fileobj));
+    var settings11 = {
+        "async": true,
+        "crossDomain": true,
+        "url":"http://192.168.0.101:6767/download_master_mapping_files",
+        "method": "POST",
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form
+    };
+    $.ajax(settings11).done(function (msg) {
+        console.log(msg);
+        var bin = atob(msg);
+        var ab = s2ab(bin);
+        var blob = new Blob([ab], { type: 'octet/stream' });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "results.zip";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    })
+})
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length);
+    var view = new Uint8Array(buf);
+    for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+    return buf;
+}
 
     $("body").on("click", "#locationuploadbtn", function(){
         $('.loading').show();
@@ -102,7 +184,7 @@ $('.loading').hide();
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url":"http://192.168.0.113:6767/master_data_settings",
+            "url":"http://192.168.0.101:6767/master_data_settings",
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -233,7 +315,7 @@ $('.loading').hide();
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url":"http://192.168.0.113:6767/master_data_settings",
+            "url":"http://192.168.0.101:6767/master_data_settings",
             "method": "POST",
             "processData": false,
             "contentType": false,

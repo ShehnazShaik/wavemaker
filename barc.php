@@ -25,6 +25,7 @@
     <script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
     <script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
     <!-- /core JS files -->
+    <script src="global_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
 
     <!-- Theme JS files -->
     <script src="global_assets/js/plugins/forms/validation/validate.min.js"></script>
@@ -34,7 +35,11 @@
     <script src="global_assets/js/plugins/forms/styling/switch.min.js"></script>
     <script src="global_assets/js/plugins/forms/styling/switchery.min.js"></script>
     <script src="global_assets/js/plugins/forms/styling/uniform.min.js"></script>
-
+    <script src="global_assets/js/plugins/uploaders/fileinput/plugins/purify.min.js"></script>
+    <script src="global_assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
+    <script src="global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+    <script src="global_assets/js/demo_pages/form_input_groups.js"></script>
+    <script src="global_assets/js/demo_pages/uploader_bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
     <!-- <script src="assets/js/plannerprofile.js"></script> -->
     <script src="global_assets/js/demo_pages/form_validation.js"></script>
@@ -45,7 +50,52 @@
     <!-- /theme JS files -->
 
 </head>
+<script>
+$(document).ready(function () {
+		var alltooltips =  JSON.parse(localStorage.getItem("tool_tips"))
+		var campaignmarket=alltooltips.BARC_CampaignMarkets;
+		var selectedpritg = alltooltips.BARC_PrimaryTGId;
+			var selectedbasetg = alltooltips.BARC_BaseTGId;
+				var selectedendweek = alltooltips.BARC_EndWeek;
+        
+	$('.appendcampaignmarket').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+campaignmarket+'" src="assets/images/informicon.svg"/>')
+		$('.appendselectedpritg').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+selectedpritg+'" src="assets/images/informicon.svg"/>')
+		$('.appendselectedbasetg').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+selectedbasetg+'" src="assets/images/informicon.svg"/>')
+		$('.appendselectedendweek').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+selectedendweek+'" src="assets/images/informicon.svg"/>')
+		// $('.appendprimarytg').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+ClientLeadEmailId+'" src="assets/images/informicon.svg"/>')
+		// $('.appendbasetg').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+ClientLeadEmailId+'" src="assets/images/informicon.svg"/>')
+		// $('.appendendweek').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+ClientLeadEmailId+'" src="assets/images/informicon.svg"/>')
+		// $('.appendcampaignmarket').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+ClientLeadEmailId+'" src="assets/images/informicon.svg"/>')
+
+		// <img style="width:17px;height:17px;margin-left:10px;" src="assets/images/informicon.svg"/>
+
+})
+</script>
 <style media="screen">
+.file-drop-zone-title {
+    padding: 11px;
+}
+.submit_btn{
+    margin-top: 19px;
+    float: right;
+    text-align: right;
+}
+.cursor_pointer{
+	cursor: pointer;
+}
+.cprp{
+	padding: 30px 55px;
+}
+.budget{
+	padding: 30px 55px;
+}
+.disabled {
+    color: #999;
+}
+.disable_border{
+	border:1px solid #ccc !important;
+	cursor: auto;
+}
 .login-form {
     width: 100% ;
 }
@@ -89,7 +139,11 @@
     padding: 2px 15px;
     color: white;
 }
+.content{
+    background-image: url('./assets/images/wmflow.png');
+    	background-size: cover;
 
+}
 #admin{
     display: none !important;
 }
@@ -133,14 +187,29 @@
                         <div>
                             <fieldset class="mb-3">
 
-                                <div class="text-center mb-3">
+                                <div class="text-center mb-3 acce_div">
 
-                                    <h5 class="mb-0">BARC Evaluation</h5>
-                                    <span class="d-block text-muted">All fields are required</span>
 
+                                    <div style="width: 100%;">
+                            			<div class="row">
+                            				<h6 class="font-weight-semibold">Upload Accelerator File</h6>
+                            				<div class="col-lg-10">
+												<div class="texttodisplay" style="background:rgb(209, 216, 224)"></div>
+                            					<input type="file" id="load-file" class="file-input-ajax" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" data-fouc>
+                            				</div>
+                            				<div class="col-lg-12 submit_btn">
+                            					<button type="button" class="btn btn-primary" id="upl-btn" style="background: #4caf50;">Upload <i class="icon-upload ml-2"></i></button>
+                            				</div>
+                            			</div>
+                            		</div>
+                                    <!-- <span class="d-block text-muted">All fields are required</span> -->
+                                    <hr>
                                 </div>
+                                <h5 class="mb-0" style="text-align:center">BARC Evaluation</h5>
+                                <br>
+
                                 <div class="form-group row">
-                                    <label class="col-form-label col-lg-3">Campaign Markets <span class="text-danger">*</span></label>
+                                    <label class="col-form-label col-lg-3">Campaign Markets <span class="text-danger">*</span><span class="appendcampaignmarket"></span></label>
                                     <div class="col-lg-9">
                                         <select multiple="multiple" class="form-control select-fixed-multiple campaign_markets" required data-fouc data-placeholder="Select Campaign Markets">
                                             <option value=""></option>
@@ -151,7 +220,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-form-label col-lg-3">Selected Primary TG <span class="text-danger">*</span></label>
+                                    <label class="col-form-label col-lg-3">Selected Primary TG <span class="text-danger">*</span><span class="appendselectedpritg"></span></label>
                                     <div class="col-lg-9">
                                         <select name="select2" data-placeholder="Selected Primary TG" class="form-control form-control-select2 Primary_Tg_dt" required data-fouc>
                                             <option></option>
@@ -162,7 +231,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-form-label col-lg-3">Selected Base TG <span class="text-danger">*</span></label>
+                                    <label class="col-form-label col-lg-3">Selected Base TG <span class="text-danger">*</span><span class="appendselectedbasetg"></span></label>
                                     <div class="col-lg-9">
                                         <select name="select2" data-placeholder="Selected Base TG" class="form-control form-control-select2 base_tg" required data-fouc>
                                             <option></option>
@@ -173,7 +242,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-form-label col-lg-3">Selected End Week<span class="text-danger">*</span></label>
+                                    <label class="col-form-label col-lg-3">Selected End Week<span class="text-danger">*</span><span class="appendselectedendweek"></span></label>
                                     <div class="col-lg-9">
                                         <select name="select2" data-placeholder="Selected End Week" class="form-control form-control-select2 End_Week_dt" required data-fouc>
                                             <option></option>
@@ -212,15 +281,20 @@
 
 
                             </fieldset>
-                            <hr>
-                            <div class="mb-4" style="float:right">
+                            <!-- <hr> -->
+                            <div class="" style="float:right">
+                                <button type="submit" class="btn btn-primary cprp_submit edit_barc" style="background: #4caf50;">Edit <i class="icon-paperplane ml-2"></i></button>
                                 <button type="submit" class="btn btn-primary cprp_submit confirm_barc" style="background: #4caf50;">Confirm <i class="icon-paperplane ml-2"></i></button>
-                                <!-- <button type="submit" class="btn btn-primary cprp_submit edit_barc" style="background: #4caf50;">Edit <i class="icon-paperplane ml-2"></i></button> -->
+
+
+                            </div>
+                            <div class="" style="text-align:center;margin-top: 80px;">
+                                <button type="submit" class="btn btn-primary cprp_submit submit_barc" style="background: #4caf50;">Submit <i class="icon-paperplane ml-2"></i></button>
                             </div>
                         </div>
                         <div class="mr-t-10" style="margin-top: 20px;">
-                            <button class="btn btn-primary backclass" style="float:left;">Back</button>
-                            <!-- <button class="btn btn-primary next_"  style="float:right;">Next</button> -->
+                          <button class="btn btn-primary backclass" title="Previous" tooltip="Previous"style="color: #fff;border:none;float: left;background-color: transparent !Important;"><span>Previous </span><img src="assets/images/left.svg" style="width:30px;"></button>
+
                         </div>
                     </div>
                 </div>

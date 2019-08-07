@@ -90,7 +90,7 @@ $(document).ready(function(){
     //     var settings11 = {
     //         "async": true,
     //         "crossDomain": true,
-    //         "url":"http://192.168.0.125:6767/Buying_basket",
+    //         "url":"http://192.168.0.101:6767/Buying_basket",
     //         "method": "POST",
     //         "processData": false,
     //         "contentType": false,

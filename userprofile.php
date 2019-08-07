@@ -46,6 +46,23 @@
 	<!-- /theme JS files -->
 
 </head>
+<script>
+$(document).ready(function () {
+		var alltooltips =  JSON.parse(localStorage.getItem("tool_tips"))
+		var emaill= alltooltips.CreateProfile_EmailId;
+		var location = alltooltips.CreateProfile_Location;
+			var Client = alltooltips.CreateProfile_Client;
+				var ClientLeadEmailId = alltooltips.CreateProfile_ClientLeadEmailId;
+	$('.appendmail').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+emaill+'" src="assets/images/informicon.svg"/>')
+		$('.appendlocation').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+location+'" src="assets/images/informicon.svg"/>')
+		$('.appendclient').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+Client+'" src="assets/images/informicon.svg"/>')
+		// $('.appendlocation').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+location+'" src="assets/images/informicon.svg"/>')
+		$('.appendClientLeadEmailId').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+ClientLeadEmailId+'" src="assets/images/informicon.svg"/>')
+
+		// <img style="width:17px;height:17px;margin-left:10px;" src="assets/images/informicon.svg"/>
+
+})
+</script>
 <style media="screen">
 .login-form {
 	width: 100% ;
@@ -101,7 +118,10 @@
 	color:white;
 }
 .content{
-	background-color: #393e3e;
+	/* background-color: #393e3e; */
+	background-image: url('assets/images/wmflow.png');
+	background-repeat: no-repeat;
+	  background-color: #2a2f39;
 }
 /* .select_ .select{
 	display: none;
@@ -119,6 +139,22 @@
 	<!-- Page content -->
 	<div class="page-content" style="background-color: #393e3e">
 		<?php	include 'assets/includes/side_navbar.php';?>
+		<div class="content-wrapper">
+
+				<!-- Page header -->
+				<div class="page-header page-header-light">
+
+					<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline" style="background-color: #2a2f39;color: white;">
+							<div class="d-flex">
+									<div class="breadcrumb">
+											<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+											<span class="breadcrumb-item active">User Profile</span>
+									</div>
+
+									<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+							</div>
+					</div>
+				</div>
 
 
 
@@ -147,7 +183,7 @@
 		<div class="card-body bodyy">
 			<!-- <p class="mb-4">Validate.js makes simple clientside form validation easy, whilst still offering plenty of customization options. The plugin comes bundled with a useful set of validation methods, including URL and email validation, while providing an API to write your own methods. All bundled methods come with default error messages in english and translations into 37 other languages. <strong>Note:</strong> <code>success</code> callback is configured for demo purposes only and can be removed in validation setup.</p> -->
 
-			<form class="form-validate-jquery textcolor" action="#">
+			<!-- <form class="form-validate-jquery textcolor" action="#"> -->
 				<fieldset class="mb-3">
 					<!-- <legend class="text-uppercase font-size-sm font-weight-bold">Basic inputs</legend> -->
 					<div class="text-center mb-3">
@@ -156,73 +192,13 @@
 						<span class="d-block text-muted">All fields are required</span>
 						<!-- <button type="button" name="button" class="edit_createprofile">Edit</button> -->
 					</div>
-					<!-- Basic text input -->
-					<!-- <div class="form-group row">
-					<label class="col-form-label col-lg-3">Basic text input <span class="text-danger">*</span></label>
-					<div class="col-lg-9">
-					<input type="text" name="basic" class="form-control" required placeholder="Text input validation">
+
+				<div class="form-group row">
+					<label class="col-form-label col-lg-3">Email Id <span class="text-danger">*</span> <span class="appendmail"></span></label>
+					<div class="col-lg-9 email">
+						<!-- <input type="email" name="email" class="form-control" id="email" required placeholder="Enter a valid email address"> -->
+					</div>
 				</div>
-			</div> -->
-			<!-- /basic text input -->
-
-
-			<!-- Input with icons -->
-			<!-- <div class="form-group row">
-			<label class="col-form-label col-lg-3">Input with icon <span class="text-danger">*</span></label>
-			<div class="col-lg-9">
-			<div class="form-group-feedback form-group-feedback-right">
-			<input type="text" name="with_icon" class="form-control" required placeholder="Text input with icon validation">
-			<div class="form-control-feedback">
-			<i class="icon-droplets"></i>
-		</div>
-	</div>
-</div>
-</div> -->
-<!-- /input with icons -->
-
-
-<!-- Input group -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Input group <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<div class="input-group">
-<div class="input-group-prepend">
-<span class="input-group-text"><i class="icon-mention"></i></span>
-</div>
-<input type="text" name="input_group" class="form-control" required placeholder="Input group validation">
-</div>
-</div>
-</div> -->
-<!-- /input group -->
-
-
-<!-- Password field -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Password field <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="password" name="password" id="password" class="form-control" required placeholder="Minimum 5 characters allowed">
-</div>
-</div> -->
-<!-- /password field -->
-
-
-<!-- Repeat password -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Repeat password <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="password" name="repeat_password" class="form-control" required placeholder="Try different password">
-</div>
-</div> -->
-<!-- /repeat password -->
-
-
-<!-- Email field -->
-<div class="form-group row">
-	<label class="col-form-label col-lg-3">Email Id <span class="text-danger">*</span></label>
-	<div class="col-lg-9 email">
-		<!-- <input type="email" name="email" class="form-control" id="email" required placeholder="Enter a valid email address"> -->
-	</div>
-</div>
 <!-- /email field -->
 
 
@@ -285,7 +261,7 @@
 </div> -->
 <!-- /basic textarea -->
 <div class="form-group row planner_div">
-	<label class="col-form-label col-lg-3">Location <span class="text-danger">*</span></label>
+	<label class="col-form-label col-lg-3">Location <span class="text-danger">*</span><span class="appendlocation"></span></label>
 	<div class="col-lg-9">
 		<select name="select2" data-placeholder="Select Location" class="form-control locationClass form-control-select2" required data-fouc>
 			<option></option>
@@ -296,21 +272,8 @@
 	</div>
 </div>
 
-<!-- <div class="form-group row client_div">
-<label class="col-form-label col-lg-3">Location<span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<select data-placeholder="Select Client" required class="form-control select multilocclass" multiple  data-fouc>
-<option value=""></option>
-</select>
-<div data-placeholder="" class="multiloc" data-fouc>
-
-</div>
-</div>
-</div> -->
-
-
 <div class="form-group row">
-	<label class="col-form-label col-lg-3">Client<span class="text-danger">*</span></label>
+	<label class="col-form-label col-lg-3">Client<span class="text-danger">*</span><span class="appendclient"></span></label>
 	<div class="col-lg-9 select_">
 
 	<select data-placeholder="Select Client" required class="form-control select clientClass" style="display:none" multiple  data-fouc>
@@ -324,7 +287,7 @@
 </div>
 </div>
 <div class="form-group row">
-	<label class="col-form-label col-lg-3">Client Lead Email Id's<span class="text-danger">*</span></label>
+	<label class="col-form-label col-lg-3">Client Lead Email Id's<span class="text-danger">*</span><span class="appendClientLeadEmailId"></span></label>
 	<div class="col-lg-9">
 		<input type="text" name="" value="" required placeholder="Client Email Id's" readonly class="form-control CLemId">
 		<!-- <input type="text" name="text" class="form-control CLemId" readonly placeholder="Enter a valid email address"> -->
@@ -340,245 +303,12 @@
 
 </fieldset>
 
-<!-- <fieldset class="mb-3"> -->
-<!-- <legend class="text-uppercase font-size-sm font-weight-bold">Advanced inputs</legend> -->
-
-<!-- Number range -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Number range <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="number_range" class="form-control" required placeholder="Enter a value between 10 and 20">
-</div>
-</div> -->
-<!-- /number range -->
-
-
-<!-- Touchspin spinners -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Touchspin spinner <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="touchspin" value="" required class="form-control touchspin-postfix" placeholder="Not valid if empty">
-</div>
-</div> -->
-<!-- /touchspin spinners -->
-
-
-<!-- Custom message -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Custom message <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="custom" class="form-control" required placeholder="Custom error message">
-</div>
-</div> -->
-<!-- /custom message -->
-
-
-<!-- URL validation -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">URL validation <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="url" class="form-control" required placeholder="Enter a valid URL address">
-</div>
-</div> -->
-<!-- /url validation -->
-
-
-<!-- Date validation -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Date validation <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="date" class="form-control" required placeholder="April, 2014 or any other date format">
-</div>
-</div> -->
-<!-- /date validation -->
-
-
-<!-- ISO date validation -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">ISO date validation <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="date_iso" class="form-control" required placeholder="YYYY/MM/DD or any other ISO date format">
-</div>
-</div> -->
-<!-- /iso date validation -->
-
-
-<!-- Numbers only -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Numbers only <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="numbers" class="form-control" required placeholder="Enter decimal number only">
-</div>
-</div> -->
-<!-- /numbers only -->
-
-
-<!-- Digits only -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Digits only <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="digits" class="form-control" required placeholder="Enter digits only">
-</div>
-</div> -->
-<!-- /digits only -->
-
-
-<!-- Credit card validation -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Credit card validation <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="text" name="card" class="form-control" required placeholder="Enter credit card number. Try 446-667-651">
-</div>
-</div> -->
-<!-- /credit card validation -->
-
-
-<!-- Basic file uploader -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Basic file uploader <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="file" name="unstyled_file" class="form-control" required>
-</div>
-</div> -->
-<!-- /basic file uploader -->
-
-
-<!-- Styled file uploader -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Styled file uploader <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<input type="file" name="styled_file" class="form-input-styled" required data-fouc>
-</div>
-</div> -->
-<!-- /styled file uploader -->
-
-
-<!-- Basic select -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Basic select <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<select name="default_select" class="form-control" required>
-<option value="">Choose an option</option>
-<optgroup label="Alaskan/Hawaiian Time Zone">
-<option value="AK">Alaska</option>
-<option value="HI">Hawaii</option>
-<option value="CA">California</option>
-</optgroup>
-<optgroup label="Mountain Time Zone">
-<option value="AZ">Arizona</option>
-<option value="CO">Colorado</option>
-<option value="WY">Wyoming</option>
-</optgroup>
-<optgroup label="Central Time Zone">
-<option value="AL">Alabama</option>
-<option value="AR">Arkansas</option>
-<option value="KY">Kentucky</option>
-</optgroup>
-</select>
-</div>
-</div> -->
-<!-- /basic select -->
-
-
-<!-- Styled select -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Styled select <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<select name="styled_select" class="form-control form-input-styled" required data-fouc>
-<option value="">Choose an option</option>
-<optgroup label="Alaskan/Hawaiian Time Zone">
-<option value="AK">Alaska</option>
-<option value="HI">Hawaii</option>
-<option value="CA">California</option>
-</optgroup>
-<optgroup label="Mountain Time Zone">
-<option value="AZ">Arizona</option>
-<option value="CO">Colorado</option>
-<option value="WY">Wyoming</option>
-</optgroup>
-<optgroup label="Central Time Zone">
-<option value="AL">Alabama</option>
-<option value="AR">Arkansas</option>
-<option value="KY">Kentucky</option>
-</optgroup>
-</select>
-</div>
-</div> -->
-<!-- /styled asic select -->
-
-
-<!-- Select2 select -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Select2 select <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<select name="select2" data-placeholder="Select a State..." class="form-control form-control-select2" required data-fouc>
-<option></option>
-<optgroup label="Alaskan/Hawaiian Time Zone">
-<option value="AK">Alaska</option>
-<option value="HI">Hawaii</option>
-</optgroup>
-<optgroup label="Pacific Time Zone">
-<option value="CA">California</option>
-<option value="NV">Nevada</option>
-<option value="OR">Oregon</option>
-<option value="WA">Washington</option>
-</optgroup>
-<optgroup label="Mountain Time Zone">
-<option value="AZ">Arizona</option>
-<option value="CO">Colorado</option>
-<option value="ID">Idaho</option>
-<option value="WY">Wyoming</option>
-</optgroup>
-</select>
-</div>
-</div> -->
-<!-- /select2 select -->
-
-
-<!-- Multiple select -->
-<!-- <div class="form-group row">
-<label class="col-form-label col-lg-3">Multiple select <span class="text-danger">*</span></label>
-<div class="col-lg-9">
-<select name="default_multiple_select" class="form-control" multiple required>
-<optgroup label="Alaskan/Hawaiian Time Zone">
-<option value="AK">Alaska</option>
-<option value="HI">Hawaii</option>
-<option value="CA">California</option>
-<option value="NV">Nevada</option>
-<option value="WA">Washington</option>
-</optgroup>
-<optgroup label="Mountain Time Zone">
-<option value="AZ">Arizona</option>
-<option value="CO">Colorado</option>
-<option value="ID">Idaho</option>
-<option value="WY">Wyoming</option>
-</optgroup>
-<optgroup label="Central Time Zone">
-<option value="AL">Alabama</option>
-<option value="AR">Arkansas</option>
-<option value="IL">Illinois</option>
-<option value="KS">Kansas</option>
-<option value="KY">Kentucky</option>
-</optgroup>
-</select>
-</div>
-</div> -->
-<!-- /multiple select -->
-
-<!-- </fieldset> -->
-
-
-
-<!-- <hr> -->
-
-
-
 
 <div class="d-flex justify-content-end align-items-center">
 	<!-- <button type="reset" class="btn btn-light" id="reset">Reset <i class="icon-reload-alt ml-2"></i></button> -->
 	<button type="submit" style="background: #4b6584 !important; color: #fff;" class="form-control btn create_btn create_plan">Create <i class="icon-paperplane ml-2"></i></button>
 </div>
-</form>
+<!-- </form> -->
 </div>
 </div>
 <!-- /form validation -->

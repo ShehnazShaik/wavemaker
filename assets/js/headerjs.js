@@ -13,7 +13,7 @@ $("body").on("click", ".logoutbtn", function () {
         var settings11 = {
           "async": true,
           "crossDomain": true,
-          "url": 'http://192.168.0.125:6767/logout_button',
+          "url": 'http://192.168.0.101:6767/logout_button',
           "method": "POST",
           "processData": false,
           "contentType": false,
@@ -25,6 +25,8 @@ $("body").on("click", ".logoutbtn", function () {
             console.log(msg);
             if (msg == "logoutsuccess") {
                window.location.href="index.php";
+               sessionStorage.clear();
+               localStorage.clear();
             }
 
           })

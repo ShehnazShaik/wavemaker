@@ -102,7 +102,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Create_Profile_freeze',
+            "url": 'http://192.168.0.101:6767/Create_Profile_freeze',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -117,6 +117,7 @@ $(document).ready(function () {
             $(".bg").css("background-color", "#d6d6d6");
             $(".getClass").addClass('bg')
             $(".create_plan").attr("disabled", true);
+            $(".create_plan").prop("disabled", true);
             $(".select2").addClass('hide');
             $(".text-muted").removeClass('d-block');
             $(".text-muted").addClass('hide');
@@ -154,7 +155,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Create_Profile_freeze',
+            "url": 'http://192.168.0.101:6767/Create_Profile_freeze',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -190,7 +191,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Location_Data_Request',
+            "url": 'http://192.168.0.101:6767/Location_Data_Request',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -254,7 +255,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Client_Data_Request',
+            "url": 'http://192.168.0.101:6767/Client_Data_Request',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -314,7 +315,7 @@ $(document).ready(function () {
             var settings11 = {
                 "async": true,
                 "crossDomain": true,
-                "url": 'http://192.168.0.125:6767/Client_Data_Request',
+                "url": 'http://192.168.0.101:6767/Client_Data_Request',
                 "method": "POST",
                 "processData": false,
                 "contentType": false,
@@ -372,7 +373,7 @@ $(document).ready(function () {
                 var settings11 = {
                     "async": true,
                     "crossDomain": true,
-                    "url": 'http://192.168.0.125:6767/Planner_Profile_Client_Lead',
+                    "url": 'http://192.168.0.101:6767/Planner_Profile_Client_Lead',
                     "method": "POST",
                     "processData": false,
                     "contentType": false,
@@ -445,7 +446,7 @@ $(document).ready(function () {
                         var settings11 = {
                             "async": true,
                             "crossDomain": true,
-                            "url": 'http://192.168.0.125:6767/Create_Profile',
+                            "url": 'http://192.168.0.101:6767/Create_Profile',
                             "method": "POST",
                             "processData": false,
                             "contentType": false,
@@ -469,14 +470,19 @@ $(document).ready(function () {
                                 $('input[type=email]').prop('readonly', true);
                                 $("#email").prop('readonly', true);
                                 $("#email").css('background', '#ccc');
+                                $('.select2').prop('disabled', true);
                                 $(".select2-selection--multiple").css('background', '#ccc');
-                                $(".select2-selection--multiple").prop('readonly', true);
+                                $(".select2-selection--multiple").prop('disabled', true);
                                 $('.select2-selection').prop('readonly', true);
                                 $('.select2-selection').css('background', '#ccc');
-                                $('.select2-hidden-accessible').prop('readonly', true);
+                                $('.select2-hidden-accessible').prop('disabaled', true);
+                                $('#select2-select2-bj-container').prop('readonly', true);
                                 $('input[type=text]').prop('readonly', true);
                                 $('.clientleadClass').css('background', '#ccc');
                                 $('.clientleadClass').prop('readonly', true);
+                                // $('.create_plan').prop('readonly', true);
+                                $('select').prop('disabled', true);
+                                $(".create_plan").prop("disabled", true);
 
                                 // }
                                 // else {

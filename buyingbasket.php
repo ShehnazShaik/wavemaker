@@ -88,6 +88,34 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </head>
 <style>
+input[type='radio']:after {
+	width: 15px;
+	height: 15px;
+	border-radius: 15px;
+	top: -4px;
+	left: -1px;
+	position: relative;
+	background-color: #d1d3d1;
+	content: '';
+	display: inline-block;
+	visibility: visible;
+	border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+	width: 15px;
+	height: 15px;
+	border-radius: 15px;
+	top: -6px;
+	left: -1px;
+	position: relative;
+	background-color: #000000;
+	content: '';
+	display: inline-block;
+	visibility: visible;
+	border: 2px solid #f1f1f1;
+
+}
 .file-drop-zone-title {
 	padding: 11px;
 }
@@ -218,8 +246,20 @@
 			cursor: pointer;
 			right: -101%;
 		}
-		.sub_div_new{
-			margin-top: 40px;
+		.sub_div_new {
+	    margin-top: 16px;}
+		.content{
+			background-image: url('./assets/images/wmflow.png');
+
+		}
+		.common_main{
+			margin-right: 10px;
+		}
+		.acceleratorfiletext{
+			margin: auto;
+			background: #d1d8e0;
+			color: #000 !important;
+			padding: 30px;
 		}
 		</style>
 
@@ -241,6 +281,8 @@ return false;
 }
 </script> -->
 <body>
+
+
 
 	<!-- Main navbar -->
 
@@ -274,7 +316,7 @@ return false;
 
 									</div>
 									<div class="col-lg-10 bb_files">
-										<input type="file" class="file-input-ajax" id="load-file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple="multiple" data-fouc>
+										<input type="file" class="file-input-ajax" id="load-file" accept=".csv, xlsm, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple="multiple" data-fouc>
 
 										<span class="red_color">Accepts only Excel files</span>
 									</div>
@@ -285,33 +327,36 @@ return false;
 
 							</div>
 							<div class="radio_class">
-								<input type="radio" name="gender" value="Optimize CPRP vs Reach"  key='1' class="common_main cprp_main"> Optimize CPRP vs Reach
-								<input type="radio" name="gender" value="Budget Allocation" key='2' class="common_main budget_main"> Budget Allocation<br>
+								<input type="radio" name="gender" value="Genre Level Budget Allocation"  key='1' class="common_main cprp_main"><span>Genre Level Budget Allocation</span>
+								<input type="radio" name="gender" value="Channel Level Budget Allocation" key='2' class="common_main budget_main"><span>Channel Level Budget Allocation</span><br>
 							</div>
 							<div class="cprp_div close_" >
 								<hr>
 								<h6 class="font-weight-semibold">Weightage</h6>
 								<div class="row">
 									<div class="col-md-6">
-										<h6 class="font-weight-semibold">CPRP</h6>
+
+
+
+										<h6 class="font-weight-semibold">CPRP <span class="appendcprp"></span></h6>
 										<input class="form-control touchspin-no-mousewheel input cprp_val" id="a" type="number" name="number"  min="1" max="99"  placeholder="Select the range till 100">
 									</div>
 									<div class="col-md-6">
-										<h6 class="font-weight-semibold">Reach</h6>
+										<h6 class="font-weight-semibold">Reach <span class="appendreach"></span></h6>
 										<input class="form-control touchspin-no-mousewheel input reach_val" id="b" type="number" name="number" min="0" max="100" placeholder="Select the range till 100">
 									</div>
 								</div>
 								<div class="row" style="margin-top: 20px;">
 									<div class="col-md-6">
-										<h6 class="font-weight-semibold">CPRP Channels</h6>
+										<h6 class="font-weight-semibold">CPRP Channels - Spots/day <span class="appendcprpchannels"></span></h6>
 										<input class="form-control touchspin-no-mousewheel input cprp_channel_val"  type="number" name="number"  min="1" max="50"  onKeyUp="if(this.value>50){this.value='50';}else if(this.value<0){this.value='0';}" placeholder="Select the range till 50">
 									</div>
 									<div class="col-md-6">
-										<h6 class="font-weight-semibold">Frequency Channels</h6>
+										<h6 class="font-weight-semibold">Frequency Channels - Spots/day <span class="appendfreqchannels"></span></h6>
 										<input class="form-control touchspin-no-mousewheel input frequency_channel"  type="number" name="number" min="0" max="50" onKeyUp="if(this.value>50){this.value='50';}else if(this.value<0){this.value='0';}" placeholder="Select the range till 50">
 									</div>
 								</div>
-								<h6 class="font-weight-semibold" style="margin-top:20px">Campaign Duration (in Days)</h6>
+								<h6 class="font-weight-semibold" style="margin-top:20px">Campaign Duration (in Days) <span class="appendcampaignduration"></span></h6>
 								<div class="row">
 									<div class="col-md-6">
 										<input class="form-control campaign_days" type="number" min="0" max="365"  onKeyUp="if(this.value>365){this.value='365';}else if(this.value<0){this.value='0';}" placeholder="Campaign Duration (in Days)">
@@ -321,22 +366,22 @@ return false;
 								<!-- <button data-remodal-action="close" type="button" class="remodal-close" aria-label="Close"></button> -->
 								<div class="row">
 									<div class="col-lg-6">
-										<h6 class="font-weight-semibold" style="margin-top:20px">ACD</h6>
+										<h6 class="font-weight-semibold" style="margin-top:20px">Average Commercial Duration <span class="appendaveragecommer"></span></h6>
 									</div>
 									<div class="col-lg-6">
-										<h6 class="font-weight-semibold" style="margin-top:20px">Dispersion</h6>
+										<h6 class="font-weight-semibold" style="margin-top:20px">Dispersion <span class="appenddispers"></span></h6>
 									</div>
 								</div>
 								<div class="row main" style="margin-top:-40px;">
 									<div class="sub_div" style="width:100%">
 										<div class="row keyword" style="width:100%">
 											<div class="col-md-6 mr-b-10 pd-l-10 pd-r-10">
-												<input type="text" class="form-control mods_inputs name name_Class 0" placeholder="Enter the keyword">
+												<input type="text" class="form-control mods_inputs name name_Class 0" placeholder="Enter the duration in seconds">
 												<!-- <input type="number" name="number"  class="mods_inputs name_Class 0 form-control" required="" placeholder="Please enter a value less than or equal to 10"> -->
 											</div>
 
 											<div class="col-md-6 mr-b-10 pd-l-10 pd-r-10">
-												<input type="text" class="form-control mods_inputs path path_Class 0" placeholder="Enter negative keyword">
+												<input type="text" class="form-control mods_inputs path path_Class 0" placeholder="Enter dispersion in percentage">
 												<!-- <input type="number" name="maximum_number" class="mods_inputs path_Class 0 form-control" required="" placeholder="Please enter a value less than or equal to 10"> -->
 
 												<!-- <span><img src="assets/images/delete.svg" style="width:20px;" class="remove hide_"></span> -->
@@ -356,7 +401,7 @@ return false;
 							</div>
 							<div class="budget_div_ close_" >
 								<hr>
-								<h6 class="font-weight-semibold" style="margin-top:20px">Campaign Duration (in Days)</h6>
+								<h6 class="font-weight-semibold" style="margin-top:20px">Campaign Duration (in Days)<span class="appendcampaigndays"></span></h6>
 								<div class="row">
 									<div class="col-md-6">
 										<input class="form-control campaign_days_new" type="number" min="0" max="365"  onKeyUp="if(this.value>365){this.value='365';}else if(this.value<0){this.value='0';}" placeholder="Campaign Duration (in Days)">
@@ -365,10 +410,10 @@ return false;
 								</div>
 								<div class="row">
 									<div class="col-lg-6">
-										<h6 class="font-weight-semibold" style="margin-top:20px">ACD</h6>
+										<h6 class="font-weight-semibold" style="margin-top:20px">ACD<span class="appedacd"></span></h6>
 									</div>
 									<div class="col-lg-6">
-										<h6 class="font-weight-semibold" style="margin-top:20px">Dispersion</h6>
+										<h6 class="font-weight-semibold" style="margin-top:20px">Dispersion<span class="appenddispersion"></span></h6>
 									</div>
 								</div>
 								<div class="row main_new">
@@ -407,7 +452,7 @@ return false;
 										<h5 class="spillll">Spillover Sheet being created. Once complete you will receive it in your inbox.</h5>
 									</div>
 									<div class="col-lg-12 ss_files">
-										<input type="file" class="file-input-ajax" id="load-file1" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple="multiple" data-fouc>
+										<input type="file" class="file-input-ajax" id="load-file1" accept=".csv, .xlsm, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple="multiple" data-fouc>
 
 										<span class="red_color">Accepts only Excel files</span>
 									</div>
@@ -422,38 +467,77 @@ return false;
 								<!-- <h5>Spillover Sheet being created. Once complete you will receive it in your inbox.
 							</h5> -->
 						</div>
-						<div class="mr-t-10" style="margin-top: 20px;">
-							<button class="btn btn-primary backclass" style="float:left;">Back</button>
-							<button class="btn btn-primary next_"  style="float:right;">Next</button>
+						<div class="row">
+							<div class="card acceleratorfiletext" style="padding: 50px;"></div>
+
 						</div>
-
+					<div class="mr-t-10" style="margin-top: 20px;">
+						<!-- <button class="btn btn-primary backclass" style="float:left;">Previous</button> -->
+						<button type="submit" class="btn btn-primary fadeInDown backclass" title="Next" tooltip="Next"style="color: #fff;border:none;float: left;background-color: transparent !Important;"><img src="assets/images/left.svg" style="width:30px;"><span>Previous </span></button>
+						<button type="submit" class="btn btn-primary fadeInDown next_" title="Next" tooltip="Next"style="color: #fff;border:none;float: right;background-color: transparent !Important;"><span>Next </span><img src="assets/images/right.svg" style="width:30px;"></button>
 
 					</div>
 
 
-					<!-- keywords -->
+				</div>
+
+
+				<!-- keywords -->
 
 
 
-					<!-- SubmitChannel -->
+				<!-- SubmitChannel -->
 
-					<!-- /traffic sources -->
-					<div class="loading">
-						<img src="assets/images/loader.gif" alt="">
-					</div>
+				<!-- /traffic sources -->
+				<div class="loading">
+					<img src="assets/images/loader.gif" alt="">
 				</div>
 			</div>
-			<!-- /main charts -->
 		</div>
-
-
+		<!-- /main charts -->
 	</div>
-	<!-- /main content -->
+
+
+</div>
+<!-- /main content -->
 
 </div>
 
 
 </body>
+<script>
+$(document).ready(function () {
+	var alltooltips =  JSON.parse(localStorage.getItem("tool_tips"))
+	var appendcprp= alltooltips.BuyingBasket_GenreLevelBudgetAllocation_CPRP;
+	var appendreach = alltooltips.BuyingBasket_GenreLevelBudgetAllocation_Reach;
+	var appendcprpchannels = alltooltips.BuyingBasket_GenreLevelBudgetAllocation_CPRPChannel_Spots_days;
+	var appendfreqchannels = alltooltips.BuyingBasket_GenreLevelBudgetAllocation_FrequencyChannel_Spots_days;
+	var appendcampaignduration = alltooltips.BuyingBasket_ChannelLevelBudgetAllocation_CampaignDuration;
+	var appendaveragecommer = alltooltips.BuyingBasket_GenreLevelBudgetAllocation_AverageCommercialDuration;
+	var appenddispers = alltooltips.BuyingBasket_GenreLevelBudgetAllocation_Dispersion;
+	var appendcampaigndays = alltooltips.BuyingBasket_GenreLevelBudgetAllocation_CampaignDuration;
+	var appedacd = alltooltips.BuyingBasket_ChannelLevelBudgetAllocation_AverageCommercialDuration;
+	var appenddispersion = alltooltips.BuyingBasket_ChannelLevelBudgetAllocation_Dispersion;
+
+		$('.appendcprp').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appendcprp+'" src="assets/images/informicon.svg"/>')
+		$('.appendreach').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appendreach+'" src="assets/images/informicon.svg"/>')
+		$('.appendcprpchannels').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appendcprpchannels+'" src="assets/images/informicon.svg"/>')
+		// $('.appendlocation').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+location+'" src="assets/images/informicon.svg"/>')
+		$('.appendfreqchannels').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appendfreqchannels+'" src="assets/images/informicon.svg"/>')
+		$('.appendcampaignduration').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appendcampaignduration+'" src="assets/images/informicon.svg"/>')
+		// $('.appendlocation').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+location+'" src="assets/images/informicon.svg"/>')
+		$('.appendaveragecommer').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appendaveragecommer+'" src="assets/images/informicon.svg"/>')
+
+		$('.appenddispers').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appenddispers+'" src="assets/images/informicon.svg"/>')
+		$('.appendcampaigndays').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appendcampaigndays+'" src="assets/images/informicon.svg"/>')
+		$('.appedacd').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appedacd+'" src="assets/images/informicon.svg"/>')
+		$('.appenddispersion').append('<img style="width:17px;height:17px;margin-left:10px;" title="'+appenddispersion+'" src="assets/images/informicon.svg"/>')
+
+
+		// <img style="width:17px;height:17px;margin-left:10px;" src="assets/images/informicon.svg"/>
+
+})
+</script>
 
 
 </html>

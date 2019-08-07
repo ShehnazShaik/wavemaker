@@ -2,16 +2,8 @@
 .page-content{
     height: 82vh;
 }
-/* .content-wrapper{
-height: calc(100vh - 56px);
-} */
-/* .content-wrapper {
-    height: calc(100vh - 88px);
-} */
 
-.content-wrapper {
-    height: calc(100vh - 72px);
-}
+
 .texttodisplay {
     margin: auto;
     background: #f3713c;
@@ -39,7 +31,7 @@ height: calc(100vh - 56px);
     border: 1px solid red;
 }
 #logoutbtnid{
-    background-color: #ffffff2e !important;
+
     border: none;
     border-radius: 5px;
     padding: 2px 15px;
@@ -51,6 +43,7 @@ height: calc(100vh - 56px);
     padding: 9px;
     border: 1px solid #c9c9c9;
     border-radius: 5px;
+    margin-bottom: 20px;
     background: #f8f8f8;
 }
 .fileClick span{
@@ -110,12 +103,10 @@ height: calc(100vh - 56px);
     .sidebar-dark .nav-sidebar .nav-link{
         color: #fff !important;
     }
-    .content-wrapper{
+    /* .content-wrapper{
         background-color: #000000c4;
-    }
-    .content{
-        background-color: #000000c4
-    }
+    } */
+
     .card{
         background-color: #222c31;
         color: #fff;
@@ -145,7 +136,7 @@ height: calc(100vh - 56px);
     border-top: 1px solid #4e4747 !important;
 }
 .activee{
- background-color: #0d0d0d;
+ background-color: #151819;
 }
 .nav-link:after{
     display: none;

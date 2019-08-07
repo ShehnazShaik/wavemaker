@@ -10,7 +10,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/add_planner_onload',
+            "url": 'http://192.168.0.101:6767/add_planner_onload',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -54,7 +54,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/add_save_button',
+            "url": 'http://192.168.0.101:6767/add_save_button',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -86,7 +86,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/delete_planner_onload',
+            "url": 'http://192.168.0.101:6767/delete_planner_onload',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -141,7 +141,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/delete_save_button',
+            "url": 'http://192.168.0.101:6767/delete_save_button',
             "method": "POST",
             "processData": false,
             "contentType": false,

@@ -1,5 +1,6 @@
 $(document).ready(function () {
 $('body .nav-sidebar').find('li').removeClass('activee')
+debugger
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 if (filename == 'userprofile.php') {
@@ -82,7 +83,7 @@ var admin='';
 
 
   if(prev.hasOwnProperty('viewMasterData') || prev.hasOwnProperty('viewPrivileges') ){
-    var admin=prev.viewMasterData;
+    var admin=prev.viewmasterdata;
   if(admin!=''&&admin){
     $('body #admin').removeClass('hidden')}
   }

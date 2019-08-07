@@ -46,11 +46,17 @@
     <script src="assets\js\sessiontimeoutjs.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-
+    <script src="assets/js/exportExcel.js" charset="utf-8"></script>
+    <script src="assets/js/FileSaver.min.js" charset="utf-8"></script>
+    <script src="assets/js/xlsx.full.min.js" charset="utf-8"></script>
     <!-- /theme JS files -->
 
 </head>
 <style>
+.content{
+    background-image: url('./assets/images/wmflow.png');
+    	background-size: cover;
+}
 .file-drop-zone-title {
     padding: 11px;
 }
@@ -252,6 +258,9 @@ $( document ).ready(function() {
 
                                     </div>
                                 </div>
+
+
+
                                 <div class="mb-4">
                                 <h6 class="font-weight-semibold">TG</h6>
                                 <div class="col-md-8">
@@ -284,8 +293,21 @@ $( document ).ready(function() {
 
 
 
-
     </div>
+    <div class="row timestampfiles">
+        <h4 style="width:100%; text-align:center">Recent uploaded files </h4>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="masterdatastamp">
+                <h5>Master Data:</h5>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="channelstamp">
+                <h5>Channel Genre mapping sheet:</h5>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary downloadall" name="button" style="float:right">Download all admin files here</button>
 </div>
 
 <div class="tab-pane fade" id="login-tab2">
@@ -314,10 +336,8 @@ $( document ).ready(function() {
             </div>
         </div>
         <div class="col-md-12">
-            <!-- <button class="form-control editclass" style="width: 100px;background-color: #b75b26;color:white;float:right">EDIT</button> -->
-
+            <!-- <button class="form-control editclass" style="width: 100px;background-color: #b75b26;color:white;float:right">Download all latest files</button> -->
         </div>
-
 
         <div class="mb-4">
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -347,7 +367,6 @@ $( document ).ready(function() {
 
     </div>
 </div>
-
 
 
 <div class="mb-4">
@@ -387,14 +406,18 @@ $( document ).ready(function() {
 
 </div>
 
+<div class="loading">
+  <img src="assets/images/loader.gif" alt="">
+</div>
+
 
 
 <div class="" style="height:30px;">
 
 </div>
-<div class="loading">
+<!-- <div class="loading">
 	<img src="assets/images/loader.gif" alt="">
-</div>
+</div> -->
 </div>
 <!-- /page content -->
 

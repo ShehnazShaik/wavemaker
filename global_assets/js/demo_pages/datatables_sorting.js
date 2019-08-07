@@ -10,7 +10,9 @@
 // Setup module
 // ------------------------------
 
-var DatatableSorting = function() {
+var dataTable___;
+
+// var DatatableSorting = function() {
 
 
     //
@@ -27,7 +29,7 @@ var DatatableSorting = function() {
         // Setting datatable defaults
         $.extend( $.fn.dataTable.defaults, {
             autoWidth: false,
-            columnDefs: [{ 
+            columnDefs: [{
                 orderable: false,
                 width: 100,
                 targets: [ 5 ]
@@ -49,22 +51,55 @@ var DatatableSorting = function() {
 
 
         // Multi column ordering
-        $('.datatable-multi-sorting').DataTable({
-            columnDefs: [{
-                targets: [0],
-                orderData: [0, 1]
-            }, {
-                targets: [1],
-                orderData: [1, 0]
-            }, {
-                targets: [4],
-                orderData: [4, 0]
-            }, {
-                orderable: false,
-                width: '100px',
-                targets: [5]
-            }]
-        });
+        function dataTableMultiSortt() {
+            if (dataTable___1 == undefined) {
+                dataTable___1.clear();
+                dataTable___1.destroy()
+            }
+
+            dataTable___1 = $('.datatable-multi-sorting').DataTable({
+                columnDefs: [{
+                    targets: [0],
+                    orderData: [0, 1]
+                }, {
+                    targets: [1],
+                    orderData: [1, 0]
+                }, {
+                    targets: [4],
+                    orderData: [4, 0]
+                }, {
+                    orderable: false,
+                    width: '100px',
+                    targets: [5]
+                }]
+            });
+        }
+
+
+
+        function dataTableMultiSort() {
+            if (dataTable___ == undefined) {
+                dataTable___.clear();
+                dataTable___.destroy()
+            }
+
+            dataTable___ = $('.datatable-multi-sortingg').DataTable({
+                columnDefs: [{
+                    targets: [0],
+                    orderData: [0, 1]
+                }, {
+                    targets: [1],
+                    orderData: [1, 0]
+                }, {
+                    targets: [4],
+                    orderData: [4, 0]
+                }, {
+                    orderable: false,
+                    width: '100px',
+                    targets: [5]
+                }]
+            });
+        }
 
 
         // Complex headers with sorting
@@ -112,12 +147,12 @@ var DatatableSorting = function() {
             _componentSelect2();
         }
     }
-}();
+// }();
 
 
 // Initialize module
 // ------------------------------
-
-document.addEventListener('DOMContentLoaded', function() {
-    DatatableSorting.init();
-});
+//
+// document.addEventListener('DOMContentLoaded', function() {
+//     DatatableSorting.init();
+// });

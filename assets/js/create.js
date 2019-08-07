@@ -100,7 +100,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/Create_plan',
+            "url": ' http://192.168.0.101:6767/Create_plan',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -206,7 +206,7 @@ $(document).ready(function () {
                     var settings11 = {
                         "async": true,
                         "crossDomain": true,
-                        "url": 'http://192.168.0.125:6767/Create_plan_button',
+                        "url": 'http://192.168.0.101:6767/Create_plan_button',
                         "method": "POST",
                         "processData": false,
                         "contentType": false,
@@ -224,7 +224,7 @@ $(document).ready(function () {
                         $(this).parent(".new_plan");
                         $('.loading').hide();
                         swal("Created successfully");
-                        $('.create_plan').prop('readonly', true);
+                        $('.create_plan').prop('disabled', true);
                         console.log(msg);
                         createplanid = msg.createplanid;
 
@@ -258,7 +258,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/Create_plane_Freeze',
+            "url": 'http://192.168.0.101:6767/Create_plane_Freeze',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -271,6 +271,7 @@ $(document).ready(function () {
             markascompleted = msg.IsMarkAsCompleted;
             var channel = msg.ischannelselectioncompleted;
             var planProcessed = msg.planProcessed;
+            var acceleratedFilePath =msg.AcceleratedFilePath;
             backclicked = sessionStorage.getItem('backclicked');
 
             if (channel == "true" && backclicked == null && markascompleted == "false") {
@@ -391,7 +392,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/get_file_names',
+            "url": ' http://192.168.0.101:6767/get_file_names',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -418,7 +419,7 @@ $(document).ready(function () {
         var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": ' http://192.168.0.125:6767/download_file',
+            "url": ' http://192.168.0.101:6767/download_file',
             "method": "POST",
             "processData": false,
             "contentType": false,

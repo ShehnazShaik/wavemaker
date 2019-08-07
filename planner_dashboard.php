@@ -26,11 +26,9 @@
     <link href="assets/css/layout.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
-    <link rel="assets/css/common.css" href="/css/master.css">
-
+    <!-- <link rel="assets/css/common.css" href="/css/master.css"> -->
+    <link href="assets/css/common.css" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
-
-    <!-- Core JS files -->
     <script src="global_assets/js/main/jquery.min.js"></script>
     <script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
     <script src="global_assets/js/plugins/loaders/blockui.min.js"></script>
@@ -48,41 +46,42 @@
     <script src="global_assets/js/plugins/forms/selects/select2.min.js"></script>
 
     <script src="assets/js/app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="global_assets/js/demo_pages/form_select2.js"></script>
     <script src="global_assets/js/demo_pages/dashboard.js"></script>
-
     <!-- Theme JS files -->
     <script src="global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="global_assets/js/demo_pages/datatables_sorting.js"></script>
     <script src="assets/js/sidenavjscode.js"></script>
-    <script src="assets/js/ongoing_dashboardjs.js"></script>
+    <!-- <script src="assets/js/completedplansjs.js"></script> -->
     <script src="assets\js\sessiontimeoutjs.js"></script>
+    <script src="assets/js/ongoing_dashboardjs.js"></script>
+    <!-- <script src="assets\js\sessiontimeoutjs.js"></script> -->
 
 </head>
 <script>
-  var userrole = sessionStorage.getItem("role");
-  if (userrole!= 'Planner') {
-   $('#hidepri').css('display','none');
+var userrole = sessionStorage.getItem("role");
+if (userrole!= 'Planner') {
+    $('#hidepri').css('display','none');
 
-  }
-  else {
-     $('#hidepri').css('display','block');
-        $('.Prioritizebtn').empty()
-  }
+}
+else {
+    $('#hidepri').css('display','block');
+    $('.Prioritizebtn').empty()
+}
 
 </script>
 <style media="screen">
 
-/* #admin{
-display: none !important;
-} */
+
 .hidden{
     display:none;
 }
-/* #hidepri{
-  display: none;
-} */
+.dataTables_filter{
+    display: none;
+}
+
 .Prioritizebtn{
     background-color: #dfe4ea;
     border: none;
@@ -90,10 +89,31 @@ display: none !important;
     padding: 5px 22px;
     border-radius: 4px;
 }
-.datatable-header{
-    display: none !important;
+/* .datatable-header{
+display: none !important;
+} */
+.loading{
+    position: fixed;
+    background: rgba(177, 172, 172, 0.4);
+    width: 81vw;
+    height: 100vh;
+    top: 83px;
+    z-index: 999999999999999999999999999999;
+    text-align: center;
+    padding-top:37vh;
+    left: 20%;
+}
+.loading img{
+    width: 70px;
 }
 
+.content {
+    /* background-color: red /* background-image: url(../images/wmflow.png) no-repeat; */
+    /* background-image: url('asserts/images/wmflow.png') */
+    background-image: url("assets/images/wmflow.png");
+    background-repeat: no-repeat, repeat;
+    background-color: #2a2f39;
+}
 </style>
 <body>
 
@@ -104,97 +124,102 @@ display: none !important;
 
     <!-- Page content -->
     <div class="page-content">
-
         <?php	include 'assets/includes/side_navbar.php';?>
 
-
-        <!-- Main content -->
+        <div class="content-wrapper">
 
             <!-- Page header -->
-            <!-- <div class="page-header page-header-light">
+            <div class="page-header page-header-light">
 
-            <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-            <div class="d-flex">
-            <div class="breadcrumb">
-            <a href="index-2.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-            <span class="breadcrumb-item active">Dashboard</span>
-        </div>
+                <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline" style="background-color: #2a2f39;color: white;">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                            <span class="breadcrumb-item active">Ongoing Plans</span>
+                        </div>
 
-        <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-    </div>
-</div>
-</div> -->
-<!-- /page header -->
-
-
-<!-- Content area -->
-<div class="content" style="color:white;background-color: #222c31ed;">
-
-    <!-- Main charts -->
-    <div class="row" style="height:100%">
-        <div class="col-xl-12" style="height:100%">
-            <div class="card" style="height:100%;background-color: #222c31;">
-
-                <!-- Order direction sequence control -->
-                <div class="card" style="background-color: #222c31;">
-                    <div class="row">
-                        <div style="margin-top:6px;margin-right:14px;margin-left:12px;" class="col-sm-2">
-                            <input type="text" style="padding:5px;" placeholder="search for Campaign ID" class="form-control Campaignidclass"/>
-                        </div>
-                        <div style="margin-top:6px;" class="col-sm-2">
-                            <input class="form-control startdateclass"  placeholder="start date" type="date"/>
-                        </div>
-                        <div style="margin-top:6px;" class="col-sm-2">
-                            <input class="form-control enddateclass"  placeholder="end date" type="date"/>
-                        </div>
-                        <div style="margin-top:6px;" class="col-sm-2">
-                            <select data-placeholder="Client Name" class="form-control select clientclass" id="clientt" data-fouc>
-                                <option value=""></option>
-                            </select>
-                        </div>
-                        <div style="margin-top:6px;" class="col-sm-2">
-                            <select data-placeholder="BrandName" class="form-control select brandclass" id="brandd" data-fouc>
-                                <option value=""></option>
-                            </select>
-                        </div>
-                        <div style="margin-top:6px;" class="col-sm-1">
-                            <button style="background-color:#32ff7e;color:black;border:none;" class="form-control gobtn">GO</button>
-                        </div>
+                        <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
                     </div>
-                    <table class="table datatable-multi-sorting" style="color:white;margin-top:30px">
-                        <thead>
-                            <tr>
-                                <th>Campaign ID</th>
-                                <th>Brand</th>
-                                <th>Client</th>
-                                <th>Planner Name</th>
-                                <th>Start Date</th>
-                                <!-- <th>End Date</th> -->
-                                <th id="hidepri">Prioritization</th>
-                                  <th>Download</th>
-                            </tr>
-                        </thead>
-                        <tbody class="displaytabledata">
-                            <!-- <tr>
-                            <td><a href="#"></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr> -->
-
-                    </tbody>
-                </table>
+                </div>
             </div>
-            <!-- /order direction sequence control -->
-        </div>
-        <!-- /traffic sources -->
 
+
+
+            <!-- Content area -->
+            <div class="content" style="background-color: #2a2f39;">
+
+                <!-- Main charts -->
+                <div class="row" style="height:100%">
+                    <div class="col-xl-12" style="height:100%">
+                        <div class="card" style="height:100%;background-color: #222c31;">
+
+                            <div style="padding:12px;"><span style="font-size:16px;    color: #d63031;
+                            font-weight: 600;
+                            text-decoration: none;">More Filters </span>
+                            <img class="btn3" style="width:20px;height:20px; cursor:pointer !important;"src="assets/images/filter-icon.svg">
+                        </div>
+
+                        <!-- Order direction sequence control -->
+                        <!-- <div class="card" style="background-color: #222c31;"> -->
+                        <div class="row displaytoptextboxes">
+                            <!-- <div class="row"> -->
+                            <div style="margin-top:6px;margin-right:14px;margin-left:12px;" class="col-sm-2">
+                                <input type="text" style="padding:5px;" placeholder="search for Campaign ID" class="form-control Campaignidclass"/>
+                            </div>
+                            <div style="margin-top:6px;" class="col-sm-2">
+                                <input class="form-control startdateclass"  placeholder="start date" type="date"/>
+                            </div>
+                            <div style="margin-top:6px;" class="col-sm-2">
+                                <input class="form-control enddateclass"  placeholder="end date" type="date"/>
+                            </div>
+                            <div style="margin-top:6px;" class="col-sm-2">
+                                <select data-placeholder="Client Name" class="form-control select clientclass" id="clientt" data-fouc>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div style="margin-top:6px;" class="col-sm-2">
+                                <select data-placeholder="BrandName" class="form-control select brandclass" id="brandd" data-fouc>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div style="margin-top:6px;" class="col-sm-1">
+                                <button style="background-color:#00b894;color:#fff;border:none;" class="form-control gobtn">GO</button>
+                            </div>
+                        </div>
+                        <table class="table datatable-multi-sorting" style="color:white;margin-top:30px">
+                            <thead>
+                                <tr>
+                                    <th>Campaign ID</th>
+                                    <th>Brand</th>
+                                    <th>Client</th>
+                                    <th>Planner Name</th>
+                                    <th>Start Date</th>
+                                    <!-- <th>End Date</th> -->
+                                    <th id="hidepri">Prioritization</th>
+                                    <th>Download</th>
+                                </tr>
+                            </thead>
+                            <tbody class="displaytabledata">
+                                <!-- <tr>
+                                <td><a href="#"></a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> -->
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /order direction sequence control -->
+            </div>
+            <!-- /traffic sources -->
+
+        </div>
     </div>
-</div>
-<!-- /main charts -->
+    <!-- /main charts -->
 </div>
 <!-- Footer -->
 <!-- <div class="navbar navbar-expand-lg navbar-light">
@@ -222,6 +247,7 @@ Footer
 </div>
 <!-- /main content -->
 
+</div>
 </div>
 
 
@@ -256,7 +282,7 @@ Footer
         <div class="modal-content" style="margin-top: 255px;">
             <div class="modal-header">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-            <button type="button" class="close closeModal closeClass" data-dismiss="modal">&times;</button>
+                <button type="button" class="close closeModal closeClass" data-dismiss="modal">&times;</button>
             </div>
             <!-- Form -->
             <div class="modal-body" style="padding-top: 0px;">
@@ -277,9 +303,12 @@ Footer
         <!-- /form -->
 
     </div>
+
 </div>
 <!-- /page content -->
-
+<div class="loading">
+    <img src="assets/images/loader.gif" alt="">
+</div>
 </body>
 
 <!-- Mirrored from demo.interface.club/limitless/demo/bs4/Template/layout_1/LTR/default/full/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Jun 2019 06:41:06 GMT -->

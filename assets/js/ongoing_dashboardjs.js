@@ -1,7 +1,8 @@
 $(document).ready(function () {
+  $(".loading").show();
   var useridd = sessionStorage.getItem("userid");
   var userrole = sessionStorage.getItem("role");
-
+  var dataTable___;
   if (userrole!= 'Planner') {
     debugger
     $('#hidepri').show()
@@ -9,30 +10,12 @@ $(document).ready(function () {
   else {
     $('#hidepri').hide()
   }
-  // function format_dateee(date_string) {
-  //              date = new Date(date_string)
-  //              months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-  //              weeks_ = ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"];
-  //              hours_mian = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
-  //              hrs = date.getHours().toString().length < 2 ? '0'+date.getHours() : date.getHours()
-  //              mins = date.getMinutes().toString().length < 2 ? '0'+date.getMinutes() : date.getMinutes()
-  //              return date.getFullYear()+'-'+months[date.getMonth()]+'-'+date.getDate()
-  //          }
-  //
-  //
-  //
-  //          var weekstart = format_dateee(new Date())
-  //          console.log(weekstart);
-  //          $('.startdateclass').val(weekstart)
-  //
-  //          function addDays(theDate, days) {
-  //              return new Date(theDate.getTime() + days*24*60*60*1000);
-  //          }
-  //
-  //          var endweek = format_dateee(addDays(new Date(), 7));
-  //          $('.enddateclass').val(endweek)
 
 
+  $(".displaytoptextboxes").slideToggle('hidden');
+  $(".btn3").click(function(){
+           $(".displaytoptextboxes").slideToggle('slow');
+     });
 
 
   pageonloadhit()
@@ -57,7 +40,7 @@ $(document).ready(function () {
     var settings11 = {
       "async": true,
       "crossDomain": true,
-      "url": 'http://192.168.0.125:6767/ongoing_client_request',
+      "url": 'http://192.168.0.101:6767/ongoing_client_request',
       "method": "POST",
       "processData": false,
       "contentType": false,
@@ -67,6 +50,7 @@ $(document).ready(function () {
     $.ajax(settings11).done(function (msg) {
       msg = JSON.parse(msg);
         console.log(msg);
+
         data = msg.Client
         recordss = msg.records
         // console.log(data);
@@ -113,7 +97,7 @@ $(document).ready(function () {
           var settings11 = {
             "async": true,
             "crossDomain": true,
-            "url": 'http://192.168.0.125:6767/ongoing_gobutton',
+            "url": 'http://192.168.0.101:6767/ongoing_gobutton',
             "method": "POST",
             "processData": false,
             "contentType": false,
@@ -123,8 +107,9 @@ $(document).ready(function () {
           $.ajax(settings11).done(function (msg) {
             msg = JSON.parse(msg);
               console.log(msg);
+              // $(".loading").hide();
                 displaytable(msg);
-
+                // dataTableMultiSort()
               //       $.each(msg ,function(key,v){
               //         ap1 = ''
               //     // for (var i = 0; i < v.msg; i++) {
@@ -158,8 +143,16 @@ $(document).ready(function () {
     })
 
 
+
+
     function displaytable(msg) {
+      if (dataTable___ != undefined) {
+          dataTable___.clear();
+          dataTable___.destroy()
+      }
+      debugger
          row = ''
+         $(".loading").hide();
         for (var i = 0; i < msg.length; i++) {
                 block = msg[i];
                   row += '<tr>';
@@ -174,7 +167,7 @@ $(document).ready(function () {
 
                   }
                   else {
-                      row += '<td  style="color:#2ed573" plainidattr="'+block.PlanId+'">Prioritized</td>';
+                      row += '<td  style="color:#2ed573;font-weight:600" plainidattr="'+block.PlanId+'">Prioritized</td>';
                   }
                 }
                   row += '<td style="text-align:center"><div class="downloadbtn pointer"  plainidattr="'+block.PlanId+'" style=""><img src="assets/images/download.svg" style="width:27px;"></button></td>';
@@ -184,8 +177,36 @@ $(document).ready(function () {
                 row += '</tr>';
             }
             $(".displaytabledata").html(row)
+            dataTableMultiSort()
 
 
+
+    }
+
+
+
+
+    function dataTableMultiSort() {
+
+        setTimeout(function () {
+            dataTable___ = $('.datatable-multi-sorting').DataTable({
+
+                columnDefs: [{
+                    targets: [0],
+                    orderData: [0, 1]
+                }, {
+                    targets: [1],
+                    orderData: [1, 0]
+                }, {
+                    targets: [4],
+                    orderData: [4, 0]
+                }, {
+                    orderable: false,
+                    width: '100px',
+                    targets: [5]
+                }]
+            });
+        }, 0);
     }
 
 
@@ -221,7 +242,7 @@ $(document).ready(function () {
                       var settings11 = {
                         "async": true,
                         "crossDomain": true,
-                        "url": 'http://192.168.0.125:6767/ongoing_prioritize_button1',
+                        "url": 'http://192.168.0.101:6767/ongoing_prioritize_button1',
                         "method": "POST",
                         "processData": false,
                         "contentType": false,
@@ -249,7 +270,7 @@ $(document).ready(function () {
               var settings11 = {
                   "async": true,
                   "crossDomain": true,
-                  "url": ' http://192.168.0.125:6767/get_file_names',
+                  "url": ' http://192.168.0.101:6767/get_file_names',
                   "method": "POST",
                   "processData": false,
                   "contentType": false,
@@ -310,7 +331,7 @@ $(document).ready(function () {
               var settings11 = {
                   "async": true,
                   "crossDomain": true,
-                  "url": ' http://192.168.0.125:6767/download_file',
+                  "url": ' http://192.168.0.101:6767/download_file',
                   "method": "POST",
                   "processData": false,
                   "contentType": false,
@@ -364,7 +385,7 @@ $(document).ready(function () {
               var settings11 = {
                   "async": true,
                   "crossDomain": true,
-                  "url": ' http://192.168.0.125:6767/download_file',
+                  "url": ' http://192.168.0.101:6767/download_file',
                   "method": "POST",
                   "processData": false,
                   "contentType": false,

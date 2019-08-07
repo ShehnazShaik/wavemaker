@@ -12,7 +12,7 @@ var msg__;
       var settings11 = {
           "async": true,
           "crossDomain": true,
-          "url": 'http://192.168.0.125:6767/master_roles_and_Privileges',
+          "url": 'http://192.168.0.101:6767/master_roles_and_Privileges',
           "method": "POST",
           "processData": false,
           "contentType": false,
@@ -170,7 +170,7 @@ $(".displayhere").html(row)
     var settings11 = {
         "async": true,
         "crossDomain": true,
-        "url": 'http://192.168.0.125:6767/master_roles_and_Privileges_button',
+        "url": 'http://192.168.0.101:6767/master_roles_and_Privileges_button',
         "method": "POST",
         "processData": false,
         "contentType": false,
